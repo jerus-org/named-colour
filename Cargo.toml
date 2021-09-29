@@ -1,0 +1,31 @@
+[package]
+name = "named-colour"
+description = """
+named-colour provides Hex Codes for popular colour names.
+"""
+version = "0.1.0"
+authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
+license = "MIT or Apache-2.0"
+repository = "https://github.com/jerusdp/named-colour"
+readme = "README.md"
+documentation = "https://docs.rs/named-colour"
+categories = ["web-programming", "visualization"]
+keywords = ["colours", "constants", "reference"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+]
+edition = "2018"
+
+[features]
+default = ["basic"]
+basic = []
+extended = []
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
