@@ -12,12 +12,12 @@
 [crates-badge]: https://img.shields.io/crates/v/named-colour.svg
 [crates-url]: https://crates.io/crates/named-colour
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-url]: https://github.com/jerusdp/named-colour-rs/blob/main/LICENSE
-[actions-badge]: https://github.com/jerusdp/named-colour-rs/actions/workflows/general.yml/badge.svg?branch=main
-[actions-url]: https://github.com/jerusdp/named-colour-rs/actions/workflows/general.yml
-[version-badge]: https://img.shields.io/badge/rust-1.46+-orange.svg
+[mit-url]: https://github.com/jerusdp/named-colour/blob/main/LICENSE-MIT
+[actions-badge]: https://github.com/jerusdp/named-colour/actions/workflows/general.yml/badge.svg?branch=main
+[actions-url]: https://github.com/jerusdp/named-colour/actions/workflows/general.yml
+[version-badge]: https://img.shields.io/badge/rust-1.33+-orange.svg
 [version-url]: https://www.rust-lang.org
-[fossa-badge]: https://app.fossa.com/api/projects/custom%2B22707%2Fgithub.com%2Fjerusdp%2Fnamed-colour-rs.svg?type=shield
+[fossa-badge]: https://app.fossa.com/api/projects/custom%2B22707%2Fgithub.com%2Fjerusdp%2Fnamed-colour.svg?type=shield
 [fossa-url]: https://app.fossa.com/projects/custom%2B22707%2Fgithub.com%2Fjerusdp%2Fnamed-colour?ref=badge_shield
 [docs-badge]:  https://docs.rs/named-colour/badge.svg
 [docs-url]:  https://docs.rs/named-colour
