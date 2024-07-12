@@ -6,15 +6,12 @@ named-colour provides Hex Codes for popular colour names.
 version = "0.1.0"
 authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
 license = "MIT or Apache-2.0"
-repository = "https://github.com/jerusdp/named-colour"
+repository = "https://github.com/jerus-org/named-colour"
 readme = "README.md"
 documentation = "https://docs.rs/named-colour"
 categories = ["web-programming", "visualization"]
 keywords = ["colours", "constants", "reference"]
-include = [
-    "**/*.rs",
-    "Cargo.toml",
-]
+include = ["**/*.rs", "Cargo.toml"]
 edition = "2018"
 
 [features]
