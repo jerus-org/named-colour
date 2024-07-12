@@ -72,8 +72,6 @@ workflows:
             - bot-check
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
-          install_from_github: true
-          pcu_verbosity: -vvvv
 
   on_success:
     when:

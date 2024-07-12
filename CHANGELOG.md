@@ -10,5 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - chore-move to jerus-org and adopt circleci ci(pr [#16])
+- chore-clean up and complete ci migration(pr [#17])
 
 [#16]: https://github.com/jerus-org/named-colour/pull/16
+[#17]: https://github.com/jerus-org/named-colour/pull/17
