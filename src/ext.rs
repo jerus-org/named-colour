@@ -6,7 +6,7 @@ use std::fmt;
 /// Shades of red
 #[derive(Debug)]
 pub enum Red {
-    #[allow(missing_docs)]
+    /// Maroon
     Maroon,
     #[allow(missing_docs)]
     DarkRed,
