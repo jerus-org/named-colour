@@ -19,46 +19,51 @@
 //!     Basic::Aqua.as_rgb()
 //! );
 //!```
-//!
-//! ### Use Extended colour
-//!
-//! Enable the feature in the toml file:
-//!
-//!```toml
-//![dependencies]
-//!named_colour = {version = "0.1.0", features = ["extended"]}
-//!```
-//!
-//!```compile_fail
-//! use named_colour::ext::Indigo;
-//! println!("The colour Hex Code is: {} for the RGB colour Dark Orchid: {}",
-//!     Indigo::DarkOrchid,
-//!     Indigo::DarkOrchid.as_rgb()
-//! );
-//!```
-//!
-//! ### Create a custom colour
-//!
-//!```
-//! use named_colour::ColourRgb;
-//! let my_colour =ColourRgb::new(12,24,48);
-//! println!("The Hex Code is: {} for my_colour: {}",
-//!     my_colour.as_hex(),
-//!     my_colour.to_string()
-//! );
-//!```
-//!
-//! ## Features
-//! - Basic contains just 16 colours with 18 names (default)
-//! - Extended contains a fuller set of colours divided in 11 collections
-//!
-//! To use the extended colour set only configure toml with no-default features
-//!
-//!```toml
-//![dependencies]
-//!named_colour = {version = "0.1.0", default_features = false, features = ["extended"]}
-//!```
-//!
+#[cfg_attr(
+    feature = "extended",
+    doc = r##"
+
+ ### Use Extended colour
+
+ Enable the feature in the toml file:
+
+```toml
+[dependencies]
+named_colour = {version = "0.1.0", features = ["extended"]}
+```
+
+```
+    use named_colour::ext::Indigo;
+    println!("The colour Hex Code is: {} for the RGB colour Dark Orchid: {}",
+        Indigo::DarkOrchid,
+        Indigo::DarkOrchid.as_rgb()
+ );
+```
+"##
+)]
+///
+/// ### Create a custom colour
+///
+///```
+/// use named_colour::ColourRgb;
+/// let my_colour =ColourRgb::new(12,24,48);
+/// println!("The Hex Code is: {} for my_colour: {}",
+///     my_colour.as_hex(),
+///     my_colour.to_string()
+/// );
+///```
+///
+/// ## Features
+/// - Basic contains just 16 colours with 18 names (default)
+/// - Extended contains a fuller set of colours divided in 11 collections
+///
+/// To use the extended colour set only configure toml with no-default features
+///
+///```toml
+///[dependencies]
+///named_colour = {version = "0.1.0", default_features = false, features = ["extended"]}
+///```
+///
 
 #[cfg(feature = "basic")]
 mod basic;
