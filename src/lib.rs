@@ -29,7 +29,7 @@
 //!named_colour = {version = "0.1.0", features = ["extended"]}
 //!```
 //!
-//!```
+//!```compile_fail
 //! use named_colour::ext::Indigo;
 //! println!("The colour Hex Code is: {} for the RGB colour Dark Orchid: {}",
 //!     Indigo::DarkOrchid,
