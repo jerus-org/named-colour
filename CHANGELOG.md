@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - docs-add documentation for DarkRed enum variant in Red enum(pr [#20])
+- docs-move documentation update entry to correct version section(pr [#21])
 
 ## [0.1.1] - 2024-07-14
 
@@ -25,3 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#18]: https://github.com/jerus-org/named-colour/pull/18
 [#19]: https://github.com/jerus-org/named-colour/pull/19
 [#20]: https://github.com/jerus-org/named-colour/pull/20
+[#21]: https://github.com/jerus-org/named-colour/pull/21
+[Unreleased]: https://github.com/jerus-org/named-colour/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/jerus-org/named-colour/releases/tag/0.1.1
