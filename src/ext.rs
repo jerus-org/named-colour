@@ -8,7 +8,7 @@ use std::fmt;
 pub enum Red {
     /// Maroon
     Maroon,
-    #[allow(missing_docs)]
+    /// Dark Red
     DarkRed,
     #[allow(missing_docs)]
     Brown,
