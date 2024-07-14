@@ -9,11 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- docs-add documentation for DarkRed enum variant in Red enum(pr [#20])
+
+## [0.1.1] - 2024-07-14
+
+### Changed
+
 - chore-move to jerus-org and adopt circleci ci(pr [#16])
 - chore-clean up and complete ci migration(pr [#17])
 - ci-upgrade jerus-org/circleci-toolkit from v0.20.0 to v0.22.0(pr [#18])
 - style-change license syntax from 'or' to 'OR'(pr [#19])
-- docs-add documentation for DarkRed enum variant in Red enum(pr [#20])
 
 [#16]: https://github.com/jerus-org/named-colour/pull/16
 [#17]: https://github.com/jerus-org/named-colour/pull/17
