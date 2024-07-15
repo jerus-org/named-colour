@@ -12,6 +12,12 @@
 //!
 //! ### Use Basic colour
 //!
+//!```toml
+//! [dependencies]
+//! named_colour = "0.1.0"
+//!
+//!```
+//!
 //!```
 //! use named_colour::Basic;
 //! println!("The colour Hex Code is: {} for the RGB colour Aqua: {}",
@@ -29,7 +35,7 @@
 
 ```toml
 [dependencies]
-named_colour = {version = "0.1.0", features = ["extended"]}
+named_colour = { version = "0.1.0", features = ["extended"]}
 ```
 
 ```
@@ -61,7 +67,7 @@ named_colour = {version = "0.1.0", features = ["extended"]}
 ///
 ///```toml
 ///[dependencies]
-///named_colour = {version = "0.1.0", default_features = false, features = ["extended"]}
+///named_colour = { version = "0.1.0", default_features = false, features = ["extended"]}
 ///```
 ///
 
