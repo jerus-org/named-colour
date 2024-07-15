@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- chore-release replacements and updates(pr [#23])
+
+## [0.1.2] - 2024-07-14
+
+### Changed
+
 - docs-add documentation for DarkRed enum variant in Red enum(pr [#20])
 - docs-move documentation update entry to correct version section(pr [#21])
 - chore-bump version from 0.1.0 to 0.1.1(pr [#22])
@@ -29,5 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#20]: https://github.com/jerus-org/named-colour/pull/20
 [#21]: https://github.com/jerus-org/named-colour/pull/21
 [#22]: https://github.com/jerus-org/named-colour/pull/22
-[Unreleased]: https://github.com/jerus-org/named-colour/compare/0.1.1...HEAD
+[#23]: https://github.com/jerus-org/named-colour/pull/23
+[Unreleased]: https://github.com/jerus-org/named-colour/compare/0.1.2...HEAD
+[0.1.2]: https://github.com/jerus-org/named-colour/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/jerus-org/named-colour/releases/tag/0.1.1
