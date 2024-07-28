@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ci-update toolkit version from 0.22.0 to 0.24.1(pr [#24])
 - chore-extend configuration with package rules, regex managers, and dependency dashboard(pr [#25])
 
+### Fixed
+
+- correct crate name and config and replacement strings in lib.rs, README.md and release.toml(pr [#26])
+
 ## [0.1.3] - 2024-07-15
 
 ### Changed
@@ -45,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#23]: https://github.com/jerus-org/named-colour/pull/23
 [#24]: https://github.com/jerus-org/named-colour/pull/24
 [#25]: https://github.com/jerus-org/named-colour/pull/25
+[#26]: https://github.com/jerus-org/named-colour/pull/26
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/0.1.3...HEAD
 [0.1.3]: https://github.com/jerus-org/named-colour/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/jerus-org/named-colour/compare/0.1.1...0.1.2

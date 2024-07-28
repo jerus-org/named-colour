@@ -35,7 +35,7 @@
 
 ```toml
 [dependencies]
-named_colour = {version = 0.1.3, features = ["extended"]}
+named-colour = { version = "0.1.3", features = ["extended"]}
 ```
 
 ```
@@ -67,7 +67,7 @@ named_colour = {version = 0.1.3, features = ["extended"]}
 ///
 ///```toml
 ///[dependencies]
-///named_colour = {version = 0.1.3, default_features = false, features = ["extended"]}
+///named-colour = { version = "0.1.3", default_features = false, features = ["extended"]}
 ///```
 ///
 
