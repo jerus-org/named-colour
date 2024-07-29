@@ -34,7 +34,7 @@ To use named-colour in your project you can add the following to your `Cargo.tom
 
 ```toml
 [dependencies]
-named-colour = "0.1.0"
+named-colour = "0.1.4"
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ Enable the feature in the toml file:
 
 ```toml
 [dependencies]
-named-colour = { version = "0.1.3", features = ["extended"]}
+named-colour = { version = "0.1.4", features = ["extended"]}
 ```
 
 ```rust
@@ -93,7 +93,7 @@ To use the extended colour set only configure toml with no-default features
 
 ```toml
 [dependencies]
-named-colour = { version = "0.1.3", default_features = false, features = ["extended"]}
+named-colour = { version = "0.1.4", default_features = false, features = ["extended"]}
 ```
 
 ## License
