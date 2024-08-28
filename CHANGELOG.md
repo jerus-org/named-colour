@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - add to_hex_string method for ColourRgb(pr [#29])
+- derive Debug, PartialEq, Eq, Clone, and Copy for ColourRgb struct(pr [#31])
 
 ### Changed
 
@@ -71,6 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#28]: https://github.com/jerus-org/named-colour/pull/28
 [#29]: https://github.com/jerus-org/named-colour/pull/29
 [#30]: https://github.com/jerus-org/named-colour/pull/30
+[#31]: https://github.com/jerus-org/named-colour/pull/31
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.5...HEAD
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/jerus-org/named-colour/compare/v0.1.3...v0.1.4
