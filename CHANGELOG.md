@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - ci-update toolkit orb to version 1.4.3(pr [#28])
+- ci-add security job to CircleCI config(pr [#30])
 
 ## [0.1.5] - 2024-08-03
 
@@ -69,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#27]: https://github.com/jerus-org/named-colour/pull/27
 [#28]: https://github.com/jerus-org/named-colour/pull/28
 [#29]: https://github.com/jerus-org/named-colour/pull/29
+[#30]: https://github.com/jerus-org/named-colour/pull/30
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.5...HEAD
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/jerus-org/named-colour/compare/v0.1.3...v0.1.4

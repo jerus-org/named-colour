@@ -61,12 +61,14 @@ workflows:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/idiomatic_rust:
           min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/security
       - toolkit/update_changelog:
           requires:
             - toolkit/common_tests
             - toolkit/required_builds
             - toolkit/test_doc_build
             - toolkit/idiomatic_rust
+            - toolkit/security
           context:
             - release
             - bot-check
