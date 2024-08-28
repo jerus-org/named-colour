@@ -36,7 +36,12 @@ impl ColourRgb {
 
     /// Display the colour code using the hex code format
     pub fn as_hex(&self) -> String {
-        format!("#{:X}{:X}{:X}", self.red, self.green, self.blue)
+        format!("#{:02X}{:02X}{:02X}", self.red, self.green, self.blue)
+    }
+
+    /// Convert the colour code to a hex string
+    pub fn to_hex_string(&self) -> String {
+        format!("{:02x}{:02x}{:02x}", self.red, self.green, self.blue)
     }
 }
 
@@ -46,6 +51,18 @@ mod tests {
 
     #[test]
     fn print_valid_hex_string() {
-        assert_eq!("#CCCCCC", &ColourRgb::new(204, 204, 204).as_hex())
+        assert_eq!("#CCCCCC", &ColourRgb::new(204, 204, 204).as_hex());
+        let colour = ColourRgb::new(12, 24, 48);
+        assert_eq!("#0C1830", colour.as_hex());
+        let colour = ColourRgb::new(12, 4, 8);
+        assert_eq!("#0C0408", colour.as_hex());
+    }
+
+    #[test]
+    fn test_to_hex_string() {
+        let colour = ColourRgb::new(12, 24, 48);
+        assert_eq!("0c1830", colour.to_hex_string());
+        let colour = ColourRgb::new(12, 4, 8);
+        assert_eq!("0c0408", colour.to_hex_string());
     }
 }

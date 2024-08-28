@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- add to_hex_string method for ColourRgb(pr [#29])
+
 ### Changed
 
 - ci-update toolkit orb to version 1.4.3(pr [#28])
@@ -64,6 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#26]: https://github.com/jerus-org/named-colour/pull/26
 [#27]: https://github.com/jerus-org/named-colour/pull/27
 [#28]: https://github.com/jerus-org/named-colour/pull/28
+[#29]: https://github.com/jerus-org/named-colour/pull/29
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.5...HEAD
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/jerus-org/named-colour/compare/v0.1.3...v0.1.4
