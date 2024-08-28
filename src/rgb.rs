@@ -15,6 +15,7 @@ type ColourCode = u8;
 /// );
 ///```
 ///
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct ColourRgb {
     red: ColourCode,
     green: ColourCode,
