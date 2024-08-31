@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - chore(circleci)-update toolkit orb to version 1.5.0 and add update_changelog parameter(pr [#32])
+- chore-update .gitignore and add Cargo.lock(pr [#33])
 
 ## [0.1.6] - 2024-08-28
 
@@ -80,6 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#30]: https://github.com/jerus-org/named-colour/pull/30
 [#31]: https://github.com/jerus-org/named-colour/pull/31
 [#32]: https://github.com/jerus-org/named-colour/pull/32
+[#33]: https://github.com/jerus-org/named-colour/pull/33
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
