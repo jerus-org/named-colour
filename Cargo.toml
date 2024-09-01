@@ -12,7 +12,8 @@ documentation = "https://docs.rs/named-colour"
 categories = ["web-programming", "visualization"]
 keywords = ["colours", "constants", "reference"]
 include = ["**/*.rs", "Cargo.toml"]
-edition = "2018"
+edition = "2021"
+rust-version = "1.61"
 
 [features]
 default = ["basic"]
@@ -23,6 +24,8 @@ extended = []
 
 [dependencies]
 rgb = { version = "0.8.50", features = ["serde"] }
+
+[dev-dependencies]
 rstest = "0.22.0"
 
 [package.metadata.docs.rs]
