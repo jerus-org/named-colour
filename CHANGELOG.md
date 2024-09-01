@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- add support for RGB and Hex triplet conversion(pr [#34])
+
 ### Changed
 
 - chore(circleci)-update toolkit orb to version 1.5.0 and add update_changelog parameter(pr [#32])
@@ -82,6 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#31]: https://github.com/jerus-org/named-colour/pull/31
 [#32]: https://github.com/jerus-org/named-colour/pull/32
 [#33]: https://github.com/jerus-org/named-colour/pull/33
+[#34]: https://github.com/jerus-org/named-colour/pull/34
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
