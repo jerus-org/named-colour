@@ -78,8 +78,8 @@ mod basic;
 pub mod ext;
 mod rgb;
 
+pub use crate::rgb::ColourRgb;
 pub use basic::Basic;
-pub use rgb::ColourRgb;
 
 pub(crate) fn to_rgb(hex: &str) -> String {
     let mut no_error = true;

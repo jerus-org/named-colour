@@ -72,7 +72,8 @@ impl Basic {
 
     #[deprecated(
         since = "0.2.0",
-        note = "Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead"
+        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
+        Will be removed in 0.3.0"#
     )]
     pub fn as_rgb(&self) -> String {
         match self {
