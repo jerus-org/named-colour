@@ -149,7 +149,7 @@ impl Basic {
     /// # use named_colour::Prefix;
     ///     let colour = Basic::Black;
     ///
-    ///     assert_eq!("#000000)", colour.to_hex_triplet(Prefix::Hash));
+    ///     assert_eq!("#000000", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
 
