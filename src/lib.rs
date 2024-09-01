@@ -103,6 +103,12 @@ pub(crate) fn to_rgb(hex: &str) -> String {
     }
 }
 
+#[allow(missing_docs)]
+pub enum Prefix {
+    None,
+    Hash,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
