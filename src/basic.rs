@@ -72,7 +72,7 @@ impl Basic {
 
     #[deprecated(
         since = "0.2.0",
-        note = "Use `to_rgb` for Rgb struct and `to_string()` to deisplay as decimal Rgb triplet instead"
+        note = "Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead"
     )]
     pub fn as_rgb(&self) -> String {
         match self {
@@ -146,6 +146,7 @@ impl Basic {
     ///
     ///```
     /// # use named_colour::Basic;
+    /// # use named_colour::Prefix;
     ///     let colour = Basic::Black;
     ///
     ///     assert_eq!("#000000)", colour.to_hex_triplet(Prefix::Hash));
@@ -171,6 +172,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[allow(deprecated)]
     fn display_as_rgb() {
         assert_eq!("(0,255,255)", Basic::Aqua.as_rgb())
     }
