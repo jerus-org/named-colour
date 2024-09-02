@@ -9,6 +9,7 @@ mod green;
 mod indigo;
 mod purple;
 mod red;
+mod white;
 mod yellow;
 
 pub use blue::Blue;
@@ -17,138 +18,8 @@ pub use green::Green;
 pub use indigo::Indigo;
 pub use purple::Purple;
 pub use red::Red;
+pub use white::White;
 pub use yellow::Yellow;
-
-/// Shades of white
-#[derive(Debug)]
-pub enum White {
-    #[allow(missing_docs)]
-    AntiqueWhite,
-    #[allow(missing_docs)]
-    Beige,
-    #[allow(missing_docs)]
-    Bisque,
-    #[allow(missing_docs)]
-    BlanchedAlmond,
-    #[allow(missing_docs)]
-    Wheat,
-    #[allow(missing_docs)]
-    CornSilk,
-    #[allow(missing_docs)]
-    LemonChiffon,
-    #[allow(missing_docs)]
-    LightGoldenRodYellow,
-    #[allow(missing_docs)]
-    LightYellow,
-    #[allow(missing_docs)]
-    White,
-    #[allow(missing_docs)]
-    Moccasin,
-    #[allow(missing_docs)]
-    NavajoWhite,
-    #[allow(missing_docs)]
-    PeachPuff,
-    #[allow(missing_docs)]
-    MistyRose,
-    #[allow(missing_docs)]
-    LavenderBlush,
-    #[allow(missing_docs)]
-    Linen,
-    #[allow(missing_docs)]
-    OldLace,
-    #[allow(missing_docs)]
-    PapayaWhip,
-    #[allow(missing_docs)]
-    SeaShell,
-    #[allow(missing_docs)]
-    MintCream,
-    #[allow(missing_docs)]
-    FloralWhite,
-    #[allow(missing_docs)]
-    GhostWhite,
-    #[allow(missing_docs)]
-    Ivory,
-    #[allow(missing_docs)]
-    Snow,
-    #[allow(missing_docs)]
-    WhiteSmoke,
-}
-
-impl fmt::Display for White {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            White::AntiqueWhite => write!(f, "#FAEBD7"),
-            White::Beige => write!(f, "#F5F5DC"),
-            White::Bisque => write!(f, "#FFE4C4"),
-            White::BlanchedAlmond => write!(f, "#FFEBCD"),
-            White::Wheat => write!(f, "#F5DEB3"),
-            White::CornSilk => write!(f, "#FFF8DC"),
-            White::LemonChiffon => write!(f, "#FFFACD"),
-            White::LightGoldenRodYellow => write!(f, "#FAFAD2"),
-            White::LightYellow => write!(f, "#FFFFE0"),
-            White::White => write!(f, "#FFFFFF"),
-            White::Moccasin => write!(f, "#FFE4B5"),
-            White::NavajoWhite => write!(f, "#FFDEAD"),
-            White::PeachPuff => write!(f, "#FFDAB9"),
-            White::MistyRose => write!(f, "#FFE4E1"),
-            White::LavenderBlush => write!(f, "#FFF0F5"),
-            White::Linen => write!(f, "#FAF0E6"),
-            White::OldLace => write!(f, "#FDF5E6"),
-            White::PapayaWhip => write!(f, "#FFEFD5"),
-            White::SeaShell => write!(f, "#FFF5EE"),
-            White::MintCream => write!(f, "#F5FFFA"),
-            White::FloralWhite => write!(f, "#FFFAF0"),
-            White::GhostWhite => write!(f, "#F8F8FF"),
-            White::Ivory => write!(f, "#FFFFF0"),
-            White::Snow => write!(f, "#FFFAFA"),
-            White::WhiteSmoke => write!(f, "#F5F5F5"),
-        }
-    }
-}
-
-impl White {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::White;
-    /// # fn example() {
-    /// assert_eq!("(250,240,230)", White::Linen.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            White::AntiqueWhite => crate::to_rgb("#FAEBD7"),
-            White::Beige => crate::to_rgb("#F5F5DC"),
-            White::Bisque => crate::to_rgb("#FFE4C4"),
-            White::BlanchedAlmond => crate::to_rgb("#FFEBCD"),
-            White::Wheat => crate::to_rgb("#F5DEB3"),
-            White::CornSilk => crate::to_rgb("#FFF8DC"),
-            White::LemonChiffon => crate::to_rgb("#FFFACD"),
-            White::LightGoldenRodYellow => crate::to_rgb("#FAFAD2"),
-            White::LightYellow => crate::to_rgb("#FFFFE0"),
-            White::White => crate::to_rgb("#FFFFFF"),
-            White::Moccasin => crate::to_rgb("#FFE4B5"),
-            White::NavajoWhite => crate::to_rgb("#FFDEAD"),
-            White::PeachPuff => crate::to_rgb("#FFDAB9"),
-            White::MistyRose => crate::to_rgb("#FFE4E1"),
-            White::LavenderBlush => crate::to_rgb("#FFF0F5"),
-            White::Linen => crate::to_rgb("#FAF0E6"),
-            White::OldLace => crate::to_rgb("#FDF5E6"),
-            White::PapayaWhip => crate::to_rgb("#FFEFD5"),
-            White::SeaShell => crate::to_rgb("#FFF5EE"),
-            White::MintCream => crate::to_rgb("#F5FFFA"),
-            White::FloralWhite => crate::to_rgb("#FFFAF0"),
-            White::GhostWhite => crate::to_rgb("#F8F8FF"),
-            White::Ivory => crate::to_rgb("#FFFFF0"),
-            White::Snow => crate::to_rgb("#FFFAFA"),
-            White::WhiteSmoke => crate::to_rgb("#F5F5F5"),
-        }
-    }
-}
 
 /// Shades of brown
 #[derive(Debug)]
@@ -403,6 +274,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_white_as_rgb() {
         assert_eq!("(250,240,230)", White::Linen.as_rgb())
     }

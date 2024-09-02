@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add extended blue shades with RGB and hex triplet support(pr [#41])
 - add Indigo enum with shades and related methods(pr [#42])
 - implement `to_rgb` and `to_hex_triplet` for purple (pr [#43])
+- implement `to_rgb` and `to_hex_triplet` for white enum(pr [#44])
 
 ### Changed
 
@@ -105,6 +106,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#41]: https://github.com/jerus-org/named-colour/pull/41
 [#42]: https://github.com/jerus-org/named-colour/pull/42
 [#43]: https://github.com/jerus-org/named-colour/pull/43
+[#44]: https://github.com/jerus-org/named-colour/pull/44
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
