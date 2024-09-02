@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add Brown color shades and refactor existing implementation(pr [#45])
 - add lavender module with extended named colours(pr [#46])
 - add extended shades of black with RGB and hex triplet conversions(pr [#47])
+- replace ColourRgb with ToHex trait and Rgb struct(pr [#48])
 
 ### Changed
 
@@ -113,6 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#45]: https://github.com/jerus-org/named-colour/pull/45
 [#46]: https://github.com/jerus-org/named-colour/pull/46
 [#47]: https://github.com/jerus-org/named-colour/pull/47
+[#48]: https://github.com/jerus-org/named-colour/pull/48
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5

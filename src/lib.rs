@@ -51,12 +51,15 @@ named-colour = { version = "0.1.6", features = ["extended"]}
 /// ### Create a custom colour
 ///
 ///```
-/// use named_colour::ColourRgb;
-/// let my_colour =ColourRgb::new(12,24,48);
-/// println!("The Hex Code is: {} for my_colour: {}",
-///     my_colour.as_hex(),
-///     my_colour.to_string()
-/// );
+/// use named_colour::ToHex;
+/// use rgb::Rgb;
+/// fn main() {
+///     assert_eq!("#CCCCCC", &Rgb::new(204, 204, 204).as_hex());
+///     let colour = Rgb::new(12, 24, 48);
+///     assert_eq!("#0C1830", colour.as_hex());
+///     let colour = Rgb::new(12, 4, 8);
+///     assert_eq!("#0C0408", colour.as_hex());
+/// }
 ///```
 ///
 /// ## Features
@@ -76,9 +79,9 @@ mod basic;
 #[cfg(feature = "extended")]
 #[allow(missing_docs)]
 pub mod ext;
-mod rgb;
+mod to_hex;
 
-pub use crate::rgb::ColourRgb;
+pub use crate::to_hex::ToHex;
 pub use basic::Basic;
 
 // Can be removed when deprecated `as_rgb` functions are removed
