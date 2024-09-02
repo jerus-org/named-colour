@@ -3,100 +3,7 @@
 
 use std::fmt;
 
-/// Shades of red
-#[derive(Debug)]
-pub enum Red {
-    /// Maroon
-    Maroon,
-    /// Dark Red
-    DarkRed,
-    #[allow(missing_docs)]
-    Brown,
-    #[allow(missing_docs)]
-    Firebrick,
-    #[allow(missing_docs)]
-    Crimson,
-    #[allow(missing_docs)]
-    Red,
-    #[allow(missing_docs)]
-    Tomato,
-    #[allow(missing_docs)]
-    Coral,
-    #[allow(missing_docs)]
-    IndianRed,
-    #[allow(missing_docs)]
-    LightCoral,
-    #[allow(missing_docs)]
-    DarkSalmon,
-    #[allow(missing_docs)]
-    Salmon,
-    #[allow(missing_docs)]
-    LightSalmon,
-    #[allow(missing_docs)]
-    OrangeRed,
-    #[allow(missing_docs)]
-    DarkOrange,
-    #[allow(missing_docs)]
-    Orange,
-}
-
-impl fmt::Display for Red {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Red::Maroon => write!(f, "#800000"),
-            Red::DarkRed => write!(f, "#8B0000"),
-            Red::Brown => write!(f, "#A52A2A"),
-            Red::Firebrick => write!(f, "#B22222"),
-            Red::Crimson => write!(f, "#DC143C"),
-            Red::Red => write!(f, "#FF0000"),
-            Red::Tomato => write!(f, "#FF6347"),
-            Red::Coral => write!(f, "#FF7F50"),
-            Red::IndianRed => write!(f, "#CD5C5C"),
-            Red::LightCoral => write!(f, "#F08080"),
-            Red::DarkSalmon => write!(f, "#E9967A"),
-            Red::Salmon => write!(f, "#FA8072"),
-            Red::LightSalmon => write!(f, "#FFA07A"),
-            Red::OrangeRed => write!(f, "#FF4500"),
-            Red::DarkOrange => write!(f, "#FF8C00"),
-            Red::Orange => write!(f, "#FFA500"),
-        }
-    }
-}
-
-impl Red {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Red;
-    /// # fn example() {
-    /// assert_eq!("(0,255,255)", Red::Firebrick.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Red::Maroon => crate::to_rgb("#800000"),
-            Red::DarkRed => crate::to_rgb("#8B0000"),
-            Red::Brown => crate::to_rgb("#A52A2A"),
-            Red::Firebrick => crate::to_rgb("#B22222"),
-            Red::Crimson => crate::to_rgb("#DC143C"),
-            Red::Red => crate::to_rgb("#FF0000"),
-            Red::Tomato => crate::to_rgb("#FF6347"),
-            Red::Coral => crate::to_rgb("#FF7F50"),
-            Red::IndianRed => crate::to_rgb("#CD5C5C"),
-            Red::LightCoral => crate::to_rgb("#F08080"),
-            Red::DarkSalmon => crate::to_rgb("#E9967A"),
-            Red::Salmon => crate::to_rgb("#FA8072"),
-            Red::LightSalmon => crate::to_rgb("#FFA07A"),
-            Red::OrangeRed => crate::to_rgb("#FF4500"),
-            Red::DarkOrange => crate::to_rgb("#FF8C00"),
-            Red::Orange => crate::to_rgb("#FFA500"),
-        }
-    }
-}
+mod red;
 
 /// Shades of yellow
 #[derive(Debug)]
@@ -977,8 +884,9 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_red_as_rgb() {
-        assert_eq!("(178,34,34)", Red::Firebrick.as_rgb())
+        assert_eq!("(178,34,34)", red::Red::Firebrick.as_rgb())
     }
 
     #[test]
