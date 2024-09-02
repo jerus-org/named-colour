@@ -3,110 +3,17 @@
 
 use std::fmt;
 
+mod blue;
 mod cyan;
 mod green;
 mod red;
 mod yellow;
 
+pub use blue::Blue;
 pub use cyan::Cyan;
 pub use green::Green;
 pub use red::Red;
 pub use yellow::Yellow;
-
-/// Shades of blue
-#[derive(Debug)]
-pub enum Blue {
-    #[allow(missing_docs)]
-    PowderBlue,
-    #[allow(missing_docs)]
-    CadetBlue,
-    #[allow(missing_docs)]
-    SteelBlue,
-    #[allow(missing_docs)]
-    CornFlowerBlue,
-    #[allow(missing_docs)]
-    DeepSkyBlue,
-    #[allow(missing_docs)]
-    DodgerBlue,
-    #[allow(missing_docs)]
-    LightBlue,
-    #[allow(missing_docs)]
-    SkyBlue,
-    #[allow(missing_docs)]
-    LightSkyBlue,
-    #[allow(missing_docs)]
-    MidnightBlue,
-    #[allow(missing_docs)]
-    Navy,
-    #[allow(missing_docs)]
-    DarkBlue,
-    #[allow(missing_docs)]
-    MediumBlue,
-    #[allow(missing_docs)]
-    Blue,
-    #[allow(missing_docs)]
-    RoyalBlue,
-    #[allow(missing_docs)]
-    Azure,
-}
-
-impl fmt::Display for Blue {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Blue::PowderBlue => write!(f, "#B0E0E6"),
-            Blue::CadetBlue => write!(f, "#5F9EA0"),
-            Blue::SteelBlue => write!(f, "#4682B4"),
-            Blue::CornFlowerBlue => write!(f, "#6495ED"),
-            Blue::DeepSkyBlue => write!(f, "#00BFFF"),
-            Blue::DodgerBlue => write!(f, "#1E90FF"),
-            Blue::LightBlue => write!(f, "#ADD8E6"),
-            Blue::SkyBlue => write!(f, "#87CEEB"),
-            Blue::LightSkyBlue => write!(f, "#87CEFA"),
-            Blue::MidnightBlue => write!(f, "#191970"),
-            Blue::Navy => write!(f, "#000080"),
-            Blue::DarkBlue => write!(f, "#00008B"),
-            Blue::MediumBlue => write!(f, "#0000CD"),
-            Blue::Blue => write!(f, "#0000FF"),
-            Blue::RoyalBlue => write!(f, "#4169E1"),
-            Blue::Azure => write!(f, "#F0FFFF"),
-        }
-    }
-}
-
-impl Blue {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Blue;
-    /// # fn example() {
-    /// assert_eq!("(0,0,255)", Blue::SteelBlue.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Blue::PowderBlue => crate::to_rgb("#B0E0E6"),
-            Blue::CadetBlue => crate::to_rgb("#5F9EA0"),
-            Blue::SteelBlue => crate::to_rgb("#4682B4"),
-            Blue::CornFlowerBlue => crate::to_rgb("#6495ED"),
-            Blue::DeepSkyBlue => crate::to_rgb("#00BFFF"),
-            Blue::DodgerBlue => crate::to_rgb("#1E90FF"),
-            Blue::LightBlue => crate::to_rgb("#ADD8E6"),
-            Blue::SkyBlue => crate::to_rgb("#87CEEB"),
-            Blue::LightSkyBlue => crate::to_rgb("#87CEFA"),
-            Blue::MidnightBlue => crate::to_rgb("#191970"),
-            Blue::Navy => crate::to_rgb("#000080"),
-            Blue::DarkBlue => crate::to_rgb("#00008B"),
-            Blue::MediumBlue => crate::to_rgb("#0000CD"),
-            Blue::Blue => crate::to_rgb("#0000FF"),
-            Blue::RoyalBlue => crate::to_rgb("#4169E1"),
-            Blue::Azure => crate::to_rgb("#F0FFFF"),
-        }
-    }
-}
 
 /// Shades of indigo
 #[derive(Debug)]
@@ -601,6 +508,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_blue_as_rgb() {
         assert_eq!("(70,130,180)", Blue::SteelBlue.as_rgb())
     }
