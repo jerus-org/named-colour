@@ -4,73 +4,10 @@
 use std::fmt;
 
 mod red;
+mod yellow;
 
-/// Shades of yellow
-#[derive(Debug)]
-pub enum Yellow {
-    #[allow(missing_docs)]
-    Gold,
-    #[allow(missing_docs)]
-    DarkGoldenRod,
-    #[allow(missing_docs)]
-    GoldenRod,
-    #[allow(missing_docs)]
-    PaleGoldenRod,
-    #[allow(missing_docs)]
-    DarkKhaki,
-    #[allow(missing_docs)]
-    Khaki,
-    #[allow(missing_docs)]
-    Olive,
-    #[allow(missing_docs)]
-    Yellow,
-    #[allow(missing_docs)]
-    YellowGreen,
-}
-
-impl fmt::Display for Yellow {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Yellow::Gold => write!(f, "#FFD700"),
-            Yellow::DarkGoldenRod => write!(f, "#B8860B"),
-            Yellow::GoldenRod => write!(f, "#DAA520"),
-            Yellow::PaleGoldenRod => write!(f, "#EEE8AA"),
-            Yellow::DarkKhaki => write!(f, "#BDB76B"),
-            Yellow::Khaki => write!(f, "#F0E68C"),
-            Yellow::Olive => write!(f, "#808000"),
-            Yellow::Yellow => write!(f, "#FFFF00"),
-            Yellow::YellowGreen => write!(f, "#9ACD32"),
-        }
-    }
-}
-
-impl Yellow {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Yellow;
-    /// # fn example() {
-    /// assert_eq!("(178,34,34)", Yellow::Khaki.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Yellow::Gold => crate::to_rgb("#FFD700"),
-            Yellow::DarkGoldenRod => crate::to_rgb("#B8860B"),
-            Yellow::GoldenRod => crate::to_rgb("#DAA520"),
-            Yellow::PaleGoldenRod => crate::to_rgb("#EEE8AA"),
-            Yellow::DarkKhaki => crate::to_rgb("#BDB76B"),
-            Yellow::Khaki => crate::to_rgb("#F0E68C"),
-            Yellow::Olive => crate::to_rgb("#808000"),
-            Yellow::Yellow => crate::to_rgb("#FFFF00"),
-            Yellow::YellowGreen => crate::to_rgb("#9ACD32"),
-        }
-    }
-}
+pub use red::Red;
+pub use yellow::Yellow;
 
 /// Shades of green
 #[derive(Debug)]
@@ -895,7 +832,8 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_yellow_as_rgb() {
-        assert_eq!("(240,230,140)", Yellow::Khaki.as_rgb())
+        assert_eq!("(240,230,140)", yellow::Yellow::Khaki.as_rgb())
     }
 }
