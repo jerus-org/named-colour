@@ -3,110 +3,13 @@
 
 use std::fmt;
 
+mod green;
 mod red;
 mod yellow;
 
+pub use green::Green;
 pub use red::Red;
 pub use yellow::Yellow;
-
-/// Shades of green
-#[derive(Debug)]
-pub enum Green {
-    #[allow(missing_docs)]
-    YellowGreen,
-    #[allow(missing_docs)]
-    DarkOliveGreen,
-    #[allow(missing_docs)]
-    OliveDrab,
-    #[allow(missing_docs)]
-    LawnGreen,
-    #[allow(missing_docs)]
-    ChartReuse,
-    #[allow(missing_docs)]
-    GreenYellow,
-    #[allow(missing_docs)]
-    DarkGreen,
-    #[allow(missing_docs)]
-    Green,
-    #[allow(missing_docs)]
-    ForestGreen,
-    #[allow(missing_docs)]
-    Lime,
-    #[allow(missing_docs)]
-    LimeGreen,
-    #[allow(missing_docs)]
-    LightGreen,
-    #[allow(missing_docs)]
-    PaleGreen,
-    #[allow(missing_docs)]
-    DarkSeaGreen,
-    #[allow(missing_docs)]
-    MediumSpringGreen,
-    #[allow(missing_docs)]
-    SpringGreen,
-    #[allow(missing_docs)]
-    SeaGreen,
-}
-
-impl fmt::Display for Green {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Green::YellowGreen => write!(f, "#9ACD32"),
-            Green::DarkOliveGreen => write!(f, "#556B2F"),
-            Green::OliveDrab => write!(f, "#6B8E23"),
-            Green::LawnGreen => write!(f, "#7CFC00"),
-            Green::ChartReuse => write!(f, "#7FFF00"),
-            Green::GreenYellow => write!(f, "#ADFF2F"),
-            Green::DarkGreen => write!(f, "#006400"),
-            Green::Green => write!(f, "#008000"),
-            Green::ForestGreen => write!(f, "#228B22"),
-            Green::Lime => write!(f, "#00FF00"),
-            Green::LimeGreen => write!(f, "#32CD32"),
-            Green::LightGreen => write!(f, "#90EE90"),
-            Green::PaleGreen => write!(f, "#98FB98"),
-            Green::DarkSeaGreen => write!(f, "#8FBC8F"),
-            Green::MediumSpringGreen => write!(f, "#00FA9A"),
-            Green::SpringGreen => write!(f, "#00FF7F"),
-            Green::SeaGreen => write!(f, "#2E8B57"),
-        }
-    }
-}
-
-impl Green {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Green;
-    /// # fn example() {
-    /// assert_eq!("(107,142,35)", Green::OliveDrab.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Green::YellowGreen => crate::to_rgb("#9ACD32"),
-            Green::DarkOliveGreen => crate::to_rgb("#556B2F"),
-            Green::OliveDrab => crate::to_rgb("#6B8E23"),
-            Green::LawnGreen => crate::to_rgb("#7CFC00"),
-            Green::ChartReuse => crate::to_rgb("#7FFF00"),
-            Green::GreenYellow => crate::to_rgb("#ADFF2F"),
-            Green::DarkGreen => crate::to_rgb("#006400"),
-            Green::Green => crate::to_rgb("#008000"),
-            Green::ForestGreen => crate::to_rgb("#228B22"),
-            Green::Lime => crate::to_rgb("#00FF00"),
-            Green::LimeGreen => crate::to_rgb("#32CD32"),
-            Green::LightGreen => crate::to_rgb("#90EE90"),
-            Green::PaleGreen => crate::to_rgb("#98FB98"),
-            Green::DarkSeaGreen => crate::to_rgb("#8FBC8F"),
-            Green::MediumSpringGreen => crate::to_rgb("#00FA9A"),
-            Green::SpringGreen => crate::to_rgb("#00FF7F"),
-            Green::SeaGreen => crate::to_rgb("#2E8B57"),
-        }
-    }
-}
 
 /// Shades of cyan
 #[derive(Debug)]
@@ -801,6 +704,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_green_as_rgb() {
         assert_eq!("(107,142,35)", Green::OliveDrab.as_rgb())
     }
