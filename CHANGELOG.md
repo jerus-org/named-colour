@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - add support for RGB and Hex triplet conversion(pr [#34])
+- add `to_rgb` and `to_hex_triplet` for yellow(pr [#38])
 
 ### Changed
 
@@ -93,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#35]: https://github.com/jerus-org/named-colour/pull/35
 [#36]: https://github.com/jerus-org/named-colour/pull/36
 [#37]: https://github.com/jerus-org/named-colour/pull/37
+[#38]: https://github.com/jerus-org/named-colour/pull/38
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
