@@ -8,6 +8,7 @@ mod brown;
 mod cyan;
 mod green;
 mod indigo;
+mod lavender;
 mod purple;
 mod red;
 mod white;
@@ -18,61 +19,11 @@ pub use brown::Brown;
 pub use cyan::Cyan;
 pub use green::Green;
 pub use indigo::Indigo;
+pub use lavender::Lavender;
 pub use purple::Purple;
 pub use red::Red;
 pub use white::White;
 pub use yellow::Yellow;
-
-/// Shades of lavender
-#[derive(Debug)]
-pub enum Lavender {
-    #[allow(missing_docs)]
-    SlateGray,
-    #[allow(missing_docs)]
-    LightSlateGray,
-    #[allow(missing_docs)]
-    LightSteelBlue,
-    #[allow(missing_docs)]
-    Lavender,
-    #[allow(missing_docs)]
-    AliceBlue,
-}
-
-impl fmt::Display for Lavender {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Lavender::SlateGray => write!(f, "#708090"),
-            Lavender::LightSlateGray => write!(f, "#778899"),
-            Lavender::LightSteelBlue => write!(f, "#B0C4DE"),
-            Lavender::Lavender => write!(f, "#E6E6FA"),
-            Lavender::AliceBlue => write!(f, "#F0F8FF"),
-        }
-    }
-}
-
-impl Lavender {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Lavender;
-    /// # fn example() {
-    /// assert_eq!("(230,230,250)", Lavender::Lavender.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Lavender::SlateGray => crate::to_rgb("#708090"),
-            Lavender::LightSlateGray => crate::to_rgb("#778899"),
-            Lavender::LightSteelBlue => crate::to_rgb("#B0C4DE"),
-            Lavender::Lavender => crate::to_rgb("#E6E6FA"),
-            Lavender::AliceBlue => crate::to_rgb("#F0F8FF"),
-        }
-    }
-}
 
 /// Shades of black
 #[derive(Debug)]
@@ -197,6 +148,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_lavender_as_rgb() {
         assert_eq!("(230,230,250)", Lavender::Lavender.as_rgb())
     }

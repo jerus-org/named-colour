@@ -7,44 +7,38 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
-/// Shades of brown
+/// Shades of lavender
 #[derive(Debug)]
 #[allow(missing_docs)]
-pub enum Brown {
-    SaddleBrown,
-    Sienna,
-    Chocolate,
-    Peru,
-    SandyBrown,
-    BurlyWood,
-    Tan,
-    RosyBrown,
+pub enum Lavender {
+    SlateGray,
+    LightSlateGray,
+    LightSteelBlue,
+    Lavender,
+    AliceBlue,
 }
 
-impl fmt::Display for Brown {
+impl fmt::Display for Lavender {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Brown::SaddleBrown => write!(f, "#8B4513"),
-            Brown::Sienna => write!(f, "#A0522D"),
-            Brown::Chocolate => write!(f, "#D2691E"),
-            Brown::Peru => write!(f, "#CD853F"),
-            Brown::SandyBrown => write!(f, "#F4A460"),
-            Brown::BurlyWood => write!(f, "#DEB887"),
-            Brown::Tan => write!(f, "#D2B48C"),
-            Brown::RosyBrown => write!(f, "#BC8F8F"),
+            Lavender::SlateGray => write!(f, "#708090"),
+            Lavender::LightSlateGray => write!(f, "#778899"),
+            Lavender::LightSteelBlue => write!(f, "#B0C4DE"),
+            Lavender::Lavender => write!(f, "#E6E6FA"),
+            Lavender::AliceBlue => write!(f, "#F0F8FF"),
         }
     }
 }
 
-impl Brown {
+impl Lavender {
     /// Display the hex code string as a decimal RGB Tuple
     ///
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Brown;
+    /// # use named_colour::ext::Lavender;
     /// # fn example() {
-    /// assert_eq!("(244,164,96)", Brown::SandyBrown.as_rgb())
+    /// assert_eq!("(230,230,250)", Lavender::Lavender.as_rgb())
     ///
     /// # }
     ///```
@@ -55,14 +49,11 @@ impl Brown {
     )]
     pub fn as_rgb(&self) -> String {
         match self {
-            Brown::SaddleBrown => crate::to_rgb("#8B4513"),
-            Brown::Sienna => crate::to_rgb("#A0522D"),
-            Brown::Chocolate => crate::to_rgb("#D2691E"),
-            Brown::Peru => crate::to_rgb("#CD853F"),
-            Brown::SandyBrown => crate::to_rgb("#F4A460"),
-            Brown::BurlyWood => crate::to_rgb("#DEB887"),
-            Brown::Tan => crate::to_rgb("#D2B48C"),
-            Brown::RosyBrown => crate::to_rgb("#BC8F8F"),
+            Lavender::SlateGray => crate::to_rgb("#708090"),
+            Lavender::LightSlateGray => crate::to_rgb("#778899"),
+            Lavender::LightSteelBlue => crate::to_rgb("#B0C4DE"),
+            Lavender::Lavender => crate::to_rgb("#E6E6FA"),
+            Lavender::AliceBlue => crate::to_rgb("#F0F8FF"),
         }
     }
 
@@ -71,13 +62,13 @@ impl Brown {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Brown;
+    /// # use named_colour::ext::Lavender;
     /// # fn main() {
-    ///    let colour = Brown::Peru;
+    ///    let colour = Lavender::SlateGray;
     ///    let rgb_colour = colour.to_rgb();
     ///
     ///    let string = rgb_colour.to_string();
-    ///    assert_eq!("rgb(205,133,63)", string);
+    ///    assert_eq!("rgb(112,128,144)", string);
     ///
     ///  # }
     ///```
@@ -97,11 +88,11 @@ impl Brown {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Brown;
+    /// # use named_colour::ext::Lavender;
     /// # use named_colour::Prefix;
-    ///    let colour = Brown::SandyBrown;
+    ///    let colour = Lavender::SlateGray;
     ///
-    ///     assert_eq!("#F4A460", colour.to_hex_triplet(Prefix::Hash));
+    ///     assert_eq!("#708090", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
 
@@ -123,15 +114,12 @@ mod tests {
     use rstest::rstest;
 
     #[rstest]
-    #[case(Brown::SaddleBrown, "rgb(139,69,19)")]
-    #[case(Brown::Sienna, "rgb(160,82,45)")]
-    #[case(Brown::Chocolate, "rgb(210,105,30)")]
-    #[case(Brown::Peru, "rgb(205,133,63)")]
-    #[case(Brown::SandyBrown, "rgb(244,164,96)")]
-    #[case(Brown::BurlyWood, "rgb(222,184,135)")]
-    #[case(Brown::Tan, "rgb(210,180,140)")]
-    #[case(Brown::RosyBrown, "rgb(188,143,143)")]
-    fn test_rgb_string(#[case] colour: Brown, #[case] expected: String) {
+    #[case(Lavender::SlateGray, "rgb(112,128,144)")]
+    #[case(Lavender::LightSlateGray, "rgb(119,136,153)")]
+    #[case(Lavender::LightSteelBlue, "rgb(176,196,222)")]
+    #[case(Lavender::Lavender, "rgb(230,230,250)")]
+    #[case(Lavender::AliceBlue, "rgb(240,248,255)")]
+    fn test_rgb_string(#[case] colour: Lavender, #[case] expected: String) {
         let rgb_colour = colour.to_rgb();
         let string = rgb_colour.to_string();
 
@@ -139,16 +127,13 @@ mod tests {
     }
 
     #[rstest]
-    #[case(Brown::SaddleBrown, "8B4513")]
-    #[case(Brown::Sienna, "A0522D")]
-    #[case(Brown::Chocolate, "D2691E")]
-    #[case(Brown::Peru, "CD853F")]
-    #[case(Brown::SandyBrown, "F4A460")]
-    #[case(Brown::BurlyWood, "DEB887")]
-    #[case(Brown::Tan, "D2B48C")]
-    #[case(Brown::RosyBrown, "BC8F8F")]
+    #[case(Lavender::SlateGray, "708090")]
+    #[case(Lavender::LightSlateGray, "778899")]
+    #[case(Lavender::LightSteelBlue, "B0C4DE")]
+    #[case(Lavender::Lavender, "E6E6FA")]
+    #[case(Lavender::AliceBlue, "F0F8FF")]
     fn test_hex_triplet_string(
-        #[case] colour: Brown,
+        #[case] colour: Lavender,
         #[values(Prefix::None, Prefix::Hash)] prefix: Prefix,
         #[case] expected: String,
     ) {

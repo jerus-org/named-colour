@@ -79,11 +79,11 @@ impl Indigo {
     ///```
     /// # use named_colour::ext::Indigo;
     /// # fn main() {
-    ///    let colour = Indigo:DarkOrchid;
+    ///    let colour = Indigo::DarkOrchid;
     ///    let rgb_colour = colour.to_rgb();
     ///
     ///    let string = rgb_colour.to_string();
-    ///    assert_eq!("rgb(153,51,204)", string);
+    ///    assert_eq!("rgb(153,50,204)", string);
     ///
     ///  # }
     ///```
