@@ -1,8 +1,7 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
-
+mod black;
 mod blue;
 mod brown;
 mod cyan;
@@ -14,6 +13,7 @@ mod red;
 mod white;
 mod yellow;
 
+pub use black::Black;
 pub use blue::Blue;
 pub use brown::Brown;
 pub use cyan::Cyan;
@@ -25,95 +25,12 @@ pub use red::Red;
 pub use white::White;
 pub use yellow::Yellow;
 
-/// Shades of black
-#[derive(Debug)]
-pub enum Black {
-    #[allow(missing_docs)]
-    SlateGray,
-    #[allow(missing_docs)]
-    LightSlateGray,
-    #[allow(missing_docs)]
-    Black,
-    #[allow(missing_docs)]
-    DimGray,
-    #[allow(missing_docs)]
-    DimGrey,
-    #[allow(missing_docs)]
-    Gray,
-    #[allow(missing_docs)]
-    Grey,
-    #[allow(missing_docs)]
-    DarkGray,
-    #[allow(missing_docs)]
-    DarkGrey,
-    #[allow(missing_docs)]
-    Silver,
-    #[allow(missing_docs)]
-    LightGray,
-    #[allow(missing_docs)]
-    LightGrey,
-    #[allow(missing_docs)]
-    Gainsboro,
-}
-
-impl fmt::Display for Black {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Black::SlateGray => write!(f, "#708090"),
-            Black::LightSlateGray => write!(f, "#778899"),
-            Black::Black => write!(f, "#000000"),
-            Black::DimGray => write!(f, "#696969"),
-            Black::DimGrey => write!(f, "#696969"),
-            Black::Gray => write!(f, "#808080"),
-            Black::Grey => write!(f, "#808080"),
-            Black::DarkGray => write!(f, "#A9A9A9"),
-            Black::DarkGrey => write!(f, "#A9A9A9"),
-            Black::Silver => write!(f, "#C0C0C0"),
-            Black::LightGray => write!(f, "#D3D3D3"),
-            Black::LightGrey => write!(f, "#D3D3D3"),
-            Black::Gainsboro => write!(f, "#DCDCDC"),
-        }
-    }
-}
-
-impl Black {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Black;
-    /// # fn example() {
-    ///
-    /// assert_eq!("(112,128,144)", Black::SlateGray.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Black::SlateGray => crate::to_rgb("#708090"),
-            Black::LightSlateGray => crate::to_rgb("#778899"),
-            Black::Black => crate::to_rgb("#000000"),
-            Black::DimGray => crate::to_rgb("#696969"),
-            Black::DimGrey => crate::to_rgb("#696969"),
-            Black::Gray => crate::to_rgb("#808080"),
-            Black::Grey => crate::to_rgb("#808080"),
-            Black::DarkGray => crate::to_rgb("#A9A9A9"),
-            Black::DarkGrey => crate::to_rgb("#A9A9A9"),
-            Black::Silver => crate::to_rgb("#C0C0C0"),
-            Black::LightGray => crate::to_rgb("#D3D3D3"),
-            Black::LightGrey => crate::to_rgb("#D3D3D3"),
-            Black::Gainsboro => crate::to_rgb("#DCDCDC"),
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
+    #[allow(deprecated)]
     fn display_black_as_rgb() {
         assert_eq!("(112,128,144)", Black::SlateGray.as_rgb())
     }
