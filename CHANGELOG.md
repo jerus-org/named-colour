@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - chore(circleci)-update toolkit orb to version 1.5.0 and add update_changelog parameter(pr [#32])
 - chore-update .gitignore and add Cargo.lock(pr [#33])
 - chore-add comment for future removal of deprecated `as_rgb` functions(pr [#35])
+- refactor-remove commented-out code and extra newline in basic.rs(pr [#36])
 
 ## [0.1.6] - 2024-08-28
 
@@ -89,6 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#33]: https://github.com/jerus-org/named-colour/pull/33
 [#34]: https://github.com/jerus-org/named-colour/pull/34
 [#35]: https://github.com/jerus-org/named-colour/pull/35
+[#36]: https://github.com/jerus-org/named-colour/pull/36
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
