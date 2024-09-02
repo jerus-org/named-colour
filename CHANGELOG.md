@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add green color shades and refactor module structure(pr [#39])
 - add Cyan color shades and refactor Green color shades(pr [#40])
 - add extended blue shades with RGB and hex triplet support(pr [#41])
+- add Indigo enum with shades and related methods(pr [#42])
 
 ### Changed
 
@@ -101,6 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#39]: https://github.com/jerus-org/named-colour/pull/39
 [#40]: https://github.com/jerus-org/named-colour/pull/40
 [#41]: https://github.com/jerus-org/named-colour/pull/41
+[#42]: https://github.com/jerus-org/named-colour/pull/42
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.1.6...HEAD
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerus-org/named-colour/compare/v0.1.4...v0.1.5
