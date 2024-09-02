@@ -7,6 +7,7 @@ mod blue;
 mod cyan;
 mod green;
 mod indigo;
+mod purple;
 mod red;
 mod yellow;
 
@@ -14,91 +15,9 @@ pub use blue::Blue;
 pub use cyan::Cyan;
 pub use green::Green;
 pub use indigo::Indigo;
+pub use purple::Purple;
 pub use red::Red;
 pub use yellow::Yellow;
-
-/// Shades of purple
-#[derive(Debug)]
-pub enum Purple {
-    #[allow(missing_docs)]
-    Purple,
-    #[allow(missing_docs)]
-    Thistle,
-    #[allow(missing_docs)]
-    Plum,
-    #[allow(missing_docs)]
-    Violet,
-    #[allow(missing_docs)]
-    Magenta,
-    #[allow(missing_docs)]
-    Fuchsia,
-    #[allow(missing_docs)]
-    Orchid,
-    #[allow(missing_docs)]
-    MediumVioletRed,
-    #[allow(missing_docs)]
-    PaleVioletRed,
-    #[allow(missing_docs)]
-    DeepPink,
-    #[allow(missing_docs)]
-    HotPink,
-    #[allow(missing_docs)]
-    LightPink,
-    #[allow(missing_docs)]
-    Pink,
-}
-
-impl fmt::Display for Purple {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Purple::Purple => write!(f, "#800080"),
-            Purple::Thistle => write!(f, "#D8BFD8"),
-            Purple::Plum => write!(f, "#DDA0DD"),
-            Purple::Violet => write!(f, "#EE82EE"),
-            Purple::Magenta => write!(f, "#FF00FF"),
-            Purple::Fuchsia => write!(f, "#FF00FF"),
-            Purple::Orchid => write!(f, "#DA70D6"),
-            Purple::MediumVioletRed => write!(f, "#C71585"),
-            Purple::PaleVioletRed => write!(f, "#DB7093"),
-            Purple::DeepPink => write!(f, "#FF1493"),
-            Purple::HotPink => write!(f, "#FF69B4"),
-            Purple::LightPink => write!(f, "#FFB6C1"),
-            Purple::Pink => write!(f, "#FFC0CB"),
-        }
-    }
-}
-
-impl Purple {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Purple;
-    /// # fn example() {
-    /// assert_eq!("128,0,128)", Purple::Purple.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Purple::Purple => crate::to_rgb("#800080"),
-            Purple::Thistle => crate::to_rgb("#D8BFD8"),
-            Purple::Plum => crate::to_rgb("#DDA0DD"),
-            Purple::Violet => crate::to_rgb("#EE82EE"),
-            Purple::Magenta => crate::to_rgb("#FF00FF"),
-            Purple::Fuchsia => crate::to_rgb("#FF00FF"),
-            Purple::Orchid => crate::to_rgb("#DA70D6"),
-            Purple::MediumVioletRed => crate::to_rgb("#C71585"),
-            Purple::PaleVioletRed => crate::to_rgb("#DB7093"),
-            Purple::DeepPink => crate::to_rgb("#FF1493"),
-            Purple::HotPink => crate::to_rgb("#FF69B4"),
-            Purple::LightPink => crate::to_rgb("#FFB6C1"),
-            Purple::Pink => crate::to_rgb("#FFC0CB"),
-        }
-    }
-}
 
 /// Shades of white
 #[derive(Debug)]
@@ -472,6 +391,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_purple_as_rgb() {
         assert_eq!("(128,0,128)", Purple::Purple.as_rgb())
     }
