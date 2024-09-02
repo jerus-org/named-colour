@@ -9,40 +9,24 @@ use crate::Prefix;
 
 /// Shades of green
 #[derive(Debug)]
+#[allow(missing_docs)]
 pub enum Green {
-    #[allow(missing_docs)]
     YellowGreen,
-    #[allow(missing_docs)]
     DarkOliveGreen,
-    #[allow(missing_docs)]
     OliveDrab,
-    #[allow(missing_docs)]
     LawnGreen,
-    #[allow(missing_docs)]
     ChartReuse,
-    #[allow(missing_docs)]
     GreenYellow,
-    #[allow(missing_docs)]
     DarkGreen,
-    #[allow(missing_docs)]
     Green,
-    #[allow(missing_docs)]
     ForestGreen,
-    #[allow(missing_docs)]
     Lime,
-    #[allow(missing_docs)]
     LimeGreen,
-    #[allow(missing_docs)]
     LightGreen,
-    #[allow(missing_docs)]
     PaleGreen,
-    #[allow(missing_docs)]
     DarkSeaGreen,
-    #[allow(missing_docs)]
     MediumSpringGreen,
-    #[allow(missing_docs)]
     SpringGreen,
-    #[allow(missing_docs)]
     SeaGreen,
 }
 

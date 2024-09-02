@@ -3,104 +3,15 @@
 
 use std::fmt;
 
+mod cyan;
 mod green;
 mod red;
 mod yellow;
 
+pub use cyan::Cyan;
 pub use green::Green;
 pub use red::Red;
 pub use yellow::Yellow;
-
-/// Shades of cyan
-#[derive(Debug)]
-pub enum Cyan {
-    #[allow(missing_docs)]
-    MediumAquaMarine,
-    #[allow(missing_docs)]
-    MediumSeaGreen,
-    #[allow(missing_docs)]
-    LightSeaGreen,
-    #[allow(missing_docs)]
-    DarkSlateGray,
-    #[allow(missing_docs)]
-    Teal,
-    #[allow(missing_docs)]
-    DarkCyan,
-    #[allow(missing_docs)]
-    Aqua,
-    #[allow(missing_docs)]
-    Cyan,
-    #[allow(missing_docs)]
-    LightCyan,
-    #[allow(missing_docs)]
-    DarkTurquoise,
-    #[allow(missing_docs)]
-    Turquoise,
-    #[allow(missing_docs)]
-    MediumTurquoise,
-    #[allow(missing_docs)]
-    PaleTurquoise,
-    #[allow(missing_docs)]
-    AquaMarine,
-    #[allow(missing_docs)]
-    Honeydew,
-}
-
-impl fmt::Display for Cyan {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Cyan::MediumAquaMarine => write!(f, "#66CDAA"),
-            Cyan::MediumSeaGreen => write!(f, "#3CB371"),
-            Cyan::LightSeaGreen => write!(f, "#20B2AA"),
-            Cyan::DarkSlateGray => write!(f, "#2F4F4F"),
-            Cyan::Teal => write!(f, "#008080"),
-            Cyan::DarkCyan => write!(f, "#008B8B"),
-            Cyan::Aqua => write!(f, "#00FFFF"),
-            Cyan::Cyan => write!(f, "#00FFFF"),
-            Cyan::LightCyan => write!(f, "#E0FFFF"),
-            Cyan::DarkTurquoise => write!(f, "#00CED1"),
-            Cyan::Turquoise => write!(f, "#40E0D0"),
-            Cyan::MediumTurquoise => write!(f, "#48D1CC"),
-            Cyan::PaleTurquoise => write!(f, "#AFEEEE"),
-            Cyan::AquaMarine => write!(f, "#7FFFD4"),
-            Cyan::Honeydew => write!(f, "#F0FFF0"),
-        }
-    }
-}
-
-impl Cyan {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Cyan;
-    /// # fn example() {
-    /// assert_eq!("(0,128,128)", Cyan::Teal.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Cyan::MediumAquaMarine => crate::to_rgb("#66CDAA"),
-            Cyan::MediumSeaGreen => crate::to_rgb("#3CB371"),
-            Cyan::LightSeaGreen => crate::to_rgb("#20B2AA"),
-            Cyan::DarkSlateGray => crate::to_rgb("#2F4F4F"),
-            Cyan::Teal => crate::to_rgb("#008080"),
-            Cyan::DarkCyan => crate::to_rgb("#008B8B"),
-            Cyan::Aqua => crate::to_rgb("#00FFFF"),
-            Cyan::Cyan => crate::to_rgb("#00FFFF"),
-            Cyan::LightCyan => crate::to_rgb("#E0FFFF"),
-            Cyan::DarkTurquoise => crate::to_rgb("#00CED1"),
-            Cyan::Turquoise => crate::to_rgb("#40E0D0"),
-            Cyan::MediumTurquoise => crate::to_rgb("#48D1CC"),
-            Cyan::PaleTurquoise => crate::to_rgb("#AFEEEE"),
-            Cyan::AquaMarine => crate::to_rgb("#7FFFD4"),
-            Cyan::Honeydew => crate::to_rgb("#F0FFF0"),
-        }
-    }
-}
 
 /// Shades of blue
 #[derive(Debug)]
@@ -699,6 +610,7 @@ mod tests {
         assert_eq!("(244,164,96)", Brown::SandyBrown.as_rgb())
     }
     #[test]
+    #[allow(deprecated)]
     fn display_cyan_as_rgb() {
         assert_eq!("(0,128,128)", Cyan::Teal.as_rgb())
     }
@@ -727,7 +639,7 @@ mod tests {
     #[test]
     #[allow(deprecated)]
     fn display_red_as_rgb() {
-        assert_eq!("(178,34,34)", red::Red::Firebrick.as_rgb())
+        assert_eq!("(178,34,34)", Red::Firebrick.as_rgb())
     }
 
     #[test]
@@ -738,6 +650,6 @@ mod tests {
     #[test]
     #[allow(deprecated)]
     fn display_yellow_as_rgb() {
-        assert_eq!("(240,230,140)", yellow::Yellow::Khaki.as_rgb())
+        assert_eq!("(240,230,140)", Yellow::Khaki.as_rgb())
     }
 }
