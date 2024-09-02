@@ -4,7 +4,7 @@ use rgb::Rgb;
 ///
 /// Provides interfaces for functions to display hex versions of RGB colours
 ///
-/// An implementation is provided for Rgb<u8> and Rgb8
+/// An implementation is provided for `Rgb<u8>`
 ///
 pub trait ToHex {
     /// Return the colour code as an uppercase hex string with a # prefix
