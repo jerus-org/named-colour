@@ -6,85 +6,16 @@ use std::fmt;
 mod blue;
 mod cyan;
 mod green;
+mod indigo;
 mod red;
 mod yellow;
 
 pub use blue::Blue;
 pub use cyan::Cyan;
 pub use green::Green;
+pub use indigo::Indigo;
 pub use red::Red;
 pub use yellow::Yellow;
-
-/// Shades of indigo
-#[derive(Debug)]
-pub enum Indigo {
-    #[allow(missing_docs)]
-    BlueViolet,
-    #[allow(missing_docs)]
-    Indigo,
-    #[allow(missing_docs)]
-    DarkSlateBlue,
-    #[allow(missing_docs)]
-    SlateBlue,
-    #[allow(missing_docs)]
-    MediumSlateBlue,
-    #[allow(missing_docs)]
-    MediumPurple,
-    #[allow(missing_docs)]
-    DarkMagenta,
-    #[allow(missing_docs)]
-    DarkViolet,
-    #[allow(missing_docs)]
-    DarkOrchid,
-    #[allow(missing_docs)]
-    MediumOrchid,
-}
-
-impl fmt::Display for Indigo {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Indigo::BlueViolet => write!(f, "#8A2BE2"),
-            Indigo::Indigo => write!(f, "#4B0082"),
-            Indigo::DarkSlateBlue => write!(f, "#483D8B"),
-            Indigo::SlateBlue => write!(f, "#6A5ACD"),
-            Indigo::MediumSlateBlue => write!(f, "#7B68EE"),
-            Indigo::MediumPurple => write!(f, "#9370DB"),
-            Indigo::DarkMagenta => write!(f, "#8B008B"),
-            Indigo::DarkViolet => write!(f, "#9400D3"),
-            Indigo::DarkOrchid => write!(f, "#9932CC"),
-            Indigo::MediumOrchid => write!(f, "#BA55D3"),
-        }
-    }
-}
-
-impl Indigo {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Indigo;
-    /// # fn example() {
-    /// assert_eq!("(75,0,130)", Indigo::Indigo.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Indigo::BlueViolet => crate::to_rgb("#8A2BE2"),
-            Indigo::Indigo => crate::to_rgb("#4B0082"),
-            Indigo::DarkSlateBlue => crate::to_rgb("#483D8B"),
-            Indigo::SlateBlue => crate::to_rgb("#6A5ACD"),
-            Indigo::MediumSlateBlue => crate::to_rgb("#7B68EE"),
-            Indigo::MediumPurple => crate::to_rgb("#9370DB"),
-            Indigo::DarkMagenta => crate::to_rgb("#8B008B"),
-            Indigo::DarkViolet => crate::to_rgb("#9400D3"),
-            Indigo::DarkOrchid => crate::to_rgb("#9932CC"),
-            Indigo::MediumOrchid => crate::to_rgb("#BA55D3"),
-        }
-    }
-}
 
 /// Shades of purple
 #[derive(Debug)]
@@ -530,6 +461,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_indigo_as_rgb() {
         assert_eq!("(75,0,130)", Indigo::Indigo.as_rgb())
     }

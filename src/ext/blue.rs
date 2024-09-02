@@ -9,38 +9,23 @@ use crate::Prefix;
 
 /// Shades of blue
 #[derive(Debug)]
+#[allow(missing_docs)]
 pub enum Blue {
-    #[allow(missing_docs)]
     PowderBlue,
-    #[allow(missing_docs)]
     CadetBlue,
-    #[allow(missing_docs)]
     SteelBlue,
-    #[allow(missing_docs)]
     CornFlowerBlue,
-    #[allow(missing_docs)]
     DeepSkyBlue,
-    #[allow(missing_docs)]
     DodgerBlue,
-    #[allow(missing_docs)]
     LightBlue,
-    #[allow(missing_docs)]
     SkyBlue,
-    #[allow(missing_docs)]
     LightSkyBlue,
-    #[allow(missing_docs)]
     MidnightBlue,
-    #[allow(missing_docs)]
     Navy,
-    #[allow(missing_docs)]
     DarkBlue,
-    #[allow(missing_docs)]
     MediumBlue,
-    #[allow(missing_docs)]
     Blue,
-    #[allow(missing_docs)]
     RoyalBlue,
-    #[allow(missing_docs)]
     Azure,
 }
 
