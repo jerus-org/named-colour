@@ -4,6 +4,7 @@
 use std::fmt;
 
 mod blue;
+mod brown;
 mod cyan;
 mod green;
 mod indigo;
@@ -13,6 +14,7 @@ mod white;
 mod yellow;
 
 pub use blue::Blue;
+pub use brown::Brown;
 pub use cyan::Cyan;
 pub use green::Green;
 pub use indigo::Indigo;
@@ -20,69 +22,6 @@ pub use purple::Purple;
 pub use red::Red;
 pub use white::White;
 pub use yellow::Yellow;
-
-/// Shades of brown
-#[derive(Debug)]
-pub enum Brown {
-    #[allow(missing_docs)]
-    SaddleBrown,
-    #[allow(missing_docs)]
-    Sienna,
-    #[allow(missing_docs)]
-    Chocolate,
-    #[allow(missing_docs)]
-    Peru,
-    #[allow(missing_docs)]
-    SandyBrown,
-    #[allow(missing_docs)]
-    BurlyWood,
-    #[allow(missing_docs)]
-    Tan,
-    #[allow(missing_docs)]
-    RosyBrown,
-}
-
-impl fmt::Display for Brown {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Brown::SaddleBrown => write!(f, "#8B4513"),
-            Brown::Sienna => write!(f, "#A0522D"),
-            Brown::Chocolate => write!(f, "#D2691E"),
-            Brown::Peru => write!(f, "#CD853F"),
-            Brown::SandyBrown => write!(f, "#F4A460"),
-            Brown::BurlyWood => write!(f, "#DEB887"),
-            Brown::Tan => write!(f, "#D2B48C"),
-            Brown::RosyBrown => write!(f, "#BC8F8F"),
-        }
-    }
-}
-
-impl Brown {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Brown;
-    /// # fn example() {
-    /// assert_eq!("(244,164,96)", Brown::SandyBrown.as_rgb())
-    ///
-    /// # }
-    ///```
-
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Brown::SaddleBrown => crate::to_rgb("#8B4513"),
-            Brown::Sienna => crate::to_rgb("#A0522D"),
-            Brown::Chocolate => crate::to_rgb("#D2691E"),
-            Brown::Peru => crate::to_rgb("#CD853F"),
-            Brown::SandyBrown => crate::to_rgb("#F4A460"),
-            Brown::BurlyWood => crate::to_rgb("#DEB887"),
-            Brown::Tan => crate::to_rgb("#D2B48C"),
-            Brown::RosyBrown => crate::to_rgb("#BC8F8F"),
-        }
-    }
-}
 
 /// Shades of lavender
 #[derive(Debug)]
@@ -235,6 +174,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(deprecated)]
     fn display_brown_as_rgb() {
         assert_eq!("(244,164,96)", Brown::SandyBrown.as_rgb())
     }

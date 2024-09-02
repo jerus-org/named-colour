@@ -122,13 +122,13 @@ impl White {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Purple;
+    /// # use named_colour::ext::White;
     /// # fn main() {
-    ///    let colour = Purple::Violet;
+    ///    let colour = White::OldLace;
     ///    let rgb_colour = colour.to_rgb();
     ///
     ///    let string = rgb_colour.to_string();
-    ///    assert_eq!("rgb(238,130,238)", string);
+    ///    assert_eq!("rgb(253,245,230)", string);
     ///
     ///  # }
     ///```
@@ -148,11 +148,11 @@ impl White {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Purple;
+    /// # use named_colour::ext::White;
     /// # use named_colour::Prefix;
-    ///    let colour = Purple::Plum;
+    ///    let colour = White::LavenderBlush;
     ///
-    ///     assert_eq!("#DDA0DD", colour.to_hex_triplet(Prefix::Hash));
+    ///     assert_eq!("#FFF0F5", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
 
