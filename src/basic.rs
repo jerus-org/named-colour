@@ -69,7 +69,6 @@ impl Basic {
     ///
     /// # }
     ///```
-
     #[deprecated(
         since = "0.2.0",
         note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
@@ -202,9 +201,6 @@ mod tests {
         let string = rgb_colour.to_string();
 
         assert_eq!(expected, string);
-
-        // assert!(Basic::Black.to_hex_triplet(Prefix::None) == "000000");
-        // assert!(Basic::Black.to_hex_triplet(Prefix::Hash) == "#000000");
     }
 
     #[rstest]
