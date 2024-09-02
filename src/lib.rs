@@ -81,6 +81,7 @@ mod rgb;
 pub use crate::rgb::ColourRgb;
 pub use basic::Basic;
 
+// Can be removed when deprecated `as_rgb` functions are removed
 pub(crate) fn to_rgb(hex: &str) -> String {
     let mut no_error = true;
     let starts_with_hash = &hex[0..1] == "#";
