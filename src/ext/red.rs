@@ -99,11 +99,11 @@ impl Red {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::Basic;
+    /// # use named_colour::ext::Red;
     /// # fn main() {
-    ///    let rgb_colour = Basic::Black.to_rgb();
+    ///    let rgb_colour = Red::Maroon.to_rgb();
     ///    let string = rgb_colour.to_string();
-    ///    assert_eq!("rgb(0,0,0)", string);
+    ///    assert_eq!("rgb(128,0,0)", string);
     ///
     ///  # }
     ///```
@@ -123,11 +123,11 @@ impl Red {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::Basic;
+    /// # use named_colour::ext::Red;
     /// # use named_colour::Prefix;
-    ///     let colour = Basic::Black;
+    ///     let colour = Red::Maroon;
     ///
-    ///     assert_eq!("#000000", colour.to_hex_triplet(Prefix::Hash));
+    ///     assert_eq!("#800000", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
 
