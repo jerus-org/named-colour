@@ -1,47 +1,69 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of purple
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Purple {
+    Indigo,
     Purple,
-    Thistle,
-    Plum,
-    Violet,
-    Magenta,
+    DarkMagenta,
+    DarkViolet,
+    DarkSlateBlue,
+    BlueViolet,
+    DarkOrchid,
     Fuchsia,
+    Magenta,
+    SlateBlue,
+    MediumSlateBlue,
+    MediumOrchid,
+    MediumPurple,
     Orchid,
+    Violet,
+    Plum,
+    Thistle,
+    Lavender,
+    Pink,
     MediumVioletRed,
     PaleVioletRed,
     DeepPink,
     HotPink,
     LightPink,
-    Pink,
 }
 
 impl fmt::Display for Purple {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
+            Purple::Indigo => write!(f, "#4B0082"),
             Purple::Purple => write!(f, "#800080"),
-            Purple::Thistle => write!(f, "#D8BFD8"),
-            Purple::Plum => write!(f, "#DDA0DD"),
-            Purple::Violet => write!(f, "#EE82EE"),
-            Purple::Magenta => write!(f, "#FF00FF"),
+            Purple::DarkMagenta => write!(f, "#8B008B"),
+            Purple::DarkViolet => write!(f, "#9400D3"),
+            Purple::DarkSlateBlue => write!(f, "#483D8B"),
+            Purple::BlueViolet => write!(f, "#8A2BE2"),
+            Purple::DarkOrchid => write!(f, "#9932CC"),
             Purple::Fuchsia => write!(f, "#FF00FF"),
+            Purple::Magenta => write!(f, "#FF00FF"),
+            Purple::SlateBlue => write!(f, "#6A5ACD"),
+            Purple::MediumSlateBlue => write!(f, "#7B68EE"),
+            Purple::MediumOrchid => write!(f, "#BA55D3"),
+            Purple::MediumPurple => write!(f, "#9370DB"),
             Purple::Orchid => write!(f, "#DA70D6"),
+            Purple::Violet => write!(f, "#EE82EE"),
+            Purple::Plum => write!(f, "#DDA0DD"),
+            Purple::Thistle => write!(f, "#D8BFD8"),
+            Purple::Lavender => write!(f, "#E6E6FA"),
+            Purple::Pink => write!(f, "#FFC0CB"),
             Purple::MediumVioletRed => write!(f, "#C71585"),
             Purple::PaleVioletRed => write!(f, "#DB7093"),
             Purple::DeepPink => write!(f, "#FF1493"),
             Purple::HotPink => write!(f, "#FF69B4"),
             Purple::LightPink => write!(f, "#FFB6C1"),
-            Purple::Pink => write!(f, "#FFC0CB"),
         }
     }
 }
@@ -65,19 +87,30 @@ impl Purple {
     )]
     pub fn as_rgb(&self) -> String {
         match self {
+            Purple::Indigo => crate::to_rgb("#4B0082"),
             Purple::Purple => crate::to_rgb("#800080"),
-            Purple::Thistle => crate::to_rgb("#D8BFD8"),
-            Purple::Plum => crate::to_rgb("#DDA0DD"),
-            Purple::Violet => crate::to_rgb("#EE82EE"),
-            Purple::Magenta => crate::to_rgb("#FF00FF"),
+            Purple::DarkMagenta => crate::to_rgb("#8B008B"),
+            Purple::DarkViolet => crate::to_rgb("#9400D3"),
+            Purple::DarkSlateBlue => crate::to_rgb("#483D8B"),
+            Purple::BlueViolet => crate::to_rgb("#8A2BE2"),
+            Purple::DarkOrchid => crate::to_rgb("#9932CC"),
             Purple::Fuchsia => crate::to_rgb("#FF00FF"),
+            Purple::Magenta => crate::to_rgb("#FF00FF"),
+            Purple::SlateBlue => crate::to_rgb("#6A5ACD"),
+            Purple::MediumSlateBlue => crate::to_rgb("#7B68EE"),
+            Purple::MediumOrchid => crate::to_rgb("#BA55D3"),
+            Purple::MediumPurple => crate::to_rgb("#9370DB"),
             Purple::Orchid => crate::to_rgb("#DA70D6"),
+            Purple::Violet => crate::to_rgb("#EE82EE"),
+            Purple::Plum => crate::to_rgb("#DDA0DD"),
+            Purple::Thistle => crate::to_rgb("#D8BFD8"),
+            Purple::Lavender => crate::to_rgb("#E6E6FA"),
+            Purple::Pink => crate::to_rgb("#FFC0CB"),
             Purple::MediumVioletRed => crate::to_rgb("#C71585"),
             Purple::PaleVioletRed => crate::to_rgb("#DB7093"),
             Purple::DeepPink => crate::to_rgb("#FF1493"),
             Purple::HotPink => crate::to_rgb("#FF69B4"),
             Purple::LightPink => crate::to_rgb("#FFB6C1"),
-            Purple::Pink => crate::to_rgb("#FFC0CB"),
         }
     }
 
@@ -130,8 +163,61 @@ impl Purple {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    /// ```
+    /// # use named_colour::ext::Purple;
+    /// # fn main() {
+    ///    let colour = Purple::Purple;
+    ///    assert_eq!(colour, Purple::parse("purple").unwrap());
+    ///    assert_eq!(colour, Purple::parse("#800080").unwrap());
+    ///    assert_eq!(colour, Purple::parse("#800080").unwrap());
+    ///
+    /// # }
+    /// ```
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#4b0082" | "4b0082" | "indigo" => Some(Self::Indigo),
+            "#800080" | "800080" | "purple" => Some(Self::Purple),
+            "#8b008b" | "8b008b" | "darkmagenta" => Some(Self::DarkMagenta),
+            "#9400d3" | "9400d3" | "darkviolet" => Some(Self::DarkViolet),
+            "#483d8b" | "483d8b" | "darkslateblue" => Some(Self::DarkSlateBlue),
+            "#8a2be2" | "8a2be2" | "blueviolet" => Some(Self::BlueViolet),
+            "#9932cc" | "9932cc" | "darkorchid" => Some(Self::DarkOrchid),
+            "#a020f0" | "a020f0" | "fuchsia" => Some(Self::Fuchsia),
+            "#ff00ff" | "ff00ff" | "magenta" => Some(Self::Magenta),
+            "#6a5acd" | "6a5acd" | "slateblue" => Some(Self::SlateBlue),
+            "#7b68ee" | "7b68ee" | "mediumslateblue" => Some(Self::MediumSlateBlue),
+            "#ba55d3" | "ba55d3" | "mediumorchid" => Some(Self::MediumOrchid),
+            "#9370db" | "9370db" | "mediumpurple" => Some(Self::MediumPurple),
+            "#da70d6" | "da70d6" | "orchid" => Some(Self::Orchid),
+            "#ee82ee" | "ee82ee" | "violet" => Some(Self::Violet),
+            "#dda0dd" | "dda0dd" | "plum" => Some(Self::Plum),
+            "#d8bfd8" | "d8bfd8" | "thistle" => Some(Self::Thistle),
+            "#e6e6fa" | "e6e6fa" | "lavender" => Some(Self::Lavender),
+            "#ffc0cb" | "ffc0cb" | "pink" => Some(Self::Pink),
+            "#c71585" | "c71585" | "mediumvioletred" => Some(Self::MediumVioletRed),
+            "#db7093" | "db7093" | "palevioletred" => Some(Self::PaleVioletRed),
+            "#ff1493" | "ff1493" | "deeppink" => Some(Self::DeepPink),
+            "#ff69b4" | "ff69b4" | "hotpink" => Some(Self::HotPink),
+            "#ffb6c1" | "ffb6c1" | "lightpink" => Some(Self::LightPink),
+            _ => None,
+        }
+    }
 }
 
+impl FromStr for Purple {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
+}
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -187,5 +273,82 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#4b0082", Purple::Indigo)]
+    #[case("4b0082", Purple::Indigo)]
+    #[case("indigo", Purple::Indigo)]
+    #[case("#800080", Purple::Purple)]
+    #[case("800080", Purple::Purple)]
+    #[case("purple", Purple::Purple)]
+    #[case("#8b008b", Purple::DarkMagenta)]
+    #[case("8b008b", Purple::DarkMagenta)]
+    #[case("darkmagenta", Purple::DarkMagenta)]
+    #[case("#9400d3", Purple::DarkViolet)]
+    #[case("9400d3", Purple::DarkViolet)]
+    #[case("darkviolet", Purple::DarkViolet)]
+    #[case("#483d8b", Purple::DarkSlateBlue)]
+    #[case("483d8b", Purple::DarkSlateBlue)]
+    #[case("darkslateblue", Purple::DarkSlateBlue)]
+    #[case("#8a2be2", Purple::BlueViolet)]
+    #[case("8a2be2", Purple::BlueViolet)]
+    #[case("blueviolet", Purple::BlueViolet)]
+    #[case("#9932cc", Purple::DarkOrchid)]
+    #[case("9932cc", Purple::DarkOrchid)]
+    #[case("darkorchid", Purple::DarkOrchid)]
+    #[case("#a020f0", Purple::Fuchsia)]
+    #[case("a020f0", Purple::Fuchsia)]
+    #[case("fuchsia", Purple::Fuchsia)]
+    #[case("#ff00ff", Purple::Magenta)]
+    #[case("ff00ff", Purple::Magenta)]
+    #[case("magenta", Purple::Magenta)]
+    #[case("#6a5acd", Purple::SlateBlue)]
+    #[case("6a5acd", Purple::SlateBlue)]
+    #[case("slateblue", Purple::SlateBlue)]
+    #[case("#7b68ee", Purple::MediumSlateBlue)]
+    #[case("7b68ee", Purple::MediumSlateBlue)]
+    #[case("mediumslateblue", Purple::MediumSlateBlue)]
+    #[case("#ba55d3", Purple::MediumOrchid)]
+    #[case("ba55d3", Purple::MediumOrchid)]
+    #[case("mediumorchid", Purple::MediumOrchid)]
+    #[case("#9370db", Purple::MediumPurple)]
+    #[case("9370db", Purple::MediumPurple)]
+    #[case("mediumpurple", Purple::MediumPurple)]
+    #[case("#da70d6", Purple::Orchid)]
+    #[case("da70d6", Purple::Orchid)]
+    #[case("orchid", Purple::Orchid)]
+    #[case("#ee82ee", Purple::Violet)]
+    #[case("ee82ee", Purple::Violet)]
+    #[case("violet", Purple::Violet)]
+    #[case("#dda0dd", Purple::Plum)]
+    #[case("dda0dd", Purple::Plum)]
+    #[case("plum", Purple::Plum)]
+    #[case("#d8bfd8", Purple::Thistle)]
+    #[case("d8bfd8", Purple::Thistle)]
+    #[case("thistle", Purple::Thistle)]
+    #[case("#e6e6fa", Purple::Lavender)]
+    #[case("e6e6fa", Purple::Lavender)]
+    #[case("lavender", Purple::Lavender)]
+    #[case("#ffc0cb", Purple::Pink)]
+    #[case("ffc0cb", Purple::Pink)]
+    #[case("pink", Purple::Pink)]
+    #[case("#c71585", Purple::MediumVioletRed)]
+    #[case("c71585", Purple::MediumVioletRed)]
+    #[case("mediumvioletred", Purple::MediumVioletRed)]
+    #[case("#db7093", Purple::PaleVioletRed)]
+    #[case("db7093", Purple::PaleVioletRed)]
+    #[case("palevioletred", Purple::PaleVioletRed)]
+    #[case("deeppink", Purple::DeepPink)]
+    #[case("ff1493", Purple::DeepPink)]
+    #[case("deeppink", Purple::DeepPink)]
+    #[case("#ff69b4", Purple::HotPink)]
+    #[case("ff69b4", Purple::HotPink)]
+    #[case("hotpink", Purple::HotPink)]
+    #[case("#ffb6c1", Purple::LightPink)]
+    #[case("ffb6c1", Purple::LightPink)]
+    #[case("lightpink", Purple::LightPink)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Purple) {
+        assert_eq!(expected, Purple::from_str(input).unwrap())
     }
 }

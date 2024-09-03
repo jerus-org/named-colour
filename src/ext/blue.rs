@@ -14,7 +14,7 @@ pub enum Blue {
     PowderBlue,
     CadetBlue,
     SteelBlue,
-    CornFlowerBlue,
+    CornflowerBlue,
     DeepSkyBlue,
     DodgerBlue,
     LightBlue,
@@ -27,6 +27,7 @@ pub enum Blue {
     Blue,
     RoyalBlue,
     Azure,
+    LightSteelBlue,
 }
 
 impl fmt::Display for Blue {
@@ -35,12 +36,13 @@ impl fmt::Display for Blue {
             Blue::PowderBlue => write!(f, "#B0E0E6"),
             Blue::CadetBlue => write!(f, "#5F9EA0"),
             Blue::SteelBlue => write!(f, "#4682B4"),
-            Blue::CornFlowerBlue => write!(f, "#6495ED"),
+            Blue::CornflowerBlue => write!(f, "#6495ED"),
             Blue::DeepSkyBlue => write!(f, "#00BFFF"),
             Blue::DodgerBlue => write!(f, "#1E90FF"),
             Blue::LightBlue => write!(f, "#ADD8E6"),
             Blue::SkyBlue => write!(f, "#87CEEB"),
             Blue::LightSkyBlue => write!(f, "#87CEFA"),
+            Blue::LightSteelBlue => write!(f, "#B0C4DE"),
             Blue::MidnightBlue => write!(f, "#191970"),
             Blue::Navy => write!(f, "#000080"),
             Blue::DarkBlue => write!(f, "#00008B"),
@@ -74,11 +76,12 @@ impl Blue {
             Blue::PowderBlue => crate::to_rgb("#B0E0E6"),
             Blue::CadetBlue => crate::to_rgb("#5F9EA0"),
             Blue::SteelBlue => crate::to_rgb("#4682B4"),
-            Blue::CornFlowerBlue => crate::to_rgb("#6495ED"),
+            Blue::CornflowerBlue => crate::to_rgb("#6495ED"),
             Blue::DeepSkyBlue => crate::to_rgb("#00BFFF"),
             Blue::DodgerBlue => crate::to_rgb("#1E90FF"),
             Blue::LightBlue => crate::to_rgb("#ADD8E6"),
             Blue::SkyBlue => crate::to_rgb("#87CEEB"),
+            Blue::LightSteelBlue => crate::to_rgb("#B0C4DE"),
             Blue::LightSkyBlue => crate::to_rgb("#87CEFA"),
             Blue::MidnightBlue => crate::to_rgb("#191970"),
             Blue::Navy => crate::to_rgb("#000080"),
@@ -157,11 +160,12 @@ impl Blue {
             "#b0e0e6" | "b0e0e6" | "powderblue" => Some(Blue::PowderBlue),
             "#5f9ea0" | "5f9ea0" | "cadetblue" => Some(Blue::CadetBlue),
             "#4682b4" | "4682b4" | "steelblue" => Some(Blue::SteelBlue),
-            "#6495ed" | "6495ed" | "cornflowerblue" => Some(Blue::CornFlowerBlue),
+            "#6495ed" | "6495ed" | "cornflowerblue" => Some(Blue::CornflowerBlue),
             "#00bfff" | "00bfff" | "deepskyblue" => Some(Blue::DeepSkyBlue),
             "#1e90ff" | "1e90ff" | "dodgerblue" => Some(Blue::DodgerBlue),
             "#add8e6" | "add8e6" | "lightblue" => Some(Blue::LightBlue),
             "#87ceeb" | "87ceeb" | "skyblue" => Some(Blue::SkyBlue),
+            "#b0c4de" | "b0c4de" | "lightsteelblue" => Some(Blue::LightSteelBlue),
             "#87cefa" | "87cefa" | "lightskyblue" => Some(Blue::LightSkyBlue),
             "#191970" | "191970" | "midnightblue" => Some(Blue::MidnightBlue),
             "#000080" | "000080" | "navy" => Some(Blue::Navy),
@@ -194,11 +198,12 @@ mod tests {
     #[case(Blue::PowderBlue, "rgb(176,224,230)")]
     #[case(Blue::CadetBlue, "rgb(95,158,160)")]
     #[case(Blue::SteelBlue, "rgb(70,130,180)")]
-    #[case(Blue::CornFlowerBlue, "rgb(100,149,237)")]
+    #[case(Blue::CornflowerBlue, "rgb(100,149,237)")]
     #[case(Blue::DeepSkyBlue, "rgb(0,191,255)")]
     #[case(Blue::DodgerBlue, "rgb(30,144,255)")]
     #[case(Blue::LightBlue, "rgb(173,216,230)")]
     #[case(Blue::SkyBlue, "rgb(135,206,235)")]
+    #[case(Blue::LightSteelBlue, "rgb(176,196,222)")]
     #[case(Blue::LightSkyBlue, "rgb(135,206,250)")]
     #[case(Blue::MidnightBlue, "rgb(25,25,112)")]
     #[case(Blue::Navy, "rgb(0,0,128)")]
@@ -207,6 +212,7 @@ mod tests {
     #[case(Blue::Blue, "rgb(0,0,255)")]
     #[case(Blue::RoyalBlue, "rgb(65,105,225)")]
     #[case(Blue::Azure, "rgb(240,255,255)")]
+
     fn test_rgb_string(#[case] colour: Blue, #[case] expected: String) {
         let rgb_colour = colour.to_rgb();
         let string = rgb_colour.to_string();
@@ -218,11 +224,12 @@ mod tests {
     #[case(Blue::PowderBlue, "B0E0E6")]
     #[case(Blue::CadetBlue, "5F9EA0")]
     #[case(Blue::SteelBlue, "4682B4")]
-    #[case(Blue::CornFlowerBlue, "6495ED")]
+    #[case(Blue::CornflowerBlue, "6495ED")]
     #[case(Blue::DeepSkyBlue, "00BFFF")]
     #[case(Blue::DodgerBlue, "1E90FF")]
     #[case(Blue::LightBlue, "ADD8E6")]
     #[case(Blue::SkyBlue, "87CEEB")]
+    #[case(Blue::LightSteelBlue, "B0C4DE")]
     #[case(Blue::LightSkyBlue, "87CEFA")]
     #[case(Blue::MidnightBlue, "191970")]
     #[case(Blue::Navy, "000080")]
@@ -259,9 +266,9 @@ mod tests {
     #[case("#4682b4", Blue::SteelBlue)]
     #[case("4682b4", Blue::SteelBlue)]
     #[case("steelblue", Blue::SteelBlue)]
-    #[case("#6495ed", Blue::CornFlowerBlue)]
-    #[case("6495ed", Blue::CornFlowerBlue)]
-    #[case("cornflowerblue", Blue::CornFlowerBlue)]
+    #[case("#6495ed", Blue::CornflowerBlue)]
+    #[case("6495ed", Blue::CornflowerBlue)]
+    #[case("cornflowerblue", Blue::CornflowerBlue)]
     #[case("#00bfff", Blue::DeepSkyBlue)]
     #[case("00bfff", Blue::DeepSkyBlue)]
     #[case("deepskyblue", Blue::DeepSkyBlue)]
@@ -274,6 +281,9 @@ mod tests {
     #[case("#87ceeb", Blue::SkyBlue)]
     #[case("87ceeb", Blue::SkyBlue)]
     #[case("skyblue", Blue::SkyBlue)]
+    #[case("#b0c4de", Blue::LightSteelBlue)]
+    #[case("b0c4de", Blue::LightSteelBlue)]
+    #[case("lightsteelblue", Blue::LightSteelBlue)]
     #[case("#87cefa", Blue::LightSkyBlue)]
     #[case("87cefa", Blue::LightSkyBlue)]
     #[case("lightskyblue", Blue::LightSkyBlue)]

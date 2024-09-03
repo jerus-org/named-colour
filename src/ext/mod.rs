@@ -6,8 +6,6 @@ mod blue;
 mod brown;
 mod cyan;
 mod green;
-mod indigo;
-mod lavender;
 mod purple;
 mod red;
 mod white;
@@ -18,8 +16,6 @@ pub use blue::Blue;
 pub use brown::Brown;
 pub use cyan::Cyan;
 pub use green::Green;
-pub use indigo::Indigo;
-pub use lavender::Lavender;
 pub use purple::Purple;
 pub use red::Red;
 pub use white::White;
@@ -56,18 +52,6 @@ mod tests {
     #[allow(deprecated)]
     fn display_green_as_rgb() {
         assert_eq!("(107,142,35)", Green::OliveDrab.as_rgb())
-    }
-
-    #[test]
-    #[allow(deprecated)]
-    fn display_indigo_as_rgb() {
-        assert_eq!("(75,0,130)", Indigo::Indigo.as_rgb())
-    }
-
-    #[test]
-    #[allow(deprecated)]
-    fn display_lavender_as_rgb() {
-        assert_eq!("(230,230,250)", Lavender::Lavender.as_rgb())
     }
 
     #[test]
