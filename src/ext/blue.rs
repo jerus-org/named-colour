@@ -1,14 +1,14 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of blue
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Blue {
     PowderBlue,
@@ -139,6 +139,50 @@ impl Blue {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Blue;
+    /// # use named_colour::Prefix;
+    ///    let colour = Blue::Azure;
+    ///
+    ///     assert_eq!(Blue::Azure, Blue::parse("#F0FFFF").unwrap());
+    ///
+    ///```
+    pub fn parse(name: &str) -> Option<Blue> {
+        match name.to_lowercase().as_str() {
+            "#b0e0e6" | "b0e0e6" | "powderblue" => Some(Blue::PowderBlue),
+            "#5f9ea0" | "5f9ea0" | "cadetblue" => Some(Blue::CadetBlue),
+            "#4682b4" | "4682b4" | "steelblue" => Some(Blue::SteelBlue),
+            "#6495ed" | "6495ed" | "cornflowerblue" => Some(Blue::CornFlowerBlue),
+            "#00bfff" | "00bfff" | "deepskyblue" => Some(Blue::DeepSkyBlue),
+            "#1e90ff" | "1e90ff" | "dodgerblue" => Some(Blue::DodgerBlue),
+            "#add8e6" | "add8e6" | "lightblue" => Some(Blue::LightBlue),
+            "#87ceeb" | "87ceeb" | "skyblue" => Some(Blue::SkyBlue),
+            "#87cefa" | "87cefa" | "lightskyblue" => Some(Blue::LightSkyBlue),
+            "#191970" | "191970" | "midnightblue" => Some(Blue::MidnightBlue),
+            "#000080" | "000080" | "navy" => Some(Blue::Navy),
+            "#00008b" | "00008b" | "darkblue" => Some(Blue::DarkBlue),
+            "#0000cd" | "0000cd" | "mediumblue" => Some(Blue::MediumBlue),
+            "#0000ff" | "0000ff" | "blue" => Some(Blue::Blue),
+            "#4169e1" | "4169e1" | "royalblue" => Some(Blue::RoyalBlue),
+            "#f0ffff" | "f0ffff" | "azure" => Some(Blue::Azure),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Blue {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Blue::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -187,6 +231,7 @@ mod tests {
     #[case(Blue::Blue, "0000FF")]
     #[case(Blue::RoyalBlue, "4169E1")]
     #[case(Blue::Azure, "F0FFFF")]
+
     fn test_hex_triplet_string(
         #[case] colour: Blue,
         #[values(Prefix::None, Prefix::Hash)] prefix: Prefix,
@@ -202,5 +247,58 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#b0e0e6", Blue::PowderBlue)]
+    #[case("b0e0e6", Blue::PowderBlue)]
+    #[case("powderblue", Blue::PowderBlue)]
+    #[case("#5f9ea0", Blue::CadetBlue)]
+    #[case("5f9ea0", Blue::CadetBlue)]
+    #[case("cadetblue", Blue::CadetBlue)]
+    #[case("#4682b4", Blue::SteelBlue)]
+    #[case("4682b4", Blue::SteelBlue)]
+    #[case("steelblue", Blue::SteelBlue)]
+    #[case("#6495ed", Blue::CornFlowerBlue)]
+    #[case("6495ed", Blue::CornFlowerBlue)]
+    #[case("cornflowerblue", Blue::CornFlowerBlue)]
+    #[case("#00bfff", Blue::DeepSkyBlue)]
+    #[case("00bfff", Blue::DeepSkyBlue)]
+    #[case("deepskyblue", Blue::DeepSkyBlue)]
+    #[case("#1e90ff", Blue::DodgerBlue)]
+    #[case("1e90ff", Blue::DodgerBlue)]
+    #[case("dodgerblue", Blue::DodgerBlue)]
+    #[case("#add8e6", Blue::LightBlue)]
+    #[case("add8e6", Blue::LightBlue)]
+    #[case("lightblue", Blue::LightBlue)]
+    #[case("#87ceeb", Blue::SkyBlue)]
+    #[case("87ceeb", Blue::SkyBlue)]
+    #[case("skyblue", Blue::SkyBlue)]
+    #[case("#87cefa", Blue::LightSkyBlue)]
+    #[case("87cefa", Blue::LightSkyBlue)]
+    #[case("lightskyblue", Blue::LightSkyBlue)]
+    #[case("#191970", Blue::MidnightBlue)]
+    #[case("191970", Blue::MidnightBlue)]
+    #[case("midnightblue", Blue::MidnightBlue)]
+    #[case("#000080", Blue::Navy)]
+    #[case("000080", Blue::Navy)]
+    #[case("navy", Blue::Navy)]
+    #[case("#00008b", Blue::DarkBlue)]
+    #[case("00008b", Blue::DarkBlue)]
+    #[case("darkblue", Blue::DarkBlue)]
+    #[case("#0000cd", Blue::MediumBlue)]
+    #[case("0000cd", Blue::MediumBlue)]
+    #[case("mediumblue", Blue::MediumBlue)]
+    #[case("#0000ff", Blue::Blue)]
+    #[case("0000ff", Blue::Blue)]
+    #[case("blue", Blue::Blue)]
+    #[case("#4169e1", Blue::RoyalBlue)]
+    #[case("4169e1", Blue::RoyalBlue)]
+    #[case("royalblue", Blue::RoyalBlue)]
+    #[case("#f0ffff", Blue::Azure)]
+    #[case("f0ffff", Blue::Azure)]
+    #[case("azure", Blue::Azure)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Blue) {
+        assert_eq!(expected, Blue::from_str(input).unwrap())
     }
 }
