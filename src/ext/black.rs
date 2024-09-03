@@ -1,18 +1,20 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of black
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Black {
     SlateGray,
+    SlateGrey,
     LightSlateGray,
+    LightSlateGrey,
     Black,
     DimGray,
     DimGrey,
@@ -30,7 +32,9 @@ impl fmt::Display for Black {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Black::SlateGray => write!(f, "#708090"),
+            Black::SlateGrey => write!(f, "#708090"),
             Black::LightSlateGray => write!(f, "#778899"),
+            Black::LightSlateGrey => write!(f, "#778899"),
             Black::Black => write!(f, "#000000"),
             Black::DimGray => write!(f, "#696969"),
             Black::DimGrey => write!(f, "#696969"),
@@ -67,7 +71,9 @@ impl Black {
     pub fn as_rgb(&self) -> String {
         match self {
             Black::SlateGray => crate::to_rgb("#708090"),
+            Black::SlateGrey => crate::to_rgb("#708090"),
             Black::LightSlateGray => crate::to_rgb("#778899"),
+            Black::LightSlateGrey => crate::to_rgb("#778899"),
             Black::Black => crate::to_rgb("#000000"),
             Black::DimGray => crate::to_rgb("#696969"),
             Black::DimGrey => crate::to_rgb("#696969"),
@@ -131,6 +137,37 @@ impl Black {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    pub fn parse(name: &str) -> Option<Black> {
+        match name.to_lowercase().as_str() {
+            "#708090" | "708090" | "slategray" => Some(Black::SlateGray),
+            "slategrey" => Some(Black::SlateGrey),
+            "#778899" | "778899" | "lightslategray" => Some(Black::LightSlateGray),
+            "lightslategrey" => Some(Black::LightSlateGrey),
+            "#000000" | "000000" | "black" => Some(Black::Black),
+            "#696969" | "696969" | "dimgray" => Some(Black::DimGray),
+            "dimgrey" => Some(Black::DimGrey),
+            "#808080" | "808080" | "gray" => Some(Black::Gray),
+            "grey" => Some(Black::Grey),
+            "#a9a9a9" | "a9a9a9" | "darkgray" => Some(Black::DarkGray),
+            "darkgrey" => Some(Black::DarkGrey),
+            "#c0c0c0" | "c0c0c0" | "silver" => Some(Black::Silver),
+            "#d3d3d3" | "d3d3d3" | "lightgray" => Some(Black::LightGray),
+            "lightgrey" => Some(Black::LightGrey),
+            "#dcdcdc" | "dcdcdc" | "gainsboro" => Some(Black::Gainsboro),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Black {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Black::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -188,5 +225,43 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#708090", Black::SlateGray)]
+    #[case("708090", Black::SlateGray)]
+    #[case("slategray", Black::SlateGray)]
+    #[case("slategrey", Black::SlateGrey)]
+    #[case("#778899", Black::LightSlateGray)]
+    #[case("778899", Black::LightSlateGray)]
+    #[case("lightslategray", Black::LightSlateGray)]
+    #[case("lightslategrey", Black::LightSlateGrey)]
+    #[case("#000000", Black::Black)]
+    #[case("000000", Black::Black)]
+    #[case("black", Black::Black)]
+    #[case("#696969", Black::DimGray)]
+    #[case("696969", Black::DimGray)]
+    #[case("dimgray", Black::DimGray)]
+    #[case("dimgrey", Black::DimGrey)]
+    #[case("#808080", Black::Gray)]
+    #[case("808080", Black::Gray)]
+    #[case("gray", Black::Gray)]
+    #[case("grey", Black::Grey)]
+    #[case("#A9A9A9", Black::DarkGray)]
+    #[case("A9A9A9", Black::DarkGray)]
+    #[case("darkgray", Black::DarkGray)]
+    #[case("darkgrey", Black::DarkGrey)]
+    #[case("#C0C0C0", Black::Silver)]
+    #[case("C0C0C0", Black::Silver)]
+    #[case("silver", Black::Silver)]
+    #[case("#D3D3D3", Black::LightGray)]
+    #[case("D3D3D3", Black::LightGray)]
+    #[case("lightgray", Black::LightGray)]
+    #[case("lightgrey", Black::LightGrey)]
+    #[case("#DCDCDC", Black::Gainsboro)]
+    #[case("DCDCDC", Black::Gainsboro)]
+    #[case("gainsboro", Black::Gainsboro)]
+    fn test_parse(#[case] input: &str, #[case] expected: Black) {
+        assert_eq!(expected, Black::from_str(input).unwrap())
     }
 }
