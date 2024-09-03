@@ -1,14 +1,14 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of brown
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Brown {
     SaddleBrown,
@@ -115,6 +115,40 @@ impl Brown {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    /// ```
+    /// # use named_colour::ext::Brown;
+    ///     let colour = Brown::SandyBrown;
+    ///     assert_eq!(Some(Brown::SandyBrown), Brown::parse("sandybrown"));    
+    /// ```    
+    ///
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#8b4513" | "8b4513" | "saddlebrown" => Some(Self::SaddleBrown),
+            "#a0522d" | "a0522d" | "sienna" => Some(Self::Sienna),
+            "#d2691e" | "d2691e" | "chocolate" => Some(Self::Chocolate),
+            "#cd853f" | "cd853f" | "peru" => Some(Self::Peru),
+            "#f4a460" | "f4a460" | "sandybrown" => Some(Self::SandyBrown),
+            "#deb887" | "deb887" | "burlywood" => Some(Self::BurlyWood),
+            "#d2b48c" | "d2b48c" | "tan" => Some(Self::Tan),
+            "#bc8f8f" | "bc8f8f" | "rosybrown" => Some(Self::RosyBrown),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Brown {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Brown::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -162,5 +196,34 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#8b4513", Brown::SaddleBrown)]
+    #[case("#a0522d", Brown::Sienna)]
+    #[case("#d2691e", Brown::Chocolate)]
+    #[case("#cd853f", Brown::Peru)]
+    #[case("#f4a460", Brown::SandyBrown)]
+    #[case("#deb887", Brown::BurlyWood)]
+    #[case("#d2b48c", Brown::Tan)]
+    #[case("#bc8f8f", Brown::RosyBrown)]
+    #[case("8b4513", Brown::SaddleBrown)]
+    #[case("a0522d", Brown::Sienna)]
+    #[case("d2691e", Brown::Chocolate)]
+    #[case("cd853f", Brown::Peru)]
+    #[case("f4a460", Brown::SandyBrown)]
+    #[case("deb887", Brown::BurlyWood)]
+    #[case("d2b48c", Brown::Tan)]
+    #[case("bc8f8f", Brown::RosyBrown)]
+    #[case("saddlebrown", Brown::SaddleBrown)]
+    #[case("sienna", Brown::Sienna)]
+    #[case("chocolate", Brown::Chocolate)]
+    #[case("peru", Brown::Peru)]
+    #[case("sandybrown", Brown::SandyBrown)]
+    #[case("burlywood", Brown::BurlyWood)]
+    #[case("tan", Brown::Tan)]
+    #[case("rosybrown", Brown::RosyBrown)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Brown) {
+        assert_eq!(expected, Brown::from_str(input).unwrap())
     }
 }
