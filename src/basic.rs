@@ -179,24 +179,24 @@ impl Basic {
     ///
     pub fn parse(name: &str) -> Option<Basic> {
         match name.to_lowercase().as_str() {
-            "#000000" | "black" => Some(Basic::Black),
-            "#ffffff" | "white" => Some(Basic::White),
-            "#ff0000" | "red" => Some(Basic::Red),
-            "#00ff00" | "lime" => Some(Basic::Lime),
-            "#0000ff" | "blue" => Some(Basic::Blue),
-            "#ffff00" | "yellow" => Some(Basic::Yellow),
+            "#000000" | "000000" | "black" => Some(Basic::Black),
+            "#ffffff" | "ffffff" | "white" => Some(Basic::White),
+            "#ff0000" | "ff0000" | "red" => Some(Basic::Red),
+            "#00ff00" | "00ff00" | "lime" => Some(Basic::Lime),
+            "#0000ff" | "0000ff" | "blue" => Some(Basic::Blue),
+            "#ffff00" | "ffff00" | "yellow" => Some(Basic::Yellow),
             "cyan" => Some(Basic::Cyan),
-            "#00ffff" | "aqua" => Some(Basic::Aqua),
-            "#ff00ff" | "magenta" => Some(Basic::Magenta),
+            "#00ffff" | "00ffff" | "aqua" => Some(Basic::Aqua),
+            "#ff00ff" | "ff00ff" | "magenta" => Some(Basic::Magenta),
             "fuchsia" => Some(Basic::Fuchsia),
-            "#c0c0c0" | "silver" => Some(Basic::Silver),
-            "#808080" | "gray" => Some(Basic::Gray),
-            "#800000" | "maroon" => Some(Basic::Maroon),
-            "#808000" | "olive" => Some(Basic::Olive),
-            "#008000" | "green" => Some(Basic::Green),
-            "#800080" | "purple" => Some(Basic::Purple),
-            "#008080" | "teal" => Some(Basic::Teal),
-            "#000080" | "navy" => Some(Basic::Navy),
+            "#c0c0c0" | "c0c0c0" | "silver" => Some(Basic::Silver),
+            "#808080" | "808080" | "gray" => Some(Basic::Gray),
+            "#800000" | "800000" | "maroon" => Some(Basic::Maroon),
+            "#808000" | "808000" | "olive" => Some(Basic::Olive),
+            "#008000" | "008000" | "green" => Some(Basic::Green),
+            "#800080" | "800080" | "purple" => Some(Basic::Purple),
+            "#008080" | "008080" | "teal" => Some(Basic::Teal),
+            "#000080" | "000080" | "navy" => Some(Basic::Navy),
             _ => None,
         }
     }
@@ -289,38 +289,54 @@ mod tests {
     #[rstest]
     #[case("aqua", Basic::Aqua)]
     #[case("#000000", Basic::Black)]
+    #[case("000000", Basic::Black)]
     #[case("black", Basic::Black)]
     #[case("#FFFFFF", Basic::White)]
+    #[case("FFFFFF", Basic::White)]
     #[case("white", Basic::White)]
     #[case("#FF0000", Basic::Red)]
+    #[case("FF0000", Basic::Red)]
     #[case("red", Basic::Red)]
     #[case("#00FF00", Basic::Lime)]
+    #[case("00FF00", Basic::Lime)]
     #[case("lime", Basic::Lime)]
     #[case("#0000FF", Basic::Blue)]
+    #[case("0000FF", Basic::Blue)]
     #[case("blue", Basic::Blue)]
     #[case("#FFFF00", Basic::Yellow)]
+    #[case("FFFF00", Basic::Yellow)]
     #[case("yellow", Basic::Yellow)]
     #[case("cyan", Basic::Cyan)]
     #[case("#00FFFF", Basic::Aqua)]
+    #[case("00FFFF", Basic::Aqua)]
     #[case("aqua", Basic::Aqua)]
     #[case("#FF00FF", Basic::Magenta)]
+    #[case("FF00FF", Basic::Magenta)]
     #[case("magenta", Basic::Magenta)]
     #[case("fuchsia", Basic::Fuchsia)]
     #[case("#C0C0C0", Basic::Silver)]
+    #[case("C0C0C0", Basic::Silver)]
     #[case("silver", Basic::Silver)]
     #[case("#808080", Basic::Gray)]
+    #[case("808080", Basic::Gray)]
     #[case("gray", Basic::Gray)]
     #[case("#800000", Basic::Maroon)]
+    #[case("800000", Basic::Maroon)]
     #[case("maroon", Basic::Maroon)]
     #[case("#808000", Basic::Olive)]
+    #[case("808000", Basic::Olive)]
     #[case("olive", Basic::Olive)]
     #[case("#008000", Basic::Green)]
+    #[case("008000", Basic::Green)]
     #[case("green", Basic::Green)]
     #[case("#800080", Basic::Purple)]
+    #[case("800080", Basic::Purple)]
     #[case("purple", Basic::Purple)]
     #[case("#008080", Basic::Teal)]
+    #[case("008080", Basic::Teal)]
     #[case("teal", Basic::Teal)]
     #[case("#000080", Basic::Navy)]
+    #[case("000080", Basic::Navy)]
     #[case("navy", Basic::Navy)]
     fn test_parse(#[case] input: &str, #[case] expected: Basic) {
         assert_eq!(expected, Basic::from_str(input).unwrap())
