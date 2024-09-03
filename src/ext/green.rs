@@ -146,6 +146,18 @@ impl Green {
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
 
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Green;
+    /// # fn main() {
+    ///    let colour = Green::parse("#7CFC00");
+    ///    assert_eq!(Some(Green::LawnGreen), colour);
+    ///
+    ///  # }
+    ///```
     pub fn parse(name: &str) -> Option<Self> {
         match name.to_lowercase().as_str() {
             "#9acd32" | "9acd32" | "yellowgreen" => Some(Self::YellowGreen),

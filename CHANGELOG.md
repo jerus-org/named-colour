@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add parsing from string for Brown enum(pr [#55])
 - add parsing from string for Cyan enum and implement FromStr trait(pr [#56])
 - BREAKING: add Olive shade and implement FromStr for Green enum(pr [#57])
+- add parsing from string for Purple enum and implement FromStr trait(pr [#58])
 
 ### Changed
 
@@ -141,6 +142,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#55]: https://github.com/jerus-org/named-colour/pull/55
 [#56]: https://github.com/jerus-org/named-colour/pull/56
 [#57]: https://github.com/jerus-org/named-colour/pull/57
+[#58]: https://github.com/jerus-org/named-colour/pull/58
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6

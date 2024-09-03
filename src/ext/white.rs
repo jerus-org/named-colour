@@ -36,6 +36,7 @@ pub enum White {
     Ivory,
     Snow,
     WhiteSmoke,
+    AliceBlue,
 }
 
 impl fmt::Display for White {
@@ -66,6 +67,7 @@ impl fmt::Display for White {
             White::Ivory => write!(f, "#FFFFF0"),
             White::Snow => write!(f, "#FFFAFA"),
             White::WhiteSmoke => write!(f, "#F5F5F5"),
+            White::AliceBlue => write!(f, "#F0F8FF"),
         }
     }
 }
@@ -114,6 +116,7 @@ impl White {
             White::Ivory => crate::to_rgb("#FFFFF0"),
             White::Snow => crate::to_rgb("#FFFAFA"),
             White::WhiteSmoke => crate::to_rgb("#F5F5F5"),
+            White::AliceBlue => crate::to_rgb("#F0F8FF"),
         }
     }
 
