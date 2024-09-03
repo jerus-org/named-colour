@@ -1,14 +1,14 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of cyan
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Cyan {
     MediumAquaMarine,
@@ -136,6 +136,49 @@ impl Cyan {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Cyan;
+    /// # use named_colour::Prefix;
+    ///    let colour = Cyan::Teal;
+    ///
+    ///     assert_eq!(Some(Cyan::Teal), Cyan::parse("teal"));
+    ///
+    ///```
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#66cdaa" | "66cdaa" | "mediumaquamarine" => Some(Self::MediumAquaMarine),
+            "#3cb371" | "3cb371" | "mediumseagreen" => Some(Self::MediumSeaGreen),
+            "#20b2aa" | "20b2aa" | "lightseagreen" => Some(Self::LightSeaGreen),
+            "#2f4f4f" | "2f4f4f" | "darkslategray" => Some(Self::DarkSlateGray),
+            "#008080" | "008080" | "teal" => Some(Self::Teal),
+            "#008b8b" | "008b8b" | "darkcyan" => Some(Self::DarkCyan),
+            "#00ffff" | "00ffff" | "aqua" => Some(Self::Aqua),
+            "cyan" => Some(Self::Cyan),
+            "#e0ffff" | "e0ffff" | "lightcyan" => Some(Self::LightCyan),
+            "#00ced1" | "00ced1" | "darkturquoise" => Some(Self::DarkTurquoise),
+            "#40e0d0" | "40e0d0" | "turquoise" => Some(Self::Turquoise),
+            "#48d1cc" | "48d1cc" | "mediumturquoise" => Some(Self::MediumTurquoise),
+            "#afeeee" | "afeeee" | "paleturquoise" => Some(Self::PaleTurquoise),
+            "#7fffd4" | "7fffd4" | "aquamarine" => Some(Self::AquaMarine),
+            "#f0fff0" | "f0fff0" | "honeydew" => Some(Self::Honeydew),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Cyan {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Cyan::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -197,5 +240,53 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#66cdaa", Cyan::MediumAquaMarine)]
+    #[case("66cdaa", Cyan::MediumAquaMarine)]
+    #[case("mediumaquamarine", Cyan::MediumAquaMarine)]
+    #[case("#3cb371", Cyan::MediumSeaGreen)]
+    #[case("3cb371", Cyan::MediumSeaGreen)]
+    #[case("mediumseagreen", Cyan::MediumSeaGreen)]
+    #[case("#20b2aa", Cyan::LightSeaGreen)]
+    #[case("20b2aa", Cyan::LightSeaGreen)]
+    #[case("lightseagreen", Cyan::LightSeaGreen)]
+    #[case("#2f4f4f", Cyan::DarkSlateGray)]
+    #[case("2f4f4f", Cyan::DarkSlateGray)]
+    #[case("darkslategray", Cyan::DarkSlateGray)]
+    #[case("#008080", Cyan::Teal)]
+    #[case("008080", Cyan::Teal)]
+    #[case("teal", Cyan::Teal)]
+    #[case("#008b8b", Cyan::DarkCyan)]
+    #[case("008b8b", Cyan::DarkCyan)]
+    #[case("darkcyan", Cyan::DarkCyan)]
+    #[case("#00ffff", Cyan::Aqua)]
+    #[case("00ffff", Cyan::Aqua)]
+    #[case("aqua", Cyan::Aqua)]
+    #[case("cyan", Cyan::Cyan)]
+    #[case("#e0ffff", Cyan::LightCyan)]
+    #[case("e0ffff", Cyan::LightCyan)]
+    #[case("lightcyan", Cyan::LightCyan)]
+    #[case("#00ced1", Cyan::DarkTurquoise)]
+    #[case("00ced1", Cyan::DarkTurquoise)]
+    #[case("darkturquoise", Cyan::DarkTurquoise)]
+    #[case("#40e0d0", Cyan::Turquoise)]
+    #[case("40e0d0", Cyan::Turquoise)]
+    #[case("turquoise", Cyan::Turquoise)]
+    #[case("#48d1cc", Cyan::MediumTurquoise)]
+    #[case("48d1cc", Cyan::MediumTurquoise)]
+    #[case("mediumturquoise", Cyan::MediumTurquoise)]
+    #[case("#afeeee", Cyan::PaleTurquoise)]
+    #[case("afeeee", Cyan::PaleTurquoise)]
+    #[case("paleturquoise", Cyan::PaleTurquoise)]
+    #[case("#7fffd4", Cyan::AquaMarine)]
+    #[case("7fffd4", Cyan::AquaMarine)]
+    #[case("aquamarine", Cyan::AquaMarine)]
+    #[case("#f0fff0", Cyan::Honeydew)]
+    #[case("f0fff0", Cyan::Honeydew)]
+    #[case("honeydew", Cyan::Honeydew)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Cyan) {
+        assert_eq!(expected, Cyan::from_str(input).unwrap())
     }
 }
