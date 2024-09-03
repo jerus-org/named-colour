@@ -138,6 +138,19 @@ impl Black {
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
 
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Black;
+    /// # fn main() {
+    ///    let colour = Black::parse("gainsboro");
+    ///
+    ///    assert_eq!(Some(Black::Gainsboro), colour);
+    /// # }
+    /// ```
+    ///
     pub fn parse(name: &str) -> Option<Black> {
         match name.to_lowercase().as_str() {
             "#708090" | "708090" | "slategray" => Some(Black::SlateGray),
