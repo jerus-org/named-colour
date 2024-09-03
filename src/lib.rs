@@ -83,7 +83,7 @@ mod to_hex;
 
 pub use crate::to_hex::ToHex;
 pub use basic::Basic;
-pub use rgb::Rgb;
+pub use rgb::RGB8;
 
 // Can be removed when deprecated `as_rgb` functions are removed
 pub(crate) fn to_rgb(hex: &str) -> String {
