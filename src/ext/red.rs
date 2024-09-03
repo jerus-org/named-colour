@@ -1,7 +1,7 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
@@ -9,7 +9,7 @@ use crate::Prefix;
 
 /// Shades of red
 #[allow(missing_docs)]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Red {
     Maroon,
     #[allow(clippy::enum_variant_names)]
@@ -141,6 +141,51 @@ impl Red {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Red;
+    /// # fn main() {
+    ///    let colour = Red::from_str("Maroon");
+    ///    assert_eq!(Red::Maroon, colour.unwrap());
+    ///
+    ///  # }
+    ///```      
+    ///
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#800000" | "800000" | "maroon" => Some(Self::Maroon),
+            "#8b0000" | "8b0000" | "darkred" => Some(Self::DarkRed),
+            "#a52a2a" | "a52a2a" | "brown" => Some(Self::Brown),
+            "#b22222" | "b22222" | "firebrick" => Some(Self::Firebrick),
+            "#dc143c" | "dc143c" | "crimson" => Some(Self::Crimson),
+            "#ff0000" | "ff0000" | "red" => Some(Self::Red),
+            "#ff6347" | "ff6347" | "tomato" => Some(Self::Tomato),
+            "#ff7f50" | "ff7f50" | "coral" => Some(Self::Coral),
+            "#cd5c5c" | "cd5c5c" | "indianred" => Some(Self::IndianRed),
+            "#f08080" | "f08080" | "lightcoral" => Some(Self::LightCoral),
+            "#e9967a" | "e9967a" | "darksalmon" => Some(Self::DarkSalmon),
+            "#fa8072" | "fa8072" | "salmon" => Some(Self::Salmon),
+            "#ffa07a" | "ffa07a" | "lightsalmon" => Some(Self::LightSalmon),
+            "#ff4500" | "ff4500" | "orangered" => Some(Self::OrangeRed),
+            "#ff8c00" | "ff8c00" | "darkorange" => Some(Self::DarkOrange),
+            "#ffa500" | "ffa500" | "orange" => Some(Self::Orange),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Red {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -204,5 +249,58 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#800000", Red::Maroon)]
+    #[case("800000", Red::Maroon)]
+    #[case("maroon", Red::Maroon)]
+    #[case("#8b0000", Red::DarkRed)]
+    #[case("8b0000", Red::DarkRed)]
+    #[case("darkred", Red::DarkRed)]
+    #[case("#a52a2a", Red::Brown)]
+    #[case("a52a2a", Red::Brown)]
+    #[case("brown", Red::Brown)]
+    #[case("#b22222", Red::Firebrick)]
+    #[case("b22222", Red::Firebrick)]
+    #[case("firebrick", Red::Firebrick)]
+    #[case("#dc143c", Red::Crimson)]
+    #[case("dc143c", Red::Crimson)]
+    #[case("crimson", Red::Crimson)]
+    #[case("#ff0000", Red::Red)]
+    #[case("ff0000", Red::Red)]
+    #[case("red", Red::Red)]
+    #[case("#ff6347", Red::Tomato)]
+    #[case("ff6347", Red::Tomato)]
+    #[case("tomato", Red::Tomato)]
+    #[case("#ff7f50", Red::Coral)]
+    #[case("ff7f50", Red::Coral)]
+    #[case("coral", Red::Coral)]
+    #[case("#cd5c5c", Red::IndianRed)]
+    #[case("cd5c5c", Red::IndianRed)]
+    #[case("indianred", Red::IndianRed)]
+    #[case("#f08080", Red::LightCoral)]
+    #[case("f08080", Red::LightCoral)]
+    #[case("lightcoral", Red::LightCoral)]
+    #[case("#e9967a", Red::DarkSalmon)]
+    #[case("e9967a", Red::DarkSalmon)]
+    #[case("darksalmon", Red::DarkSalmon)]
+    #[case("#fa8072", Red::Salmon)]
+    #[case("fa8072", Red::Salmon)]
+    #[case("salmon", Red::Salmon)]
+    #[case("#ffa07a", Red::LightSalmon)]
+    #[case("ffa07a", Red::LightSalmon)]
+    #[case("lightsalmon", Red::LightSalmon)]
+    #[case("#ff4500", Red::OrangeRed)]
+    #[case("ff4500", Red::OrangeRed)]
+    #[case("orangered", Red::OrangeRed)]
+    #[case("#ff8c00", Red::DarkOrange)]
+    #[case("ff8c00", Red::DarkOrange)]
+    #[case("darkorange", Red::DarkOrange)]
+    #[case("#ffa500", Red::Orange)]
+    #[case("ffa500", Red::Orange)]
+    #[case("orange", Red::Orange)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Red) {
+        assert_eq!(expected, Red::from_str(input).unwrap())
     }
 }
