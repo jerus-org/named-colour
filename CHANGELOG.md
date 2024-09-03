@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- add parsing functionality for Basic colours(pr [#51])
+
 ### Changed
 
 - refactor-rename Rgb to RGB8 in lib.rs(pr [#50])
@@ -124,6 +128,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#48]: https://github.com/jerus-org/named-colour/pull/48
 [#49]: https://github.com/jerus-org/named-colour/pull/49
 [#50]: https://github.com/jerus-org/named-colour/pull/50
+[#51]: https://github.com/jerus-org/named-colour/pull/51
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
