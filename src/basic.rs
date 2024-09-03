@@ -1,4 +1,4 @@
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
@@ -6,7 +6,7 @@ use crate::Prefix;
 
 /// 16 basic colours with 18 names!
 #[allow(missing_docs)]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Basic {
     Black,
     White,
@@ -163,6 +163,53 @@ impl Basic {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from a string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::Basic;
+    /// # fn example() {
+    ///    let colour = Basic::parse("#000000");
+    ///    assert_eq!(Some(Basic::Black), colour);
+    ///
+    /// # }
+    ///```  
+    ///
+    pub fn parse(name: &str) -> Option<Basic> {
+        match name.to_lowercase().as_str() {
+            "#000000" | "black" => Some(Basic::Black),
+            "#ffffff" | "white" => Some(Basic::White),
+            "#ff0000" | "red" => Some(Basic::Red),
+            "#00ff00" | "lime" => Some(Basic::Lime),
+            "#0000ff" | "blue" => Some(Basic::Blue),
+            "#ffff00" | "yellow" => Some(Basic::Yellow),
+            "cyan" => Some(Basic::Cyan),
+            "#00ffff" | "aqua" => Some(Basic::Aqua),
+            "#ff00ff" | "magenta" => Some(Basic::Magenta),
+            "fuchsia" => Some(Basic::Fuchsia),
+            "#c0c0c0" | "silver" => Some(Basic::Silver),
+            "#808080" | "gray" => Some(Basic::Gray),
+            "#800000" | "maroon" => Some(Basic::Maroon),
+            "#808000" | "olive" => Some(Basic::Olive),
+            "#008000" | "green" => Some(Basic::Green),
+            "#800080" | "purple" => Some(Basic::Purple),
+            "#008080" | "teal" => Some(Basic::Teal),
+            "#000080" | "navy" => Some(Basic::Navy),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Basic {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Basic::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -237,5 +284,45 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("aqua", Basic::Aqua)]
+    #[case("#000000", Basic::Black)]
+    #[case("black", Basic::Black)]
+    #[case("#FFFFFF", Basic::White)]
+    #[case("white", Basic::White)]
+    #[case("#FF0000", Basic::Red)]
+    #[case("red", Basic::Red)]
+    #[case("#00FF00", Basic::Lime)]
+    #[case("lime", Basic::Lime)]
+    #[case("#0000FF", Basic::Blue)]
+    #[case("blue", Basic::Blue)]
+    #[case("#FFFF00", Basic::Yellow)]
+    #[case("yellow", Basic::Yellow)]
+    #[case("cyan", Basic::Cyan)]
+    #[case("#00FFFF", Basic::Aqua)]
+    #[case("aqua", Basic::Aqua)]
+    #[case("#FF00FF", Basic::Magenta)]
+    #[case("magenta", Basic::Magenta)]
+    #[case("fuchsia", Basic::Fuchsia)]
+    #[case("#C0C0C0", Basic::Silver)]
+    #[case("silver", Basic::Silver)]
+    #[case("#808080", Basic::Gray)]
+    #[case("gray", Basic::Gray)]
+    #[case("#800000", Basic::Maroon)]
+    #[case("maroon", Basic::Maroon)]
+    #[case("#808000", Basic::Olive)]
+    #[case("olive", Basic::Olive)]
+    #[case("#008000", Basic::Green)]
+    #[case("green", Basic::Green)]
+    #[case("#800080", Basic::Purple)]
+    #[case("purple", Basic::Purple)]
+    #[case("#008080", Basic::Teal)]
+    #[case("teal", Basic::Teal)]
+    #[case("#000080", Basic::Navy)]
+    #[case("navy", Basic::Navy)]
+    fn test_parse(#[case] input: &str, #[case] expected: Basic) {
+        assert_eq!(expected, Basic::from_str(input).unwrap())
     }
 }
