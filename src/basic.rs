@@ -164,6 +164,19 @@ impl Basic {
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
 
+    /// Parse a colour from a string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::Basic;
+    /// # fn example() {
+    ///    let colour = Basic::parse("#000000");
+    ///    assert_eq!(Some(Basic::Black), colour);
+    ///
+    /// # }
+    ///```  
+    ///
     pub fn parse(name: &str) -> Option<Basic> {
         match name.to_lowercase().as_str() {
             "#000000" | "black" => Some(Basic::Black),
