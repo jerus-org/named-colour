@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - add parsing functionality for Basic colours(pr [#51])
 - support parsing color codes without hash prefix in Basic module(pr [#52])
+- add parsing for black shades and implement FromStr trait(pr [#53])
 
 ### Changed
 
@@ -131,6 +132,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#50]: https://github.com/jerus-org/named-colour/pull/50
 [#51]: https://github.com/jerus-org/named-colour/pull/51
 [#52]: https://github.com/jerus-org/named-colour/pull/52
+[#53]: https://github.com/jerus-org/named-colour/pull/53
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
