@@ -1,18 +1,19 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of green
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Green {
     YellowGreen,
     DarkOliveGreen,
+    Olive,
     OliveDrab,
     LawnGreen,
     ChartReuse,
@@ -35,6 +36,7 @@ impl fmt::Display for Green {
         match self {
             Green::YellowGreen => write!(f, "#9ACD32"),
             Green::DarkOliveGreen => write!(f, "#556B2F"),
+            Green::Olive => write!(f, "#808000"),
             Green::OliveDrab => write!(f, "#6B8E23"),
             Green::LawnGreen => write!(f, "#7CFC00"),
             Green::ChartReuse => write!(f, "#7FFF00"),
@@ -74,6 +76,7 @@ impl Green {
     pub fn as_rgb(&self) -> String {
         match self {
             Green::YellowGreen => crate::to_rgb("#9ACD32"),
+            Green::Olive => crate::to_rgb("#808000"),
             Green::DarkOliveGreen => crate::to_rgb("#556B2F"),
             Green::OliveDrab => crate::to_rgb("#6B8E23"),
             Green::LawnGreen => crate::to_rgb("#7CFC00"),
@@ -142,6 +145,40 @@ impl Green {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#9acd32" | "9acd32" | "yellowgreen" => Some(Self::YellowGreen),
+            "#556b2f" | "556b2f" | "darkolivegreen" => Some(Self::DarkOliveGreen),
+            "#808000" | "808000" | "olive" => Some(Self::Olive),
+            "#6b8e23" | "6b8e23" | "olivedrab" => Some(Self::OliveDrab),
+            "#7cfc00" | "7cfc00" | "lawngreen" => Some(Self::LawnGreen),
+            "#7fff00" | "7fff00" | "chartreuse" => Some(Self::ChartReuse),
+            "#adff2f" | "adff2f" | "greenyellow" => Some(Self::GreenYellow),
+            "#006400" | "006400" | "darkgreen" => Some(Self::DarkGreen),
+            "#008000" | "008000" | "green" => Some(Self::Green),
+            "#228b22" | "228b22" | "forestgreen" => Some(Self::ForestGreen),
+            "#32cd32" | "32cd32" | "limegreen" => Some(Self::LimeGreen),
+            "#90ee90" | "90ee90" | "lightgreen" => Some(Self::LightGreen),
+            "#98fb98" | "98fb98" | "palegreen" => Some(Self::PaleGreen),
+            "#8fbc8f" | "8fbc8f" | "darkseagreen" => Some(Self::DarkSeaGreen),
+            "#00fa9a" | "00fa9a" | "mediumspringgreen" => Some(Self::MediumSpringGreen),
+            "#00ff7f" | "00ff7f" | "springgreen" => Some(Self::SpringGreen),
+            "#2e8b57" | "2e8b57" | "seagreen" => Some(Self::SeaGreen),
+            "#00ff00" | "00ff00" | "lime" => Some(Self::Lime),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Green {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -207,5 +244,52 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#9acd32", Green::YellowGreen)]
+    #[case("9acd32", Green::YellowGreen)]
+    #[case("yellowgreen", Green::YellowGreen)]
+    #[case("#556b2f", Green::DarkOliveGreen)]
+    #[case("556b2f", Green::DarkOliveGreen)]
+    #[case("darkolivegreen", Green::DarkOliveGreen)]
+    #[case("#808000", Green::Olive)]
+    #[case("808000", Green::Olive)]
+    #[case("olive", Green::Olive)]
+    #[case("#6b8e23", Green::OliveDrab)]
+    #[case("6b8e23", Green::OliveDrab)]
+    #[case("olivedrab", Green::OliveDrab)]
+    #[case("#7cfc00", Green::LawnGreen)]
+    #[case("7cfc00", Green::LawnGreen)]
+    #[case("lawngreen", Green::LawnGreen)]
+    #[case("#7fff00", Green::ChartReuse)]
+    #[case("7fff00", Green::ChartReuse)]
+    #[case("chartreuse", Green::ChartReuse)]
+    #[case("#adff2f", Green::GreenYellow)]
+    #[case("adff2f", Green::GreenYellow)]
+    #[case("greenyellow", Green::GreenYellow)]
+    #[case("#008000", Green::Green)]
+    #[case("008000", Green::Green)]
+    #[case("green", Green::Green)]
+    #[case("#228b22", Green::ForestGreen)]
+    #[case("228b22", Green::ForestGreen)]
+    #[case("forestgreen", Green::ForestGreen)]
+    #[case("#00ff7f", Green::SpringGreen)]
+    #[case("00ff7f", Green::SpringGreen)]
+    #[case("springgreen", Green::SpringGreen)]
+    #[case("#98fb98", Green::PaleGreen)]
+    #[case("98fb98", Green::PaleGreen)]
+    #[case("palegreen", Green::PaleGreen)]
+    #[case("#8fbc8f", Green::DarkSeaGreen)]
+    #[case("8fbc8f", Green::DarkSeaGreen)]
+    #[case("darkseagreen", Green::DarkSeaGreen)]
+    #[case("#00fa9a", Green::MediumSpringGreen)]
+    #[case("00fa9a", Green::MediumSpringGreen)]
+    #[case("mediumspringgreen", Green::MediumSpringGreen)]
+    #[case("#2e8b57", Green::SeaGreen)]
+    #[case("2e8b57", Green::SeaGreen)]
+    #[case("seagreen", Green::SeaGreen)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Green) {
+        assert_eq!(expected, Green::from_str(input).unwrap())
     }
 }
