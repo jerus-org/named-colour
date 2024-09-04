@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add new shades and implement parsing from string(pr [#61])
 - add NamedColour trait and implement for Black(pr [#63])
 - implement ExtendedColour trait for Brown and add tests for name_colour function(pr [#65])
+- implement ExtendedColour trait for Cyan(pr [#66])
 
 ### Changed
 
@@ -157,6 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#63]: https://github.com/jerus-org/named-colour/pull/63
 [#64]: https://github.com/jerus-org/named-colour/pull/64
 [#65]: https://github.com/jerus-org/named-colour/pull/65
+[#66]: https://github.com/jerus-org/named-colour/pull/66
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
