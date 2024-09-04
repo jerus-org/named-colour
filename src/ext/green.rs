@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::ExtendedColour;
+
 /// Shades of green
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
@@ -154,6 +156,8 @@ impl FromStr for Green {
     }
 }
 
+impl ExtendedColour for Green {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -264,5 +268,53 @@ mod tests {
     #[case("seagreen", Green::SeaGreen)]
     fn test_from_str(#[case] input: &str, #[case] expected: Green) {
         assert_eq!(expected, Green::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("#9acd32", Some(Green::YellowGreen))]
+    #[case("9acd32", Some(Green::YellowGreen))]
+    #[case("yellowgreen", Some(Green::YellowGreen))]
+    #[case("#556b2f", Some(Green::DarkOliveGreen))]
+    #[case("556b2f", Some(Green::DarkOliveGreen))]
+    #[case("darkolivegreen", Some(Green::DarkOliveGreen))]
+    #[case("#808000", Some(Green::Olive))]
+    #[case("808000", Some(Green::Olive))]
+    #[case("olive", Some(Green::Olive))]
+    #[case("#6b8e23", Some(Green::OliveDrab))]
+    #[case("6b8e23", Some(Green::OliveDrab))]
+    #[case("olivedrab", Some(Green::OliveDrab))]
+    #[case("#7cfc00", Some(Green::LawnGreen))]
+    #[case("7cfc00", Some(Green::LawnGreen))]
+    #[case("lawngreen", Some(Green::LawnGreen))]
+    #[case("#7fff00", Some(Green::ChartReuse))]
+    #[case("7fff00", Some(Green::ChartReuse))]
+    #[case("chartreuse", Some(Green::ChartReuse))]
+    #[case("#adff2f", Some(Green::GreenYellow))]
+    #[case("adff2f", Some(Green::GreenYellow))]
+    #[case("greenyellow", Some(Green::GreenYellow))]
+    #[case("#008000", Some(Green::Green))]
+    #[case("008000", Some(Green::Green))]
+    #[case("green", Some(Green::Green))]
+    #[case("#228b22", Some(Green::ForestGreen))]
+    #[case("228b22", Some(Green::ForestGreen))]
+    #[case("forestgreen", Some(Green::ForestGreen))]
+    #[case("#00ff7f", Some(Green::SpringGreen))]
+    #[case("00ff7f", Some(Green::SpringGreen))]
+    #[case("springgreen", Some(Green::SpringGreen))]
+    #[case("#98fb98", Some(Green::PaleGreen))]
+    #[case("98fb98", Some(Green::PaleGreen))]
+    #[case("palegreen", Some(Green::PaleGreen))]
+    #[case("#8fbc8f", Some(Green::DarkSeaGreen))]
+    #[case("8fbc8f", Some(Green::DarkSeaGreen))]
+    #[case("darkseagreen", Some(Green::DarkSeaGreen))]
+    #[case("#00fa9a", Some(Green::MediumSpringGreen))]
+    #[case("00fa9a", Some(Green::MediumSpringGreen))]
+    #[case("mediumspringgreen", Some(Green::MediumSpringGreen))]
+    #[case("#2e8b57", Some(Green::SeaGreen))]
+    #[case("2e8b57", Some(Green::SeaGreen))]
+    #[case("seagreen", Some(Green::SeaGreen))]
+    #[case("012345", None)]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Green>) {
+        assert_eq!(expected, Green::name_colour(input))
     }
 }
