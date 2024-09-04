@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::ExtendedColour;
+
 /// Shades of blue
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
@@ -151,6 +153,19 @@ impl FromStr for Blue {
     }
 }
 
+impl ExtendedColour for Blue {
+    fn name_colour(colour: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        if let Ok(c) = Blue::from_str(colour) {
+            Some(c)
+        } else {
+            None
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -272,5 +287,62 @@ mod tests {
     #[case("azure", Blue::Azure)]
     fn test_from_str(#[case] input: &str, #[case] expected: Blue) {
         assert_eq!(expected, Blue::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("#b0e0e6", Some(Blue::PowderBlue))]
+    #[case("b0e0e6", Some(Blue::PowderBlue))]
+    #[case("powderblue", Some(Blue::PowderBlue))]
+    #[case("#5f9ea0", Some(Blue::CadetBlue))]
+    #[case("5f9ea0", Some(Blue::CadetBlue))]
+    #[case("cadetblue", Some(Blue::CadetBlue))]
+    #[case("#4682b4", Some(Blue::SteelBlue))]
+    #[case("4682b4", Some(Blue::SteelBlue))]
+    #[case("steelblue", Some(Blue::SteelBlue))]
+    #[case("#6495ed", Some(Blue::CornflowerBlue))]
+    #[case("6495ed", Some(Blue::CornflowerBlue))]
+    #[case("cornflowerblue", Some(Blue::CornflowerBlue))]
+    #[case("#00bfff", Some(Blue::DeepSkyBlue))]
+    #[case("00bfff", Some(Blue::DeepSkyBlue))]
+    #[case("deepskyblue", Some(Blue::DeepSkyBlue))]
+    #[case("#1e90ff", Some(Blue::DodgerBlue))]
+    #[case("1e90ff", Some(Blue::DodgerBlue))]
+    #[case("dodgerblue", Some(Blue::DodgerBlue))]
+    #[case("#add8e6", Some(Blue::LightBlue))]
+    #[case("add8e6", Some(Blue::LightBlue))]
+    #[case("lightblue", Some(Blue::LightBlue))]
+    #[case("#87ceeb", Some(Blue::SkyBlue))]
+    #[case("87ceeb", Some(Blue::SkyBlue))]
+    #[case("skyblue", Some(Blue::SkyBlue))]
+    #[case("#b0c4de", Some(Blue::LightSteelBlue))]
+    #[case("b0c4de", Some(Blue::LightSteelBlue))]
+    #[case("lightsteelblue", Some(Blue::LightSteelBlue))]
+    #[case("#87cefa", Some(Blue::LightSkyBlue))]
+    #[case("87cefa", Some(Blue::LightSkyBlue))]
+    #[case("lightskyblue", Some(Blue::LightSkyBlue))]
+    #[case("#191970", Some(Blue::MidnightBlue))]
+    #[case("191970", Some(Blue::MidnightBlue))]
+    #[case("midnightblue", Some(Blue::MidnightBlue))]
+    #[case("#000080", Some(Blue::Navy))]
+    #[case("000080", Some(Blue::Navy))]
+    #[case("navy", Some(Blue::Navy))]
+    #[case("#00008b", Some(Blue::DarkBlue))]
+    #[case("00008b", Some(Blue::DarkBlue))]
+    #[case("darkblue", Some(Blue::DarkBlue))]
+    #[case("#0000cd", Some(Blue::MediumBlue))]
+    #[case("0000cd", Some(Blue::MediumBlue))]
+    #[case("mediumblue", Some(Blue::MediumBlue))]
+    #[case("#0000ff", Some(Blue::Blue))]
+    #[case("0000ff", Some(Blue::Blue))]
+    #[case("blue", Some(Blue::Blue))]
+    #[case("#4169e1", Some(Blue::RoyalBlue))]
+    #[case("4169e1", Some(Blue::RoyalBlue))]
+    #[case("royalblue", Some(Blue::RoyalBlue))]
+    #[case("#f0ffff", Some(Blue::Azure))]
+    #[case("f0ffff", Some(Blue::Azure))]
+    #[case("azure", Some(Blue::Azure))]
+    #[case("012345", None)]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Blue>) {
+        assert_eq!(expected, Blue::name_colour(input))
     }
 }
