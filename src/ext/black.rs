@@ -148,18 +148,7 @@ impl FromStr for Black {
     }
 }
 
-impl ExtendedColour for Black {
-    fn name_colour(colour: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        if let Ok(c) = Self::from_str(colour) {
-            Some(c)
-        } else {
-            None
-        }
-    }
-}
+impl ExtendedColour for Black {}
 
 #[cfg(test)]
 mod tests {
