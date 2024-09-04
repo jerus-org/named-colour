@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::ExtendedColour;
+
 /// Shades of red
 #[allow(missing_docs)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -152,6 +154,8 @@ impl FromStr for Red {
     }
 }
 
+impl ExtendedColour for Red {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -266,5 +270,59 @@ mod tests {
     #[case("orange", Red::Orange)]
     fn test_from_str(#[case] input: &str, #[case] expected: Red) {
         assert_eq!(expected, Red::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("#800000", Some(Red::Maroon))]
+    #[case("800000", Some(Red::Maroon))]
+    #[case("maroon", Some(Red::Maroon))]
+    #[case("#8b0000", Some(Red::DarkRed))]
+    #[case("8b0000", Some(Red::DarkRed))]
+    #[case("darkred", Some(Red::DarkRed))]
+    #[case("#a52a2a", Some(Red::Brown))]
+    #[case("a52a2a", Some(Red::Brown))]
+    #[case("brown", Some(Red::Brown))]
+    #[case("#b22222", Some(Red::Firebrick))]
+    #[case("b22222", Some(Red::Firebrick))]
+    #[case("firebrick", Some(Red::Firebrick))]
+    #[case("#dc143c", Some(Red::Crimson))]
+    #[case("dc143c", Some(Red::Crimson))]
+    #[case("crimson", Some(Red::Crimson))]
+    #[case("#ff0000", Some(Red::Red))]
+    #[case("ff0000", Some(Red::Red))]
+    #[case("red", Some(Red::Red))]
+    #[case("#ff6347", Some(Red::Tomato))]
+    #[case("ff6347", Some(Red::Tomato))]
+    #[case("tomato", Some(Red::Tomato))]
+    #[case("#ff7f50", Some(Red::Coral))]
+    #[case("ff7f50", Some(Red::Coral))]
+    #[case("coral", Some(Red::Coral))]
+    #[case("#cd5c5c", Some(Red::IndianRed))]
+    #[case("cd5c5c", Some(Red::IndianRed))]
+    #[case("indianred", Some(Red::IndianRed))]
+    #[case("#f08080", Some(Red::LightCoral))]
+    #[case("f08080", Some(Red::LightCoral))]
+    #[case("lightcoral", Some(Red::LightCoral))]
+    #[case("#e9967a", Some(Red::DarkSalmon))]
+    #[case("e9967a", Some(Red::DarkSalmon))]
+    #[case("darksalmon", Some(Red::DarkSalmon))]
+    #[case("#fa8072", Some(Red::Salmon))]
+    #[case("fa8072", Some(Red::Salmon))]
+    #[case("salmon", Some(Red::Salmon))]
+    #[case("#ffa07a", Some(Red::LightSalmon))]
+    #[case("ffa07a", Some(Red::LightSalmon))]
+    #[case("lightsalmon", Some(Red::LightSalmon))]
+    #[case("#ff4500", Some(Red::OrangeRed))]
+    #[case("ff4500", Some(Red::OrangeRed))]
+    #[case("orangered", Some(Red::OrangeRed))]
+    #[case("#ff8c00", Some(Red::DarkOrange))]
+    #[case("ff8c00", Some(Red::DarkOrange))]
+    #[case("darkorange", Some(Red::DarkOrange))]
+    #[case("#ffa500", Some(Red::Orange))]
+    #[case("ffa500", Some(Red::Orange))]
+    #[case("orange", Some(Red::Orange))]
+    #[case("012345", None)]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Red>) {
+        assert_eq!(expected, Red::name_colour(input))
     }
 }
