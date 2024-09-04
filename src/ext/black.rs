@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::NamedColour;
+
 /// Shades of black
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
@@ -146,6 +148,19 @@ impl FromStr for Black {
     }
 }
 
+impl NamedColour for Black {
+    fn name_colour(colour: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        if let Ok(c) = Black::from_str(colour) {
+            Some(c)
+        } else {
+            None
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -239,5 +254,44 @@ mod tests {
     #[case("gainsboro", Black::Gainsboro)]
     fn test_parse(#[case] input: &str, #[case] expected: Black) {
         assert_eq!(expected, Black::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("012345", None)]
+    #[case("#708090", Some(Black::SlateGray))]
+    #[case("708090", Some(Black::SlateGray))]
+    #[case("slategray", Some(Black::SlateGray))]
+    #[case("slategrey", Some(Black::SlateGrey))]
+    #[case("#778899", Some(Black::LightSlateGray))]
+    #[case("778899", Some(Black::LightSlateGray))]
+    #[case("lightslategray", Some(Black::LightSlateGray))]
+    #[case("lightslategrey", Some(Black::LightSlateGrey))]
+    #[case("#000000", Some(Black::Black))]
+    #[case("000000", Some(Black::Black))]
+    #[case("black", Some(Black::Black))]
+    #[case("#696969", Some(Black::DimGray))]
+    #[case("696969", Some(Black::DimGray))]
+    #[case("dimgray", Some(Black::DimGray))]
+    #[case("dimgrey", Some(Black::DimGrey))]
+    #[case("#808080", Some(Black::Gray))]
+    #[case("808080", Some(Black::Gray))]
+    #[case("gray", Some(Black::Gray))]
+    #[case("grey", Some(Black::Grey))]
+    #[case("#A9A9A9", Some(Black::DarkGray))]
+    #[case("A9A9A9", Some(Black::DarkGray))]
+    #[case("darkgray", Some(Black::DarkGray))]
+    #[case("darkgrey", Some(Black::DarkGrey))]
+    #[case("#C0C0C0", Some(Black::Silver))]
+    #[case("C0C0C0", Some(Black::Silver))]
+    #[case("silver", Some(Black::Silver))]
+    #[case("#D3D3D3", Some(Black::LightGray))]
+    #[case("D3D3D3", Some(Black::LightGray))]
+    #[case("lightgray", Some(Black::LightGray))]
+    #[case("lightgrey", Some(Black::LightGrey))]
+    #[case("#DCDCDC", Some(Black::Gainsboro))]
+    #[case("DCDCDC", Some(Black::Gainsboro))]
+    #[case("gainsboro", Some(Black::Gainsboro))]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Black>) {
+        assert_eq!(expected, Black::name_colour(input))
     }
 }
