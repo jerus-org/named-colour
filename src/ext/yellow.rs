@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::ExtendedColour;
+
 /// Shades of yellow
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
@@ -129,6 +131,8 @@ impl FromStr for Yellow {
     }
 }
 
+impl ExtendedColour for Yellow {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -233,5 +237,53 @@ mod tests {
     #[case("LightYellow", Yellow::LightYellow)]
     fn test_from_str(#[case] input: &str, #[case] expected: Yellow) {
         assert_eq!(expected, Yellow::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("#ffd700", Some(Yellow::Gold))]
+    #[case("ffd700", Some(Yellow::Gold))]
+    #[case("Gold", Some(Yellow::Gold))]
+    #[case("#b8860b", Some(Yellow::DarkGoldenrod))]
+    #[case("b8860b", Some(Yellow::DarkGoldenrod))]
+    #[case("DarkGoldenRod", Some(Yellow::DarkGoldenrod))]
+    #[case("#dab500", Some(Yellow::Goldenrod))]
+    #[case("dab500", Some(Yellow::Goldenrod))]
+    #[case("GoldenRod", Some(Yellow::Goldenrod))]
+    #[case("#eee8aa", Some(Yellow::PaleGoldenrod))]
+    #[case("eee8aa", Some(Yellow::PaleGoldenrod))]
+    #[case("PaleGoldenRod", Some(Yellow::PaleGoldenrod))]
+    #[case("#bdb76b", Some(Yellow::DarkKhaki))]
+    #[case("bdb76b", Some(Yellow::DarkKhaki))]
+    #[case("DarkKhaki", Some(Yellow::DarkKhaki))]
+    #[case("#f0e68c", Some(Yellow::Khaki))]
+    #[case("f0e68c", Some(Yellow::Khaki))]
+    #[case("Khaki", Some(Yellow::Khaki))]
+    #[case("#ffff00", Some(Yellow::Yellow))]
+    #[case("ffff00", Some(Yellow::Yellow))]
+    #[case("Yellow", Some(Yellow::Yellow))]
+    #[case("#9acd32", Some(Yellow::YellowGreen))]
+    #[case("9acd32", Some(Yellow::YellowGreen))]
+    #[case("YellowGreen", Some(Yellow::YellowGreen))]
+    #[case("#ffdab9", Some(Yellow::PeachPuff))]
+    #[case("ffdab9", Some(Yellow::PeachPuff))]
+    #[case("PeachPuff", Some(Yellow::PeachPuff))]
+    #[case("#ffe4b5", Some(Yellow::Moccasin))]
+    #[case("ffe4b5", Some(Yellow::Moccasin))]
+    #[case("Moccasin", Some(Yellow::Moccasin))]
+    #[case("#ffefd5", Some(Yellow::PapayaWhip))]
+    #[case("ffefd5", Some(Yellow::PapayaWhip))]
+    #[case("PapayaWhip", Some(Yellow::PapayaWhip))]
+    #[case("#fffacd", Some(Yellow::LemonChiffon))]
+    #[case("fffacd", Some(Yellow::LemonChiffon))]
+    #[case("LemonChiffon", Some(Yellow::LemonChiffon))]
+    #[case("#fafad2", Some(Yellow::LightGoldenrodYellow))]
+    #[case("fafad2", Some(Yellow::LightGoldenrodYellow))]
+    #[case("LightGoldenrodYellow", Some(Yellow::LightGoldenrodYellow))]
+    #[case("#ffffe0", Some(Yellow::LightYellow))]
+    #[case("ffffe0", Some(Yellow::LightYellow))]
+    #[case("LightYellow", Some(Yellow::LightYellow))]
+    #[case("012345", None)]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Yellow>) {
+        assert_eq!(expected, Yellow::name_colour(input))
     }
 }
