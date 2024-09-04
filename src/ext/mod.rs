@@ -71,10 +71,4 @@ mod tests {
     fn display_white_as_rgb() {
         assert_eq!("(250,240,230)", White::Linen.as_rgb())
     }
-
-    #[test]
-    #[allow(deprecated)]
-    fn display_yellow_as_rgb() {
-        assert_eq!("(240,230,140)", Yellow::Khaki.as_rgb())
-    }
 }

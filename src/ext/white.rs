@@ -17,18 +17,12 @@ pub enum White {
     BlanchedAlmond,
     Wheat,
     CornSilk,
-    LemonChiffon,
-    LightGoldenRodYellow,
-    LightYellow,
     White,
-    Moccasin,
     NavajoWhite,
-    PeachPuff,
     MistyRose,
     LavenderBlush,
     Linen,
     OldLace,
-    PapayaWhip,
     SeaShell,
     MintCream,
     FloralWhite,
@@ -48,18 +42,12 @@ impl fmt::Display for White {
             Self::BlanchedAlmond => write!(f, "#FFEBCD"),
             Self::Wheat => write!(f, "#F5DEB3"),
             Self::CornSilk => write!(f, "#FFF8DC"),
-            Self::LemonChiffon => write!(f, "#FFFACD"),
-            Self::LightGoldenRodYellow => write!(f, "#FAFAD2"),
-            Self::LightYellow => write!(f, "#FFFFE0"),
             Self::White => write!(f, "#FFFFFF"),
-            Self::Moccasin => write!(f, "#FFE4B5"),
             Self::NavajoWhite => write!(f, "#FFDEAD"),
-            Self::PeachPuff => write!(f, "#FFDAB9"),
             Self::MistyRose => write!(f, "#FFE4E1"),
             Self::LavenderBlush => write!(f, "#FFF0F5"),
             Self::Linen => write!(f, "#FAF0E6"),
             Self::OldLace => write!(f, "#FDF5E6"),
-            Self::PapayaWhip => write!(f, "#FFEFD5"),
             Self::SeaShell => write!(f, "#FFF5EE"),
             Self::MintCream => write!(f, "#F5FFFA"),
             Self::FloralWhite => write!(f, "#FFFAF0"),
@@ -97,18 +85,12 @@ impl White {
             White::BlanchedAlmond => crate::to_rgb("#FFEBCD"),
             White::Wheat => crate::to_rgb("#F5DEB3"),
             White::CornSilk => crate::to_rgb("#FFF8DC"),
-            White::LemonChiffon => crate::to_rgb("#FFFACD"),
-            White::LightGoldenRodYellow => crate::to_rgb("#FAFAD2"),
-            White::LightYellow => crate::to_rgb("#FFFFE0"),
             White::White => crate::to_rgb("#FFFFFF"),
-            White::Moccasin => crate::to_rgb("#FFE4B5"),
             White::NavajoWhite => crate::to_rgb("#FFDEAD"),
-            White::PeachPuff => crate::to_rgb("#FFDAB9"),
             White::MistyRose => crate::to_rgb("#FFE4E1"),
             White::LavenderBlush => crate::to_rgb("#FFF0F5"),
             White::Linen => crate::to_rgb("#FAF0E6"),
             White::OldLace => crate::to_rgb("#FDF5E6"),
-            White::PapayaWhip => crate::to_rgb("#FFEFD5"),
             White::SeaShell => crate::to_rgb("#FFF5EE"),
             White::MintCream => crate::to_rgb("#F5FFFA"),
             White::FloralWhite => crate::to_rgb("#FFFAF0"),
@@ -190,18 +172,12 @@ impl White {
             "#ffebcd" | "ffebcd" | "blanchedalmond" => Some(Self::BlanchedAlmond),
             "#f5deb3" | "f5deb3" | "wheat" => Some(Self::Wheat),
             "#fff8dc" | "fff8dc" | "cornsilk" => Some(Self::CornSilk),
-            "#fffacd" | "fffacd" | "lemonchiffon" => Some(Self::LemonChiffon),
-            "#fafad2" | "fafad2" | "lightgoldenrodyellow" => Some(Self::LightGoldenRodYellow),
-            "#ffffe0" | "ffffe0" | "lightyellow" => Some(Self::LightYellow),
             "#ffffff" | "ffffff" | "white" => Some(Self::White),
-            "#ffe4b5" | "ffe4b5" | "moccasin" => Some(Self::Moccasin),
             "#ffdead" | "ffdead" | "navajowhite" => Some(Self::NavajoWhite),
-            "#ffdab9" | "ffdab9" | "peachpuff" => Some(Self::PeachPuff),
             "#ffe4e1" | "ffe4e1" | "mistyrose" => Some(Self::MistyRose),
             "#fff0f5" | "fff0f5" | "lavenderblush" => Some(Self::LavenderBlush),
             "#faf0e6" | "faf0e6" | "linen" => Some(Self::Linen),
             "#fdf5e6" | "fdf5e6" | "oldlace" => Some(Self::OldLace),
-            "#ffefd5" | "ffefd5" | "papayawhip" => Some(Self::PapayaWhip),
             "#fff5ee" | "fff5ee" | "seashell" => Some(Self::SeaShell),
             "#f5fffa" | "f5fffa" | "mintcream" => Some(Self::MintCream),
             "#fffaf0" | "fffaf0" | "floralwhite" => Some(Self::FloralWhite),
@@ -237,18 +213,12 @@ mod tests {
     #[case(White::BlanchedAlmond, "rgb(255,235,205)")]
     #[case(White::Wheat, "rgb(245,222,179)")]
     #[case(White::CornSilk, "rgb(255,248,220)")]
-    #[case(White::LemonChiffon, "rgb(255,250,205)")]
-    #[case(White::LightGoldenRodYellow, "rgb(250,250,210)")]
-    #[case(White::LightYellow, "rgb(255,255,224)")]
     #[case(White::White, "rgb(255,255,255)")]
-    #[case(White::Moccasin, "rgb(255,228,181)")]
     #[case(White::NavajoWhite, "rgb(255,222,173)")]
-    #[case(White::PeachPuff, "rgb(255,218,185)")]
     #[case(White::MistyRose, "rgb(255,228,225)")]
     #[case(White::LavenderBlush, "rgb(255,240,245)")]
     #[case(White::Linen, "rgb(250,240,230)")]
     #[case(White::OldLace, "rgb(253,245,230)")]
-    #[case(White::PapayaWhip, "rgb(255,239,213)")]
     #[case(White::SeaShell, "rgb(255,245,238)")]
     #[case(White::MintCream, "rgb(245,255,250)")]
     #[case(White::FloralWhite, "rgb(255,250,240)")]
@@ -270,18 +240,12 @@ mod tests {
     #[case(White::BlanchedAlmond, "FFEBCD")]
     #[case(White::Wheat, "F5DEB3")]
     #[case(White::CornSilk, "FFF8DC")]
-    #[case(White::LemonChiffon, "FFFACD")]
-    #[case(White::LightGoldenRodYellow, "FAFAD2")]
-    #[case(White::LightYellow, "FFFFE0")]
     #[case(White::White, "FFFFFF")]
-    #[case(White::Moccasin, "FFE4B5")]
     #[case(White::NavajoWhite, "FFDEAD")]
-    #[case(White::PeachPuff, "FFDAB9")]
     #[case(White::MistyRose, "FFE4E1")]
     #[case(White::LavenderBlush, "FFF0F5")]
     #[case(White::Linen, "FAF0E6")]
     #[case(White::OldLace, "FDF5E6")]
-    #[case(White::PapayaWhip, "FFEFD5")]
     #[case(White::SeaShell, "FFF5EE")]
     #[case(White::MintCream, "F5FFFA")]
     #[case(White::FloralWhite, "FFFAF0")]
@@ -325,27 +289,12 @@ mod tests {
     #[case("#fff8dc", White::CornSilk)]
     #[case("fff8dc", White::CornSilk)]
     #[case("CornSilk", White::CornSilk)]
-    #[case("#fffacd", White::LemonChiffon)]
-    #[case("fffacd", White::LemonChiffon)]
-    #[case("LemonChiffon", White::LemonChiffon)]
-    #[case("#fafad2", White::LightGoldenRodYellow)]
-    #[case("fafad2", White::LightGoldenRodYellow)]
-    #[case("LightGoldenRodYellow", White::LightGoldenRodYellow)]
-    #[case("#ffffe0", White::LightYellow)]
-    #[case("ffffe0", White::LightYellow)]
-    #[case("LightYellow", White::LightYellow)]
     #[case("#ffffff", White::White)]
     #[case("ffffff", White::White)]
     #[case("White", White::White)]
-    #[case("#ffe4b5", White::Moccasin)]
-    #[case("ffe4b5", White::Moccasin)]
-    #[case("Moccasin", White::Moccasin)]
     #[case("#ffdead", White::NavajoWhite)]
     #[case("ffdead", White::NavajoWhite)]
     #[case("NavajoWhite", White::NavajoWhite)]
-    #[case("#ffdab9", White::PeachPuff)]
-    #[case("ffdab9", White::PeachPuff)]
-    #[case("PeachPuff", White::PeachPuff)]
     #[case("#ffe4e1", White::MistyRose)]
     #[case("ffe4e1", White::MistyRose)]
     #[case("MistyRose", White::MistyRose)]
@@ -358,9 +307,6 @@ mod tests {
     #[case("#fdf5e6", White::OldLace)]
     #[case("fdf5e6", White::OldLace)]
     #[case("OldLace", White::OldLace)]
-    #[case("#ffefd5", White::PapayaWhip)]
-    #[case("ffefd5", White::PapayaWhip)]
-    #[case("PapayaWhip", White::PapayaWhip)]
     #[case("#fff5ee", White::SeaShell)]
     #[case("fff5ee", White::SeaShell)]
     #[case("SeaShell", White::SeaShell)]

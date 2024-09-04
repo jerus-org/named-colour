@@ -1,100 +1,54 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
-/// Shades of red
-#[allow(missing_docs)]
-#[derive(Debug)]
-pub enum Red {
-    Maroon,
-    #[allow(clippy::enum_variant_names)]
-    DarkRed,
-    Brown,
-    Firebrick,
-    Crimson,
-    #[allow(clippy::enum_variant_names)]
-    Red,
-    Tomato,
-    Coral,
-    #[allow(clippy::enum_variant_names)]
-    IndianRed,
-    LightCoral,
-    DarkSalmon,
-    Salmon,
-    LightSalmon,
-    #[allow(clippy::enum_variant_names)]
-    OrangeRed,
-    DarkOrange,
-    Orange,
-}
-
 /// Shades of yellow
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Yellow {
     Gold,
-    DarkGoldenRod,
-    GoldenRod,
-    PaleGoldenRod,
+    DarkGoldenrod,
+    Goldenrod,
+    PaleGoldenrod,
     DarkKhaki,
     Khaki,
-    Olive,
     Yellow,
     YellowGreen,
+    PeachPuff,
+    Moccasin,
+    PapayaWhip,
+    LightGoldenrodYellow,
+    LemonChiffon,
+    LightYellow,
 }
 
 impl fmt::Display for Yellow {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Yellow::Gold => write!(f, "#FFD700"),
-            Yellow::DarkGoldenRod => write!(f, "#B8860B"),
-            Yellow::GoldenRod => write!(f, "#DAA520"),
-            Yellow::PaleGoldenRod => write!(f, "#EEE8AA"),
-            Yellow::DarkKhaki => write!(f, "#BDB76B"),
-            Yellow::Khaki => write!(f, "#F0E68C"),
-            Yellow::Olive => write!(f, "#808000"),
-            Yellow::Yellow => write!(f, "#FFFF00"),
-            Yellow::YellowGreen => write!(f, "#9ACD32"),
+            Self::Gold => write!(f, "#FFD700"),
+            Self::DarkGoldenrod => write!(f, "#B8860B"),
+            Self::Goldenrod => write!(f, "#DAA520"),
+            Self::PaleGoldenrod => write!(f, "#EEE8AA"),
+            Self::PeachPuff => write!(f, "#FFDAB9"),
+            Self::Moccasin => write!(f, "#FFE4B5"),
+            Self::PapayaWhip => write!(f, "#FFEFD5"),
+            Self::DarkKhaki => write!(f, "#BDB76B"),
+            Self::LemonChiffon => write!(f, "#FFFACD"),
+            Self::LightGoldenrodYellow => write!(f, "#FAFAD2"),
+            Self::Khaki => write!(f, "#F0E68C"),
+            Self::Yellow => write!(f, "#FFFF00"),
+            Self::YellowGreen => write!(f, "#9ACD32"),
+            Self::LightYellow => write!(f, "#FFFFE0"),
         }
     }
 }
 
 impl Yellow {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Yellow;
-    /// # fn example() {
-    /// assert_eq!("(178,34,34)", Yellow::Khaki.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Yellow::Gold => crate::to_rgb("#FFD700"),
-            Yellow::DarkGoldenRod => crate::to_rgb("#B8860B"),
-            Yellow::GoldenRod => crate::to_rgb("#DAA520"),
-            Yellow::PaleGoldenRod => crate::to_rgb("#EEE8AA"),
-            Yellow::DarkKhaki => crate::to_rgb("#BDB76B"),
-            Yellow::Khaki => crate::to_rgb("#F0E68C"),
-            Yellow::Olive => crate::to_rgb("#808000"),
-            Yellow::Yellow => crate::to_rgb("#FFFF00"),
-            Yellow::YellowGreen => crate::to_rgb("#9ACD32"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example
@@ -143,6 +97,36 @@ impl Yellow {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#ffd700" | "ffd700" | "gold" => Some(Self::Gold),
+            "#b8860b" | "b8860b" | "darkgoldenrod" => Some(Self::DarkGoldenrod),
+            "#dab500" | "dab500" | "goldenrod" => Some(Self::Goldenrod),
+            "#eee8aa" | "eee8aa" | "palegoldenrod" => Some(Self::PaleGoldenrod),
+            "#bdb76b" | "bdb76b" | "darkkhaki" => Some(Self::DarkKhaki),
+            "#f0e68c" | "f0e68c" | "khaki" => Some(Self::Khaki),
+            "#ffff00" | "ffff00" | "yellow" => Some(Self::Yellow),
+            "#9acd32" | "9acd32" | "yellowgreen" => Some(Self::YellowGreen),
+            "#ffdab9" | "ffdab9" | "peachpuff" => Some(Self::PeachPuff),
+            "#ffe4b5" | "ffe4b5" | "moccasin" => Some(Self::Moccasin),
+            "#ffefd5" | "ffefd5" | "papayawhip" => Some(Self::PapayaWhip),
+            "#fffacd" | "fffacd" | "lemonchiffon" => Some(Self::LemonChiffon),
+            "#fafad2" | "fafad2" | "lightgoldenrodyellow" => Some(Self::LightGoldenrodYellow),
+            "#ffffe0" | "ffffe0" | "lightyellow" => Some(Self::LightYellow),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Yellow {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -152,14 +136,19 @@ mod tests {
 
     #[rstest]
     #[case(Yellow::Gold, "rgb(255,215,0)")]
-    #[case(Yellow::DarkGoldenRod, "rgb(184,134,11)")]
-    #[case(Yellow::GoldenRod, "rgb(218,165,32)")]
-    #[case(Yellow::PaleGoldenRod, "rgb(238,232,170)")]
+    #[case(Yellow::DarkGoldenrod, "rgb(184,134,11)")]
+    #[case(Yellow::Goldenrod, "rgb(218,165,32)")]
+    #[case(Yellow::PaleGoldenrod, "rgb(238,232,170)")]
     #[case(Yellow::DarkKhaki, "rgb(189,183,107)")]
     #[case(Yellow::Khaki, "rgb(240,230,140)")]
-    #[case(Yellow::Olive, "rgb(128,128,0)")]
     #[case(Yellow::Yellow, "rgb(255,255,0)")]
     #[case(Yellow::YellowGreen, "rgb(154,205,50)")]
+    #[case(Yellow::PeachPuff, "rgb(255,218,185)")]
+    #[case(Yellow::Moccasin, "rgb(255,228,181)")]
+    #[case(Yellow::PapayaWhip, "rgb(255,239,213)")]
+    #[case(Yellow::LemonChiffon, "rgb(255,250,205)")]
+    #[case(Yellow::LightGoldenrodYellow, "rgb(250,250,210)")]
+    #[case(Yellow::LightYellow, "rgb(255,255,224)")]
     fn test_rgb_string(#[case] colour: Yellow, #[case] expected: String) {
         let rgb_colour = colour.to_rgb();
         let string = rgb_colour.to_string();
@@ -169,14 +158,19 @@ mod tests {
 
     #[rstest]
     #[case(Yellow::Gold, "FFD700")]
-    #[case(Yellow::DarkGoldenRod, "B8860B")]
-    #[case(Yellow::GoldenRod, "DAA520")]
-    #[case(Yellow::PaleGoldenRod, "EEE8AA")]
+    #[case(Yellow::DarkGoldenrod, "B8860B")]
+    #[case(Yellow::Goldenrod, "DAA520")]
+    #[case(Yellow::PaleGoldenrod, "EEE8AA")]
     #[case(Yellow::DarkKhaki, "BDB76B")]
     #[case(Yellow::Khaki, "F0E68C")]
-    #[case(Yellow::Olive, "808000")]
     #[case(Yellow::Yellow, "FFFF00")]
     #[case(Yellow::YellowGreen, "9ACD32")]
+    #[case(Yellow::PeachPuff, "FFDAB9")]
+    #[case(Yellow::Moccasin, "FFE4B5")]
+    #[case(Yellow::PapayaWhip, "FFEFD5")]
+    #[case(Yellow::LemonChiffon, "FFFACD")]
+    #[case(Yellow::LightGoldenrodYellow, "FAFAD2")]
+    #[case(Yellow::LightYellow, "FFFFE0")]
     fn test_hex_triplet_string(
         #[case] colour: Yellow,
         #[values(Prefix::None, Prefix::Hash)] prefix: Prefix,
@@ -192,5 +186,52 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#ffd700", Yellow::Gold)]
+    #[case("ffd700", Yellow::Gold)]
+    #[case("Gold", Yellow::Gold)]
+    #[case("#b8860b", Yellow::DarkGoldenrod)]
+    #[case("b8860b", Yellow::DarkGoldenrod)]
+    #[case("DarkGoldenRod", Yellow::DarkGoldenrod)]
+    #[case("#dab500", Yellow::Goldenrod)]
+    #[case("dab500", Yellow::Goldenrod)]
+    #[case("GoldenRod", Yellow::Goldenrod)]
+    #[case("#eee8aa", Yellow::PaleGoldenrod)]
+    #[case("eee8aa", Yellow::PaleGoldenrod)]
+    #[case("PaleGoldenRod", Yellow::PaleGoldenrod)]
+    #[case("#bdb76b", Yellow::DarkKhaki)]
+    #[case("bdb76b", Yellow::DarkKhaki)]
+    #[case("DarkKhaki", Yellow::DarkKhaki)]
+    #[case("#f0e68c", Yellow::Khaki)]
+    #[case("f0e68c", Yellow::Khaki)]
+    #[case("Khaki", Yellow::Khaki)]
+    #[case("#ffff00", Yellow::Yellow)]
+    #[case("ffff00", Yellow::Yellow)]
+    #[case("Yellow", Yellow::Yellow)]
+    #[case("#9acd32", Yellow::YellowGreen)]
+    #[case("9acd32", Yellow::YellowGreen)]
+    #[case("YellowGreen", Yellow::YellowGreen)]
+    #[case("#ffdab9", Yellow::PeachPuff)]
+    #[case("ffdab9", Yellow::PeachPuff)]
+    #[case("PeachPuff", Yellow::PeachPuff)]
+    #[case("#ffe4b5", Yellow::Moccasin)]
+    #[case("ffe4b5", Yellow::Moccasin)]
+    #[case("Moccasin", Yellow::Moccasin)]
+    #[case("#ffefd5", Yellow::PapayaWhip)]
+    #[case("ffefd5", Yellow::PapayaWhip)]
+    #[case("PapayaWhip", Yellow::PapayaWhip)]
+    #[case("#fffacd", Yellow::LemonChiffon)]
+    #[case("fffacd", Yellow::LemonChiffon)]
+    #[case("LemonChiffon", Yellow::LemonChiffon)]
+    #[case("#fafad2", Yellow::LightGoldenrodYellow)]
+    #[case("fafad2", Yellow::LightGoldenrodYellow)]
+    #[case("LightGoldenrodYellow", Yellow::LightGoldenrodYellow)]
+    #[case("#ffffe0", Yellow::LightYellow)]
+    #[case("ffffe0", Yellow::LightYellow)]
+    #[case("LightYellow", Yellow::LightYellow)]
+    fn test_from_str(#[case] input: &str, #[case] expected: Yellow) {
+        assert_eq!(expected, Yellow::from_str(input).unwrap())
     }
 }
