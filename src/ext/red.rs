@@ -57,43 +57,6 @@ impl fmt::Display for Red {
 }
 
 impl Red {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Red;
-    /// # fn example() {
-    /// assert_eq!("(0,255,255)", Red::Firebrick.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Red::Maroon => crate::to_rgb("#800000"),
-            Red::DarkRed => crate::to_rgb("#8B0000"),
-            Red::Brown => crate::to_rgb("#A52A2A"),
-            Red::Firebrick => crate::to_rgb("#B22222"),
-            Red::Crimson => crate::to_rgb("#DC143C"),
-            Red::Red => crate::to_rgb("#FF0000"),
-            Red::Tomato => crate::to_rgb("#FF6347"),
-            Red::Coral => crate::to_rgb("#FF7F50"),
-            Red::IndianRed => crate::to_rgb("#CD5C5C"),
-            Red::LightCoral => crate::to_rgb("#F08080"),
-            Red::DarkSalmon => crate::to_rgb("#E9967A"),
-            Red::Salmon => crate::to_rgb("#FA8072"),
-            Red::LightSalmon => crate::to_rgb("#FFA07A"),
-            Red::OrangeRed => crate::to_rgb("#FF4500"),
-            Red::DarkOrange => crate::to_rgb("#FF8C00"),
-            Red::Orange => crate::to_rgb("#FFA500"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

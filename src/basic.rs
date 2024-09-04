@@ -58,45 +58,6 @@ impl fmt::Display for Basic {
 }
 
 impl Basic {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::Basic;
-    /// # fn example() {
-    /// assert_eq!("(0,255,255)", Basic::Aqua.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Basic::Aqua => crate::to_rgb("#00FFFF"),
-            Basic::Black => crate::to_rgb("#000000"),
-            Basic::Blue => crate::to_rgb("#0000FF"),
-            Basic::Cyan => crate::to_rgb("#00FFFF"),
-            Basic::Fuchsia => crate::to_rgb("#FF00FF"),
-            Basic::Gray => crate::to_rgb("#808080"),
-            Basic::Green => crate::to_rgb("#008000"),
-            Basic::Magenta => crate::to_rgb("#FF00FF"),
-            Basic::Lime => crate::to_rgb("#00FF00"),
-            Basic::Maroon => crate::to_rgb("#800000"),
-            Basic::Navy => crate::to_rgb("#000080"),
-            Basic::Olive => crate::to_rgb("#808000"),
-            Basic::Purple => crate::to_rgb("#800080"),
-            Basic::Red => crate::to_rgb("#FF0000"),
-            Basic::Silver => crate::to_rgb("#C0C0C0"),
-            Basic::Teal => crate::to_rgb("#008080"),
-            Basic::White => crate::to_rgb("#FFFFFF"),
-            Basic::Yellow => crate::to_rgb("#FFFF00"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example
@@ -217,12 +178,6 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-
-    #[test]
-    #[allow(deprecated)]
-    fn display_as_rgb() {
-        assert_eq!("(0,255,255)", Basic::Aqua.as_rgb())
-    }
 
     #[rstest]
     #[case(Basic::Aqua, "rgb(0,255,255)")]

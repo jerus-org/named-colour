@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - refactor-rename Rgb to RGB8 in lib.rs(pr [#50])
+- refactor-remove deprecated as_rgb methods and associated tests(pr [#62])
 
 ## [0.2.0] - 2024-09-03
 
@@ -149,6 +150,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#59]: https://github.com/jerus-org/named-colour/pull/59
 [#60]: https://github.com/jerus-org/named-colour/pull/60
 [#61]: https://github.com/jerus-org/named-colour/pull/61
+[#62]: https://github.com/jerus-org/named-colour/pull/62
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6

@@ -55,44 +55,6 @@ impl fmt::Display for Blue {
 }
 
 impl Blue {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Blue;
-    /// # fn example() {
-    /// assert_eq!("(0,0,255)", Blue::SteelBlue.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Blue::PowderBlue => crate::to_rgb("#B0E0E6"),
-            Blue::CadetBlue => crate::to_rgb("#5F9EA0"),
-            Blue::SteelBlue => crate::to_rgb("#4682B4"),
-            Blue::CornflowerBlue => crate::to_rgb("#6495ED"),
-            Blue::DeepSkyBlue => crate::to_rgb("#00BFFF"),
-            Blue::DodgerBlue => crate::to_rgb("#1E90FF"),
-            Blue::LightBlue => crate::to_rgb("#ADD8E6"),
-            Blue::SkyBlue => crate::to_rgb("#87CEEB"),
-            Blue::LightSteelBlue => crate::to_rgb("#B0C4DE"),
-            Blue::LightSkyBlue => crate::to_rgb("#87CEFA"),
-            Blue::MidnightBlue => crate::to_rgb("#191970"),
-            Blue::Navy => crate::to_rgb("#000080"),
-            Blue::DarkBlue => crate::to_rgb("#00008B"),
-            Blue::MediumBlue => crate::to_rgb("#0000CD"),
-            Blue::Blue => crate::to_rgb("#0000FF"),
-            Blue::RoyalBlue => crate::to_rgb("#4169E1"),
-            Blue::Azure => crate::to_rgb("#F0FFFF"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

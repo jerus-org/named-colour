@@ -69,51 +69,6 @@ impl fmt::Display for Purple {
 }
 
 impl Purple {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Purple;
-    /// # fn example() {
-    /// assert_eq!("128,0,128)", Purple::Purple.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Purple::Indigo => crate::to_rgb("#4B0082"),
-            Purple::Purple => crate::to_rgb("#800080"),
-            Purple::DarkMagenta => crate::to_rgb("#8B008B"),
-            Purple::DarkViolet => crate::to_rgb("#9400D3"),
-            Purple::DarkSlateBlue => crate::to_rgb("#483D8B"),
-            Purple::BlueViolet => crate::to_rgb("#8A2BE2"),
-            Purple::DarkOrchid => crate::to_rgb("#9932CC"),
-            Purple::Fuchsia => crate::to_rgb("#FF00FF"),
-            Purple::Magenta => crate::to_rgb("#FF00FF"),
-            Purple::SlateBlue => crate::to_rgb("#6A5ACD"),
-            Purple::MediumSlateBlue => crate::to_rgb("#7B68EE"),
-            Purple::MediumOrchid => crate::to_rgb("#BA55D3"),
-            Purple::MediumPurple => crate::to_rgb("#9370DB"),
-            Purple::Orchid => crate::to_rgb("#DA70D6"),
-            Purple::Violet => crate::to_rgb("#EE82EE"),
-            Purple::Plum => crate::to_rgb("#DDA0DD"),
-            Purple::Thistle => crate::to_rgb("#D8BFD8"),
-            Purple::Lavender => crate::to_rgb("#E6E6FA"),
-            Purple::Pink => crate::to_rgb("#FFC0CB"),
-            Purple::MediumVioletRed => crate::to_rgb("#C71585"),
-            Purple::PaleVioletRed => crate::to_rgb("#DB7093"),
-            Purple::DeepPink => crate::to_rgb("#FF1493"),
-            Purple::HotPink => crate::to_rgb("#FF69B4"),
-            Purple::LightPink => crate::to_rgb("#FFB6C1"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

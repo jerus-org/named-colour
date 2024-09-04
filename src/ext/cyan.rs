@@ -51,42 +51,6 @@ impl fmt::Display for Cyan {
 }
 
 impl Cyan {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Cyan;
-    /// # fn example() {
-    /// assert_eq!("(0,128,128)", Cyan::Teal.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Cyan::MediumAquaMarine => crate::to_rgb("#66CDAA"),
-            Cyan::MediumSeaGreen => crate::to_rgb("#3CB371"),
-            Cyan::LightSeaGreen => crate::to_rgb("#20B2AA"),
-            Cyan::DarkSlateGray => crate::to_rgb("#2F4F4F"),
-            Cyan::Teal => crate::to_rgb("#008080"),
-            Cyan::DarkCyan => crate::to_rgb("#008B8B"),
-            Cyan::Aqua => crate::to_rgb("#00FFFF"),
-            Cyan::Cyan => crate::to_rgb("#00FFFF"),
-            Cyan::LightCyan => crate::to_rgb("#E0FFFF"),
-            Cyan::DarkTurquoise => crate::to_rgb("#00CED1"),
-            Cyan::Turquoise => crate::to_rgb("#40E0D0"),
-            Cyan::MediumTurquoise => crate::to_rgb("#48D1CC"),
-            Cyan::PaleTurquoise => crate::to_rgb("#AFEEEE"),
-            Cyan::AquaMarine => crate::to_rgb("#7FFFD4"),
-            Cyan::Honeydew => crate::to_rgb("#F0FFF0"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

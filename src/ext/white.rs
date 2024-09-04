@@ -61,47 +61,6 @@ impl fmt::Display for White {
 }
 
 impl White {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::White;
-    /// # fn example() {
-    /// assert_eq!("(250,240,230)", White::Linen.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            White::AntiqueWhite => crate::to_rgb("#FAEBD7"),
-            White::Beige => crate::to_rgb("#F5F5DC"),
-            White::Bisque => crate::to_rgb("#FFE4C4"),
-            White::BlanchedAlmond => crate::to_rgb("#FFEBCD"),
-            White::Wheat => crate::to_rgb("#F5DEB3"),
-            White::CornSilk => crate::to_rgb("#FFF8DC"),
-            White::White => crate::to_rgb("#FFFFFF"),
-            White::NavajoWhite => crate::to_rgb("#FFDEAD"),
-            White::MistyRose => crate::to_rgb("#FFE4E1"),
-            White::LavenderBlush => crate::to_rgb("#FFF0F5"),
-            White::Linen => crate::to_rgb("#FAF0E6"),
-            White::OldLace => crate::to_rgb("#FDF5E6"),
-            White::SeaShell => crate::to_rgb("#FFF5EE"),
-            White::MintCream => crate::to_rgb("#F5FFFA"),
-            White::FloralWhite => crate::to_rgb("#FFFAF0"),
-            White::GhostWhite => crate::to_rgb("#F8F8FF"),
-            White::Ivory => crate::to_rgb("#FFFFF0"),
-            White::Snow => crate::to_rgb("#FFFAFA"),
-            White::WhiteSmoke => crate::to_rgb("#F5F5F5"),
-            White::AliceBlue => crate::to_rgb("#F0F8FF"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

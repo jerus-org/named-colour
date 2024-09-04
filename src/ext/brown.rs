@@ -37,35 +37,6 @@ impl fmt::Display for Brown {
 }
 
 impl Brown {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Brown;
-    /// # fn example() {
-    /// assert_eq!("(244,164,96)", Brown::SandyBrown.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Brown::SaddleBrown => crate::to_rgb("#8B4513"),
-            Brown::Sienna => crate::to_rgb("#A0522D"),
-            Brown::Chocolate => crate::to_rgb("#D2691E"),
-            Brown::Peru => crate::to_rgb("#CD853F"),
-            Brown::SandyBrown => crate::to_rgb("#F4A460"),
-            Brown::BurlyWood => crate::to_rgb("#DEB887"),
-            Brown::Tan => crate::to_rgb("#D2B48C"),
-            Brown::RosyBrown => crate::to_rgb("#BC8F8F"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example
