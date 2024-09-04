@@ -41,10 +41,10 @@ named-colour = { version = "0.2.0", features = ["extended"]}
 ```
 
 ```
-    use named_colour::ext::Indigo;
+    use named_colour::ext::Purple;
     println!("The colour Hex Code is: {} for the RGB colour Dark Orchid: {}",
-        Indigo::DarkOrchid,
-        Indigo::DarkOrchid.as_rgb()
+        Purple::DarkOrchid,
+        Purple::DarkOrchid.to_rgb()
  );
 ```
 "##
