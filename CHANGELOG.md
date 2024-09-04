@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - implement ExtendedColour trait and add comprehensive tests for Green(pr [#67])
 - implement ExtendedColour trait and add comprehensive tests for Red(pr [#68])
 - implement ExtendedColour trait and add comprehensive tests for name_colour function(pr [#69])
+- add ExtendedColour trait implementation and additional tests for White(pr [#70])
 
 ### Changed
 
@@ -165,6 +166,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#67]: https://github.com/jerus-org/named-colour/pull/67
 [#68]: https://github.com/jerus-org/named-colour/pull/68
 [#69]: https://github.com/jerus-org/named-colour/pull/69
+[#70]: https://github.com/jerus-org/named-colour/pull/70
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/jerus-org/named-colour/compare/v0.1.5...v0.1.6
