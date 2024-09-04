@@ -119,25 +119,25 @@ impl Blue {
     ///     assert_eq!(Blue::Azure, Blue::parse("#F0FFFF").unwrap());
     ///
     ///```
-    pub fn parse(name: &str) -> Option<Blue> {
+    pub fn parse(name: &str) -> Option<Self> {
         match name.to_lowercase().as_str() {
-            "#b0e0e6" | "b0e0e6" | "powderblue" => Some(Blue::PowderBlue),
-            "#5f9ea0" | "5f9ea0" | "cadetblue" => Some(Blue::CadetBlue),
-            "#4682b4" | "4682b4" | "steelblue" => Some(Blue::SteelBlue),
-            "#6495ed" | "6495ed" | "cornflowerblue" => Some(Blue::CornflowerBlue),
-            "#00bfff" | "00bfff" | "deepskyblue" => Some(Blue::DeepSkyBlue),
-            "#1e90ff" | "1e90ff" | "dodgerblue" => Some(Blue::DodgerBlue),
-            "#add8e6" | "add8e6" | "lightblue" => Some(Blue::LightBlue),
-            "#87ceeb" | "87ceeb" | "skyblue" => Some(Blue::SkyBlue),
-            "#b0c4de" | "b0c4de" | "lightsteelblue" => Some(Blue::LightSteelBlue),
-            "#87cefa" | "87cefa" | "lightskyblue" => Some(Blue::LightSkyBlue),
-            "#191970" | "191970" | "midnightblue" => Some(Blue::MidnightBlue),
-            "#000080" | "000080" | "navy" => Some(Blue::Navy),
-            "#00008b" | "00008b" | "darkblue" => Some(Blue::DarkBlue),
-            "#0000cd" | "0000cd" | "mediumblue" => Some(Blue::MediumBlue),
-            "#0000ff" | "0000ff" | "blue" => Some(Blue::Blue),
-            "#4169e1" | "4169e1" | "royalblue" => Some(Blue::RoyalBlue),
-            "#f0ffff" | "f0ffff" | "azure" => Some(Blue::Azure),
+            "#b0e0e6" | "b0e0e6" | "powderblue" => Some(Self::PowderBlue),
+            "#5f9ea0" | "5f9ea0" | "cadetblue" => Some(Self::CadetBlue),
+            "#4682b4" | "4682b4" | "steelblue" => Some(Self::SteelBlue),
+            "#6495ed" | "6495ed" | "cornflowerblue" => Some(Self::CornflowerBlue),
+            "#00bfff" | "00bfff" | "deepskyblue" => Some(Self::DeepSkyBlue),
+            "#1e90ff" | "1e90ff" | "dodgerblue" => Some(Self::DodgerBlue),
+            "#add8e6" | "add8e6" | "lightblue" => Some(Self::LightBlue),
+            "#87ceeb" | "87ceeb" | "skyblue" => Some(Self::SkyBlue),
+            "#b0c4de" | "b0c4de" | "lightsteelblue" => Some(Self::LightSteelBlue),
+            "#87cefa" | "87cefa" | "lightskyblue" => Some(Self::LightSkyBlue),
+            "#191970" | "191970" | "midnightblue" => Some(Self::MidnightBlue),
+            "#000080" | "000080" | "navy" => Some(Self::Navy),
+            "#00008b" | "00008b" | "darkblue" => Some(Self::DarkBlue),
+            "#0000cd" | "0000cd" | "mediumblue" => Some(Self::MediumBlue),
+            "#0000ff" | "0000ff" | "blue" => Some(Self::Blue),
+            "#4169e1" | "4169e1" | "royalblue" => Some(Self::RoyalBlue),
+            "#f0ffff" | "f0ffff" | "azure" => Some(Self::Azure),
             _ => None,
         }
     }
@@ -146,7 +146,7 @@ impl Blue {
 impl FromStr for Blue {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match Blue::parse(s) {
+        match Self::parse(s) {
             Some(colour) => Ok(colour),
             None => Err(format!("Invalid Colour: {}", s)),
         }
@@ -158,7 +158,7 @@ impl ExtendedColour for Blue {
     where
         Self: Sized,
     {
-        if let Ok(c) = Blue::from_str(colour) {
+        if let Ok(c) = Self::from_str(colour) {
             Some(c)
         } else {
             None

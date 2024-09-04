@@ -111,6 +111,7 @@ impl Red {
     ///
     ///```
     /// # use named_colour::ext::Red;
+    /// # use std::str::FromStr;
     /// # fn main() {
     ///    let colour = Red::from_str("Maroon");
     ///    assert_eq!(Red::Maroon, colour.unwrap());

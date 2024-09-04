@@ -7,6 +7,8 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
+use super::ExtendedColour;
+
 /// Shades of brown
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
@@ -115,9 +117,22 @@ impl Brown {
 impl FromStr for Brown {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match Brown::parse(s) {
+        match Self::parse(s) {
             Some(colour) => Ok(colour),
             None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
+}
+
+impl ExtendedColour for Brown {
+    fn name_colour(colour: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        if let Ok(c) = Self::from_str(colour) {
+            Some(c)
+        } else {
+            None
         }
     }
 }
@@ -196,5 +211,35 @@ mod tests {
     #[case("rosybrown", Brown::RosyBrown)]
     fn test_from_str(#[case] input: &str, #[case] expected: Brown) {
         assert_eq!(expected, Brown::from_str(input).unwrap())
+    }
+
+    #[rstest]
+    #[case("#8b4513", Some(Brown::SaddleBrown))]
+    #[case("#a0522d", Some(Brown::Sienna))]
+    #[case("#d2691e", Some(Brown::Chocolate))]
+    #[case("#cd853f", Some(Brown::Peru))]
+    #[case("#f4a460", Some(Brown::SandyBrown))]
+    #[case("#deb887", Some(Brown::BurlyWood))]
+    #[case("#d2b48c", Some(Brown::Tan))]
+    #[case("#bc8f8f", Some(Brown::RosyBrown))]
+    #[case("8b4513", Some(Brown::SaddleBrown))]
+    #[case("a0522d", Some(Brown::Sienna))]
+    #[case("d2691e", Some(Brown::Chocolate))]
+    #[case("cd853f", Some(Brown::Peru))]
+    #[case("f4a460", Some(Brown::SandyBrown))]
+    #[case("deb887", Some(Brown::BurlyWood))]
+    #[case("d2b48c", Some(Brown::Tan))]
+    #[case("bc8f8f", Some(Brown::RosyBrown))]
+    #[case("saddlebrown", Some(Brown::SaddleBrown))]
+    #[case("sienna", Some(Brown::Sienna))]
+    #[case("chocolate", Some(Brown::Chocolate))]
+    #[case("peru", Some(Brown::Peru))]
+    #[case("sandybrown", Some(Brown::SandyBrown))]
+    #[case("burlywood", Some(Brown::BurlyWood))]
+    #[case("tan", Some(Brown::Tan))]
+    #[case("rosybrown", Some(Brown::RosyBrown))]
+    #[case("012345", None)]
+    fn test_name_colour(#[case] input: &str, #[case] expected: Option<Brown>) {
+        assert_eq!(expected, Brown::name_colour(input))
     }
 }

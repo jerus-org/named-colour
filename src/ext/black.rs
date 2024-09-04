@@ -116,23 +116,23 @@ impl Black {
     /// # }
     /// ```
     ///
-    pub fn parse(name: &str) -> Option<Black> {
+    pub fn parse(name: &str) -> Option<Self> {
         match name.to_lowercase().as_str() {
-            "#708090" | "708090" | "slategray" => Some(Black::SlateGray),
-            "slategrey" => Some(Black::SlateGrey),
-            "#778899" | "778899" | "lightslategray" => Some(Black::LightSlateGray),
-            "lightslategrey" => Some(Black::LightSlateGrey),
-            "#000000" | "000000" | "black" => Some(Black::Black),
-            "#696969" | "696969" | "dimgray" => Some(Black::DimGray),
-            "dimgrey" => Some(Black::DimGrey),
-            "#808080" | "808080" | "gray" => Some(Black::Gray),
-            "grey" => Some(Black::Grey),
-            "#a9a9a9" | "a9a9a9" | "darkgray" => Some(Black::DarkGray),
-            "darkgrey" => Some(Black::DarkGrey),
-            "#c0c0c0" | "c0c0c0" | "silver" => Some(Black::Silver),
-            "#d3d3d3" | "d3d3d3" | "lightgray" => Some(Black::LightGray),
-            "lightgrey" => Some(Black::LightGrey),
-            "#dcdcdc" | "dcdcdc" | "gainsboro" => Some(Black::Gainsboro),
+            "#708090" | "708090" | "slategray" => Some(Self::SlateGray),
+            "slategrey" => Some(Self::SlateGrey),
+            "#778899" | "778899" | "lightslategray" => Some(Self::LightSlateGray),
+            "lightslategrey" => Some(Self::LightSlateGrey),
+            "#000000" | "000000" | "black" => Some(Self::Black),
+            "#696969" | "696969" | "dimgray" => Some(Self::DimGray),
+            "dimgrey" => Some(Self::DimGrey),
+            "#808080" | "808080" | "gray" => Some(Self::Gray),
+            "grey" => Some(Self::Grey),
+            "#a9a9a9" | "a9a9a9" | "darkgray" => Some(Self::DarkGray),
+            "darkgrey" => Some(Self::DarkGrey),
+            "#c0c0c0" | "c0c0c0" | "silver" => Some(Self::Silver),
+            "#d3d3d3" | "d3d3d3" | "lightgray" => Some(Self::LightGray),
+            "lightgrey" => Some(Self::LightGrey),
+            "#dcdcdc" | "dcdcdc" | "gainsboro" => Some(Self::Gainsboro),
             _ => None,
         }
     }
@@ -141,7 +141,7 @@ impl Black {
 impl FromStr for Black {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match Black::parse(s) {
+        match Self::parse(s) {
             Some(colour) => Ok(colour),
             None => Err(format!("Invalid Colour: {}", s)),
         }
@@ -153,7 +153,7 @@ impl ExtendedColour for Black {
     where
         Self: Sized,
     {
-        if let Ok(c) = Black::from_str(colour) {
+        if let Ok(c) = Self::from_str(colour) {
             Some(c)
         } else {
             None
