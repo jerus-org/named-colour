@@ -1,14 +1,14 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::fmt;
+use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
 
 use crate::Prefix;
 
 /// Shades of white
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum White {
     AntiqueWhite,
@@ -42,32 +42,32 @@ pub enum White {
 impl fmt::Display for White {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            White::AntiqueWhite => write!(f, "#FAEBD7"),
-            White::Beige => write!(f, "#F5F5DC"),
-            White::Bisque => write!(f, "#FFE4C4"),
-            White::BlanchedAlmond => write!(f, "#FFEBCD"),
-            White::Wheat => write!(f, "#F5DEB3"),
-            White::CornSilk => write!(f, "#FFF8DC"),
-            White::LemonChiffon => write!(f, "#FFFACD"),
-            White::LightGoldenRodYellow => write!(f, "#FAFAD2"),
-            White::LightYellow => write!(f, "#FFFFE0"),
-            White::White => write!(f, "#FFFFFF"),
-            White::Moccasin => write!(f, "#FFE4B5"),
-            White::NavajoWhite => write!(f, "#FFDEAD"),
-            White::PeachPuff => write!(f, "#FFDAB9"),
-            White::MistyRose => write!(f, "#FFE4E1"),
-            White::LavenderBlush => write!(f, "#FFF0F5"),
-            White::Linen => write!(f, "#FAF0E6"),
-            White::OldLace => write!(f, "#FDF5E6"),
-            White::PapayaWhip => write!(f, "#FFEFD5"),
-            White::SeaShell => write!(f, "#FFF5EE"),
-            White::MintCream => write!(f, "#F5FFFA"),
-            White::FloralWhite => write!(f, "#FFFAF0"),
-            White::GhostWhite => write!(f, "#F8F8FF"),
-            White::Ivory => write!(f, "#FFFFF0"),
-            White::Snow => write!(f, "#FFFAFA"),
-            White::WhiteSmoke => write!(f, "#F5F5F5"),
-            White::AliceBlue => write!(f, "#F0F8FF"),
+            Self::AntiqueWhite => write!(f, "#FAEBD7"),
+            Self::Beige => write!(f, "#F5F5DC"),
+            Self::Bisque => write!(f, "#FFE4C4"),
+            Self::BlanchedAlmond => write!(f, "#FFEBCD"),
+            Self::Wheat => write!(f, "#F5DEB3"),
+            Self::CornSilk => write!(f, "#FFF8DC"),
+            Self::LemonChiffon => write!(f, "#FFFACD"),
+            Self::LightGoldenRodYellow => write!(f, "#FAFAD2"),
+            Self::LightYellow => write!(f, "#FFFFE0"),
+            Self::White => write!(f, "#FFFFFF"),
+            Self::Moccasin => write!(f, "#FFE4B5"),
+            Self::NavajoWhite => write!(f, "#FFDEAD"),
+            Self::PeachPuff => write!(f, "#FFDAB9"),
+            Self::MistyRose => write!(f, "#FFE4E1"),
+            Self::LavenderBlush => write!(f, "#FFF0F5"),
+            Self::Linen => write!(f, "#FAF0E6"),
+            Self::OldLace => write!(f, "#FDF5E6"),
+            Self::PapayaWhip => write!(f, "#FFEFD5"),
+            Self::SeaShell => write!(f, "#FFF5EE"),
+            Self::MintCream => write!(f, "#F5FFFA"),
+            Self::FloralWhite => write!(f, "#FFFAF0"),
+            Self::GhostWhite => write!(f, "#F8F8FF"),
+            Self::Ivory => write!(f, "#FFFFF0"),
+            Self::Snow => write!(f, "#FFFAFA"),
+            Self::WhiteSmoke => write!(f, "#F5F5F5"),
+            Self::AliceBlue => write!(f, "#F0F8FF"),
         }
     }
 }
@@ -169,6 +169,60 @@ impl White {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
+
+    /// Parse a colour from string
+    ///
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::White;
+    /// # fn main() {
+    ///    let colour = White::parse("AntiqueWhite");
+    ///    assert_eq!(Some(White::AntiqueWhite), colour);
+    ///
+    ///  # }
+    ///```
+    pub fn parse(name: &str) -> Option<Self> {
+        match name.to_lowercase().as_str() {
+            "#faebd7" | "faebd7" | "antiquewhite" => Some(Self::AntiqueWhite),
+            "#f5f5dc" | "f5f5dc" | "beige" => Some(Self::Beige),
+            "#ffe4c4" | "ffe4c4" | "bisque" => Some(Self::Bisque),
+            "#ffebcd" | "ffebcd" | "blanchedalmond" => Some(Self::BlanchedAlmond),
+            "#f5deb3" | "f5deb3" | "wheat" => Some(Self::Wheat),
+            "#fff8dc" | "fff8dc" | "cornsilk" => Some(Self::CornSilk),
+            "#fffacd" | "fffacd" | "lemonchiffon" => Some(Self::LemonChiffon),
+            "#fafad2" | "fafad2" | "lightgoldenrodyellow" => Some(Self::LightGoldenRodYellow),
+            "#ffffe0" | "ffffe0" | "lightyellow" => Some(Self::LightYellow),
+            "#ffffff" | "ffffff" | "white" => Some(Self::White),
+            "#ffe4b5" | "ffe4b5" | "moccasin" => Some(Self::Moccasin),
+            "#ffdead" | "ffdead" | "navajowhite" => Some(Self::NavajoWhite),
+            "#ffdab9" | "ffdab9" | "peachpuff" => Some(Self::PeachPuff),
+            "#ffe4e1" | "ffe4e1" | "mistyrose" => Some(Self::MistyRose),
+            "#fff0f5" | "fff0f5" | "lavenderblush" => Some(Self::LavenderBlush),
+            "#faf0e6" | "faf0e6" | "linen" => Some(Self::Linen),
+            "#fdf5e6" | "fdf5e6" | "oldlace" => Some(Self::OldLace),
+            "#ffefd5" | "ffefd5" | "papayawhip" => Some(Self::PapayaWhip),
+            "#fff5ee" | "fff5ee" | "seashell" => Some(Self::SeaShell),
+            "#f5fffa" | "f5fffa" | "mintcream" => Some(Self::MintCream),
+            "#fffaf0" | "fffaf0" | "floralwhite" => Some(Self::FloralWhite),
+            "#f8f8ff" | "f8f8ff" | "ghostwhite" => Some(Self::GhostWhite),
+            "#fffff0" | "fffff0" | "ivory" => Some(Self::Ivory),
+            "#fffafa" | "fffafa" | "snow" => Some(Self::Snow),
+            "#f5f5f5" | "f5f5f5" | "whitesmoke" => Some(Self::WhiteSmoke),
+            "#f0f8ff" | "f0f8ff" | "aliceblue" => Some(Self::AliceBlue),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for White {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::parse(s) {
+            Some(colour) => Ok(colour),
+            None => Err(format!("Invalid Colour: {}", s)),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -250,5 +304,88 @@ mod tests {
         let hex_colour = colour.to_hex_triplet(prefix);
 
         assert_eq!(expected, hex_colour);
+    }
+
+    #[rstest]
+    #[case("#faebd7", White::AntiqueWhite)]
+    #[case("faebd7", White::AntiqueWhite)]
+    #[case("AntiqueWhite", White::AntiqueWhite)]
+    #[case("#f5f5dc", White::Beige)]
+    #[case("f5f5dc", White::Beige)]
+    #[case("Beige", White::Beige)]
+    #[case("#ffe4c4", White::Bisque)]
+    #[case("ffe4c4", White::Bisque)]
+    #[case("Bisque", White::Bisque)]
+    #[case("#ffebcd", White::BlanchedAlmond)]
+    #[case("ffebcd", White::BlanchedAlmond)]
+    #[case("BlanchedAlmond", White::BlanchedAlmond)]
+    #[case("#f5deb3", White::Wheat)]
+    #[case("f5deb3", White::Wheat)]
+    #[case("wheat", White::Wheat)]
+    #[case("#fff8dc", White::CornSilk)]
+    #[case("fff8dc", White::CornSilk)]
+    #[case("CornSilk", White::CornSilk)]
+    #[case("#fffacd", White::LemonChiffon)]
+    #[case("fffacd", White::LemonChiffon)]
+    #[case("LemonChiffon", White::LemonChiffon)]
+    #[case("#fafad2", White::LightGoldenRodYellow)]
+    #[case("fafad2", White::LightGoldenRodYellow)]
+    #[case("LightGoldenRodYellow", White::LightGoldenRodYellow)]
+    #[case("#ffffe0", White::LightYellow)]
+    #[case("ffffe0", White::LightYellow)]
+    #[case("LightYellow", White::LightYellow)]
+    #[case("#ffffff", White::White)]
+    #[case("ffffff", White::White)]
+    #[case("White", White::White)]
+    #[case("#ffe4b5", White::Moccasin)]
+    #[case("ffe4b5", White::Moccasin)]
+    #[case("Moccasin", White::Moccasin)]
+    #[case("#ffdead", White::NavajoWhite)]
+    #[case("ffdead", White::NavajoWhite)]
+    #[case("NavajoWhite", White::NavajoWhite)]
+    #[case("#ffdab9", White::PeachPuff)]
+    #[case("ffdab9", White::PeachPuff)]
+    #[case("PeachPuff", White::PeachPuff)]
+    #[case("#ffe4e1", White::MistyRose)]
+    #[case("ffe4e1", White::MistyRose)]
+    #[case("MistyRose", White::MistyRose)]
+    #[case("#fff0f5", White::LavenderBlush)]
+    #[case("fff0f5", White::LavenderBlush)]
+    #[case("LavenderBlush", White::LavenderBlush)]
+    #[case("#faf0e6", White::Linen)]
+    #[case("faf0e6", White::Linen)]
+    #[case("Linen", White::Linen)]
+    #[case("#fdf5e6", White::OldLace)]
+    #[case("fdf5e6", White::OldLace)]
+    #[case("OldLace", White::OldLace)]
+    #[case("#ffefd5", White::PapayaWhip)]
+    #[case("ffefd5", White::PapayaWhip)]
+    #[case("PapayaWhip", White::PapayaWhip)]
+    #[case("#fff5ee", White::SeaShell)]
+    #[case("fff5ee", White::SeaShell)]
+    #[case("SeaShell", White::SeaShell)]
+    #[case("#f5fffa", White::MintCream)]
+    #[case("f5fffa", White::MintCream)]
+    #[case("MintCream", White::MintCream)]
+    #[case("#fffaf0", White::FloralWhite)]
+    #[case("fffaf0", White::FloralWhite)]
+    #[case("FloralWhite", White::FloralWhite)]
+    #[case("#f8f8ff", White::GhostWhite)]
+    #[case("f8f8ff", White::GhostWhite)]
+    #[case("GhostWhite", White::GhostWhite)]
+    #[case("#fffff0", White::Ivory)]
+    #[case("fffff0", White::Ivory)]
+    #[case("Ivory", White::Ivory)]
+    #[case("#fffafa", White::Snow)]
+    #[case("fffafa", White::Snow)]
+    #[case("Snow", White::Snow)]
+    #[case("#f5f5f5", White::WhiteSmoke)]
+    #[case("f5f5f5", White::WhiteSmoke)]
+    #[case("WhiteSmoke", White::WhiteSmoke)]
+    #[case("#f0f8ff", White::AliceBlue)]
+    #[case("f0f8ff", White::AliceBlue)]
+    #[case("AliceBlue", White::AliceBlue)]
+    fn test_from_str(#[case] input: &str, #[case] expected: White) {
+        assert_eq!(expected, White::from_str(input).unwrap())
     }
 }
