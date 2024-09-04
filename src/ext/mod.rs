@@ -11,6 +11,8 @@ mod red;
 mod white;
 mod yellow;
 
+use std::str::FromStr;
+
 pub use black::Black;
 pub use blue::Blue;
 pub use brown::Brown;
@@ -24,10 +26,18 @@ pub use yellow::Yellow;
 pub trait ExtendedColour {
     fn name_colour(colour: &str) -> Option<Self>
     where
-        Self: Sized;
+        Self: Sized,
+        Self: FromStr,
+    {
+        if let Ok(c) = Self::from_str(colour) {
+            Some(c)
+        } else {
+            None
+        }
+    }
 }
 
-pub fn name_colour<T: ExtendedColour>(colour: &str) -> Option<T> {
+pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
     T::name_colour(colour)
 }
 
@@ -146,7 +156,50 @@ mod tests {
     #[case("burlywood", Some(Brown::BurlyWood))]
     #[case("tan", Some(Brown::Tan))]
     #[case("rosybrown", Some(Brown::RosyBrown))]
-    fn test_name_colour<T: ExtendedColour + std::cmp::PartialEq + std::fmt::Debug>(
+    #[case("#66cdaa", Some(Cyan::MediumAquaMarine))]
+    #[case("66cdaa", Some(Cyan::MediumAquaMarine))]
+    #[case("mediumaquamarine", Some(Cyan::MediumAquaMarine))]
+    #[case("#3cb371", Some(Cyan::MediumSeaGreen))]
+    #[case("3cb371", Some(Cyan::MediumSeaGreen))]
+    #[case("mediumseagreen", Some(Cyan::MediumSeaGreen))]
+    #[case("#20b2aa", Some(Cyan::LightSeaGreen))]
+    #[case("20b2aa", Some(Cyan::LightSeaGreen))]
+    #[case("lightseagreen", Some(Cyan::LightSeaGreen))]
+    #[case("#2f4f4f", Some(Cyan::DarkSlateGray))]
+    #[case("2f4f4f", Some(Cyan::DarkSlateGray))]
+    #[case("darkslategray", Some(Cyan::DarkSlateGray))]
+    #[case("#008080", Some(Cyan::Teal))]
+    #[case("008080", Some(Cyan::Teal))]
+    #[case("teal", Some(Cyan::Teal))]
+    #[case("#008b8b", Some(Cyan::DarkCyan))]
+    #[case("008b8b", Some(Cyan::DarkCyan))]
+    #[case("darkcyan", Some(Cyan::DarkCyan))]
+    #[case("#00ffff", Some(Cyan::Aqua))]
+    #[case("00ffff", Some(Cyan::Aqua))]
+    #[case("aqua", Some(Cyan::Aqua))]
+    #[case("cyan", Some(Cyan::Cyan))]
+    #[case("#e0ffff", Some(Cyan::LightCyan))]
+    #[case("e0ffff", Some(Cyan::LightCyan))]
+    #[case("lightcyan", Some(Cyan::LightCyan))]
+    #[case("#00ced1", Some(Cyan::DarkTurquoise))]
+    #[case("00ced1", Some(Cyan::DarkTurquoise))]
+    #[case("darkturquoise", Some(Cyan::DarkTurquoise))]
+    #[case("#40e0d0", Some(Cyan::Turquoise))]
+    #[case("40e0d0", Some(Cyan::Turquoise))]
+    #[case("turquoise", Some(Cyan::Turquoise))]
+    #[case("#48d1cc", Some(Cyan::MediumTurquoise))]
+    #[case("48d1cc", Some(Cyan::MediumTurquoise))]
+    #[case("mediumturquoise", Some(Cyan::MediumTurquoise))]
+    #[case("#afeeee", Some(Cyan::PaleTurquoise))]
+    #[case("afeeee", Some(Cyan::PaleTurquoise))]
+    #[case("paleturquoise", Some(Cyan::PaleTurquoise))]
+    #[case("#7fffd4", Some(Cyan::AquaMarine))]
+    #[case("7fffd4", Some(Cyan::AquaMarine))]
+    #[case("aquamarine", Some(Cyan::AquaMarine))]
+    #[case("#f0fff0", Some(Cyan::Honeydew))]
+    #[case("f0fff0", Some(Cyan::Honeydew))]
+    #[case("honeydew", Some(Cyan::Honeydew))]
+    fn test_name_colour<T: ExtendedColour + std::cmp::PartialEq + std::fmt::Debug + FromStr>(
         #[case] input: &str,
         #[case] expected: Option<T>,
     ) {
