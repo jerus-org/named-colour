@@ -85,46 +85,8 @@ pub use crate::to_hex::ToHex;
 pub use basic::Basic;
 pub use rgb::RGB8;
 
-// Can be removed when deprecated `as_rgb` functions are removed
-pub(crate) fn to_rgb(hex: &str) -> String {
-    let mut no_error = true;
-    let starts_with_hash = &hex[0..1] == "#";
-    let red = u8::from_str_radix(&hex[1..3], 16).unwrap_or_else(|_| {
-        no_error = false;
-        0
-    });
-    let green = u8::from_str_radix(&hex[3..5], 16).unwrap_or_else(|_| {
-        no_error = false;
-        0
-    });
-    let blue = u8::from_str_radix(&hex[5..7], 16).unwrap_or_else(|_| {
-        no_error = false;
-        0
-    });
-    if starts_with_hash && no_error {
-        format!("({},{},{})", red, green, blue,)
-    } else {
-        "Invalid Hex Code".to_string()
-    }
-}
-
 #[allow(missing_docs)]
 pub enum Prefix {
     None,
     Hash,
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn convert_to_rgb() {
-        assert_eq!("(192,192,192)", to_rgb(&Basic::Silver.to_string()))
-    }
-
-    #[test]
-    fn returns_invalid_string_message_on_bad_input() {
-        assert_eq!("Invalid Hex Code", to_rgb("#QWERTY"))
-    }
 }

@@ -57,45 +57,6 @@ impl fmt::Display for Green {
 }
 
 impl Green {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Green;
-    /// # fn example() {
-    /// assert_eq!("(107,142,35)", Green::OliveDrab.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Green::YellowGreen => crate::to_rgb("#9ACD32"),
-            Green::Olive => crate::to_rgb("#808000"),
-            Green::DarkOliveGreen => crate::to_rgb("#556B2F"),
-            Green::OliveDrab => crate::to_rgb("#6B8E23"),
-            Green::LawnGreen => crate::to_rgb("#7CFC00"),
-            Green::ChartReuse => crate::to_rgb("#7FFF00"),
-            Green::GreenYellow => crate::to_rgb("#ADFF2F"),
-            Green::DarkGreen => crate::to_rgb("#006400"),
-            Green::Green => crate::to_rgb("#008000"),
-            Green::ForestGreen => crate::to_rgb("#228B22"),
-            Green::Lime => crate::to_rgb("#00FF00"),
-            Green::LimeGreen => crate::to_rgb("#32CD32"),
-            Green::LightGreen => crate::to_rgb("#90EE90"),
-            Green::PaleGreen => crate::to_rgb("#98FB98"),
-            Green::DarkSeaGreen => crate::to_rgb("#8FBC8F"),
-            Green::MediumSpringGreen => crate::to_rgb("#00FA9A"),
-            Green::SpringGreen => crate::to_rgb("#00FF7F"),
-            Green::SeaGreen => crate::to_rgb("#2E8B57"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example

@@ -51,43 +51,6 @@ impl fmt::Display for Black {
 }
 
 impl Black {
-    /// Display the hex code string as a decimal RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Black;
-    /// # fn example() {
-    ///
-    /// assert_eq!("(112,128,144)", Black::SlateGray.as_rgb())
-    ///
-    /// # }
-    ///```
-    #[deprecated(
-        since = "0.2.0",
-        note = r#"Use `to_rgb` for Rgb struct an then `to_string()` to display as decimal Rgb triplet instead
-        Will be removed in 0.3.0"#
-    )]
-    pub fn as_rgb(&self) -> String {
-        match self {
-            Black::SlateGray => crate::to_rgb("#708090"),
-            Black::SlateGrey => crate::to_rgb("#708090"),
-            Black::LightSlateGray => crate::to_rgb("#778899"),
-            Black::LightSlateGrey => crate::to_rgb("#778899"),
-            Black::Black => crate::to_rgb("#000000"),
-            Black::DimGray => crate::to_rgb("#696969"),
-            Black::DimGrey => crate::to_rgb("#696969"),
-            Black::Gray => crate::to_rgb("#808080"),
-            Black::Grey => crate::to_rgb("#808080"),
-            Black::DarkGray => crate::to_rgb("#A9A9A9"),
-            Black::DarkGrey => crate::to_rgb("#A9A9A9"),
-            Black::Silver => crate::to_rgb("#C0C0C0"),
-            Black::LightGray => crate::to_rgb("#D3D3D3"),
-            Black::LightGrey => crate::to_rgb("#D3D3D3"),
-            Black::Gainsboro => crate::to_rgb("#DCDCDC"),
-        }
-    }
-
     /// Display the colour name as an RGB Tuple
     ///
     /// ## Example
