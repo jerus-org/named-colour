@@ -22,8 +22,10 @@
 //! use named_colour::Basic;
 //! println!("The colour Hex Code is: {} for the RGB colour Aqua: {}",
 //!     Basic::Aqua,
-//!     Basic::Aqua.as_rgb()
+//!     Basic::Aqua.to_rgb()
 //! );
+//!
+//! assert_eq!("rgb(0,255,255)", Basic::Aqua.to_rgb().to_string());
 //!```
 #[cfg_attr(
     feature = "extended",
