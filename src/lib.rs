@@ -18,15 +18,19 @@
 //!
 //!```
 //!
-//!```
-//! use named_colour::Basic;
-//! println!("The colour Hex Code is: {} for the RGB colour Aqua: {}",
-//!     Basic::Aqua,
-//!     Basic::Aqua.to_rgb()
-//! );
-//!
-//! assert_eq!("rgb(0,255,255)", Basic::Aqua.to_rgb().to_string());
-//!```
+#[cfg_attr(
+    not(feature = "extended"),
+    doc = r##"
+```
+    use named_colour::Basic;
+    println!("The colour Hex Code is: {} for the RGB colour Aqua: {}",
+        Basic::Aqua,
+        Basic::Aqua.to_rgb()
+    );
+    assert_eq!("rgb(0,255,255)", Basic::Aqua.to_rgb().to_string());
+```
+"##
+)]
 #[cfg_attr(
     feature = "extended",
     doc = r##"
@@ -75,17 +79,44 @@ named-colour = { version = "0.2.0", features = ["extended"]}
 ///named-colour = { version = "0.2.0", default_features = false, features = ["extended"]}
 ///```
 ///
+///
+///
+mod to_hex;
 
-#[cfg(feature = "basic")]
+#[cfg(not(feature = "extended"))]
 mod basic;
 #[cfg(feature = "extended")]
 #[allow(missing_docs)]
 pub mod ext;
-mod to_hex;
 
 pub use crate::to_hex::ToHex;
-pub use basic::Basic;
 pub use rgb::RGB8;
+
+#[cfg(not(feature = "extended"))]
+pub use basic::Basic;
+
+#[cfg(feature = "extended")]
+pub use ext::name_colour;
+#[cfg(feature = "extended")]
+pub use ext::Black;
+#[cfg(feature = "extended")]
+pub use ext::Blue;
+#[cfg(feature = "extended")]
+pub use ext::Brown;
+#[cfg(feature = "extended")]
+pub use ext::Cyan;
+#[cfg(feature = "extended")]
+pub use ext::ExtendedColour;
+#[cfg(feature = "extended")]
+pub use ext::Green;
+#[cfg(feature = "extended")]
+pub use ext::Purple;
+#[cfg(feature = "extended")]
+pub use ext::Red;
+#[cfg(feature = "extended")]
+pub use ext::White;
+#[cfg(feature = "extended")]
+pub use ext::Yellow;
 
 #[allow(missing_docs)]
 pub enum Prefix {
