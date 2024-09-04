@@ -7,7 +7,7 @@ use rgb::Rgb;
 
 use crate::Prefix;
 
-use super::NamedColour;
+use super::ExtendedColour;
 
 /// Shades of black
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -148,7 +148,7 @@ impl FromStr for Black {
     }
 }
 
-impl NamedColour for Black {
+impl ExtendedColour for Black {
     fn name_colour(colour: &str) -> Option<Self>
     where
         Self: Sized,
@@ -257,7 +257,6 @@ mod tests {
     }
 
     #[rstest]
-    #[case("012345", None)]
     #[case("#708090", Some(Black::SlateGray))]
     #[case("708090", Some(Black::SlateGray))]
     #[case("slategray", Some(Black::SlateGray))]
@@ -291,6 +290,7 @@ mod tests {
     #[case("#DCDCDC", Some(Black::Gainsboro))]
     #[case("DCDCDC", Some(Black::Gainsboro))]
     #[case("gainsboro", Some(Black::Gainsboro))]
+    #[case("012345", None)]
     fn test_name_colour(#[case] input: &str, #[case] expected: Option<Black>) {
         assert_eq!(expected, Black::name_colour(input))
     }
