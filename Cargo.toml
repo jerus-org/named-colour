@@ -16,8 +16,7 @@ edition = "2021"
 rust-version = "1.65"
 
 [features]
-default = ["basic"]
-basic = []
+default = ["extended"]
 extended = []
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
