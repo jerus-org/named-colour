@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of yellow
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Yellow {
     Gold,
@@ -129,6 +131,39 @@ impl Yellow {
             "#fafad2" | "fafad2" | "lightgoldenrodyellow" => Some(Self::LightGoldenrodYellow),
             "#ffffe0" | "ffffe0" | "lightyellow" => Some(Self::LightYellow),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Yellow;
+    /// # fn main() {
+    ///    let colour = Yellow::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Yellow::COUNT) {
+            0 => Self::Gold,
+            1 => Self::DarkGoldenrod,
+            2 => Self::Goldenrod,
+            3 => Self::PaleGoldenrod,
+            4 => Self::PeachPuff,
+            5 => Self::Moccasin,
+            6 => Self::PapayaWhip,
+            7 => Self::DarkKhaki,
+            8 => Self::LemonChiffon,
+            9 => Self::LightGoldenrodYellow,
+            10 => Self::Khaki,
+            11 => Self::Yellow,
+            12 => Self::YellowGreen,
+            13 => Self::LightYellow,
+            _ => Self::Yellow,
         }
     }
 }
