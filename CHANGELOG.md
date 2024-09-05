@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - add new dependencies and implement random color generation(pr [#73])
 
+### Changed
+
+- refactor-remove unnecessary allow attribute and add documentation for Prefix enum(pr [#74])
+
 ## [0.3.0] - 2024-09-05
 
 ### Added
@@ -178,6 +182,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#71]: https://github.com/jerus-org/named-colour/pull/71
 [#72]: https://github.com/jerus-org/named-colour/pull/72
 [#73]: https://github.com/jerus-org/named-colour/pull/73
+[#74]: https://github.com/jerus-org/named-colour/pull/74
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/jerus-org/named-colour/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
