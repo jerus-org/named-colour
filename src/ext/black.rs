@@ -148,7 +148,6 @@ impl Black {
     /// # fn main() {
     ///    let colour = Black::random();
     ///
-    ///    assert_eq!(Some(Black::Gainsboro), colour);
     /// # }
     /// ```
     pub fn random() -> Self {

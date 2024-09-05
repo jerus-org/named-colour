@@ -38,8 +38,8 @@ pub trait ExtendedColour {
     /// use named_colour::ExtendedColour;
     /// use std::str::FromStr;
     ///
-    ///     let colour = ExtendedColour::Black;
-    ///     assert_eq!("Black", colour.name());
+    ///     let colour = "Black";
+    ///     assert_eq!(Black::Black, name_colour.(colour));
     ///
     /// ```
     fn name_colour(colour: &str) -> Option<Self>
@@ -64,8 +64,8 @@ pub trait ExtendedColour {
 /// use named_colour::ExtendedColour;
 /// use std::str::FromStr;
 ///
-///     let colour = ExtendedColour::Black;
-///     assert_eq!("Black", colour.name());
+///     let colour = "#d3d3d3";
+///     assert_eq!(Black::LightGray, name_colour(colour).unwrap());
 ///
 /// ```
 pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
@@ -80,8 +80,7 @@ pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
 /// use named_colour::ExtendedColour;
 /// use std::str::FromStr;
 ///     
-///     let colour = ExtendedColour::random();
-///     assert_eq!("Black", colour.name());
+///     let colour = random_named_colour();
 ///
 /// ```
 ///
