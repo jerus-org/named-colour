@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of blue
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Blue {
     PowderBlue,
@@ -35,23 +37,23 @@ pub enum Blue {
 impl fmt::Display for Blue {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Blue::PowderBlue => write!(f, "#B0E0E6"),
-            Blue::CadetBlue => write!(f, "#5F9EA0"),
-            Blue::SteelBlue => write!(f, "#4682B4"),
-            Blue::CornflowerBlue => write!(f, "#6495ED"),
-            Blue::DeepSkyBlue => write!(f, "#00BFFF"),
-            Blue::DodgerBlue => write!(f, "#1E90FF"),
-            Blue::LightBlue => write!(f, "#ADD8E6"),
-            Blue::SkyBlue => write!(f, "#87CEEB"),
-            Blue::LightSkyBlue => write!(f, "#87CEFA"),
-            Blue::LightSteelBlue => write!(f, "#B0C4DE"),
-            Blue::MidnightBlue => write!(f, "#191970"),
-            Blue::Navy => write!(f, "#000080"),
-            Blue::DarkBlue => write!(f, "#00008B"),
-            Blue::MediumBlue => write!(f, "#0000CD"),
-            Blue::Blue => write!(f, "#0000FF"),
-            Blue::RoyalBlue => write!(f, "#4169E1"),
-            Blue::Azure => write!(f, "#F0FFFF"),
+            Self::PowderBlue => write!(f, "#B0E0E6"),
+            Self::CadetBlue => write!(f, "#5F9EA0"),
+            Self::SteelBlue => write!(f, "#4682B4"),
+            Self::CornflowerBlue => write!(f, "#6495ED"),
+            Self::DeepSkyBlue => write!(f, "#00BFFF"),
+            Self::DodgerBlue => write!(f, "#1E90FF"),
+            Self::LightBlue => write!(f, "#ADD8E6"),
+            Self::SkyBlue => write!(f, "#87CEEB"),
+            Self::LightSkyBlue => write!(f, "#87CEFA"),
+            Self::LightSteelBlue => write!(f, "#B0C4DE"),
+            Self::MidnightBlue => write!(f, "#191970"),
+            Self::Navy => write!(f, "#000080"),
+            Self::DarkBlue => write!(f, "#00008B"),
+            Self::MediumBlue => write!(f, "#0000CD"),
+            Self::Blue => write!(f, "#0000FF"),
+            Self::RoyalBlue => write!(f, "#4169E1"),
+            Self::Azure => write!(f, "#F0FFFF"),
         }
     }
 }
@@ -139,6 +141,42 @@ impl Blue {
             "#4169e1" | "4169e1" | "royalblue" => Some(Self::RoyalBlue),
             "#f0ffff" | "f0ffff" | "azure" => Some(Self::Azure),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Black;
+    /// # fn main() {
+    ///    let colour = Black::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Blue::COUNT) {
+            0 => Self::PowderBlue,
+            1 => Self::CadetBlue,
+            2 => Self::SteelBlue,
+            3 => Self::CornflowerBlue,
+            4 => Self::DeepSkyBlue,
+            5 => Self::DodgerBlue,
+            6 => Self::LightBlue,
+            7 => Self::SkyBlue,
+            8 => Self::LightSkyBlue,
+            9 => Self::LightSteelBlue,
+            10 => Self::MidnightBlue,
+            11 => Self::Navy,
+            12 => Self::DarkBlue,
+            13 => Self::MediumBlue,
+            14 => Self::Blue,
+            15 => Self::RoyalBlue,
+            16 => Self::Azure,
+            _ => Self::Blue,
         }
     }
 }
