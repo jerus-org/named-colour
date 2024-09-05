@@ -121,6 +121,8 @@ pub use ext::Yellow;
 ///
 /// Prefixes allowed to 6 character hex code to specify colour
 pub enum Prefix {
+    /// No prefix yields 6 character string
     None,
+    /// Prefix # yields 7 character string
     Hash,
 }

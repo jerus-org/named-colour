@@ -25,7 +25,23 @@ pub use red::Red;
 pub use white::White;
 pub use yellow::Yellow;
 
+/// An extended colour
+///
+/// This trait is implemented for all the extended colours
+///
 pub trait ExtendedColour {
+    /// Returns the name of the colour
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use named_colour::ExtendedColour;
+    /// use std::str::FromStr;
+    ///
+    ///     let colour = ExtendedColour::Black;
+    ///     assert_eq!("Black", colour.name());
+    ///
+    /// ```
     fn name_colour(colour: &str) -> Option<Self>
     where
         Self: Sized,
@@ -39,10 +55,36 @@ pub trait ExtendedColour {
     }
 }
 
+/// Returns the name of the colour
+///
+///
+/// # Examples
+///
+/// ```rust
+/// use named_colour::ExtendedColour;
+/// use std::str::FromStr;
+///
+///     let colour = ExtendedColour::Black;
+///     assert_eq!("Black", colour.name());
+///
+/// ```
 pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
     T::name_colour(colour)
 }
 
+/// Returns a random colour
+///
+/// # Examples
+///
+/// ```rust
+/// use named_colour::ExtendedColour;
+/// use std::str::FromStr;
+///     
+///     let colour = ExtendedColour::random();
+///     assert_eq!("Black", colour.name());
+///
+/// ```
+///
 pub fn random_named_colour() -> impl ExtendedColour {
     let mut rand = StdRand::default();
 
