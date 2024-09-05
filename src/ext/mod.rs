@@ -35,11 +35,13 @@ pub trait ExtendedColour {
     /// # Examples
     ///
     /// ```rust
-    /// use named_colour::ExtendedColour;
-    /// use std::str::FromStr;
+    /// # use named_colour::ExtendedColour;
+    /// # use std::str::FromStr;
+    /// # use named_colour::Black;
     ///
-    ///     let colour = "Black";
-    ///     assert_eq!(Black::Black, name_colour.(colour));
+    ///     let colour = "#d3d3d3";
+    ///     let name = Black::name_colour(colour).unwrap();
+    ///     assert_eq!(Black::LightGray, name);
     ///
     /// ```
     fn name_colour(colour: &str) -> Option<Self>
@@ -63,9 +65,10 @@ pub trait ExtendedColour {
 /// ```rust
 /// use named_colour::ExtendedColour;
 /// use std::str::FromStr;
+/// use named_colour::Black;
 ///
 ///     let colour = "#d3d3d3";
-///     assert_eq!(Black::LightGray, name_colour(colour).unwrap());
+///     assert_eq!(Black::LightGray, named_colour::name_colour(colour).unwrap());
 ///
 /// ```
 pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
@@ -77,10 +80,9 @@ pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
 /// # Examples
 ///
 /// ```rust
-/// use named_colour::ExtendedColour;
-/// use std::str::FromStr;
+/// # use named_colour::ExtendedColour;
 ///     
-///     let colour = random_named_colour();
+///     let colour = named_colour::random_named_colour();
 ///
 /// ```
 ///

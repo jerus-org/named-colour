@@ -97,6 +97,8 @@ pub use basic::Basic;
 #[cfg(feature = "extended")]
 pub use ext::name_colour;
 #[cfg(feature = "extended")]
+pub use ext::random_named_colour;
+#[cfg(feature = "extended")]
 pub use ext::Black;
 #[cfg(feature = "extended")]
 pub use ext::Blue;
