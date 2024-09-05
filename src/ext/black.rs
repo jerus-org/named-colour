@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of black
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, EnumCount, Eq, Hash)]
 #[allow(missing_docs)]
 pub enum Black {
     SlateGray,
@@ -134,6 +136,29 @@ impl Black {
             "lightgrey" => Some(Self::LightGrey),
             "#dcdcdc" | "dcdcdc" | "gainsboro" => Some(Self::Gainsboro),
             _ => None,
+        }
+    }
+
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Black::COUNT) {
+            0 => Black::SlateGray,
+            1 => Black::SlateGrey,
+            2 => Black::LightSlateGray,
+            3 => Black::LightSlateGrey,
+            4 => Black::Black,
+            5 => Black::DimGray,
+            6 => Black::DimGrey,
+            7 => Black::Gray,
+            8 => Black::Grey,
+            9 => Black::DarkGray,
+            10 => Black::DarkGrey,
+            11 => Black::Silver,
+            12 => Black::LightGray,
+            13 => Black::LightGrey,
+            14 => Black::Gainsboro,
+            _ => Black::Black,
         }
     }
 }
