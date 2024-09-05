@@ -100,6 +100,18 @@ impl Yellow {
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
 
+    /// Parse a colour from string
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Yellow;
+    /// # use named_colour::Prefix;
+    ///     let colour = Yellow::Khaki;
+    ///     assert_eq!(Some(colour), Yellow::parse("Khaki"));
+    ///
+    ///```
+    ///
     pub fn parse(name: &str) -> Option<Self> {
         match name.to_lowercase().as_str() {
             "#ffd700" | "ffd700" | "gold" => Some(Self::Gold),

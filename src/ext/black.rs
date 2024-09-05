@@ -139,6 +139,17 @@ impl Black {
         }
     }
 
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Black;
+    /// # fn main() {
+    ///    let colour = Black::random();
+    ///
+    /// # }
+    /// ```
     pub fn random() -> Self {
         let mut rand = StdRand::default();
 
