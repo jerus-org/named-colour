@@ -13,6 +13,8 @@ mod yellow;
 
 use std::str::FromStr;
 
+use tinyrand::{RandRange, StdRand};
+
 pub use black::Black;
 pub use blue::Blue;
 pub use brown::Brown;
@@ -41,6 +43,37 @@ pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
     T::name_colour(colour)
 }
 
+pub fn random_named_colour() -> impl ExtendedColour {
+    let mut rand = StdRand::default();
+
+    match rand.next_range(0..1_u32) {
+        0 => Black::random(),
+        // 1 => Blue::random(),
+        // 2 => Brown::random(),
+        // 3 => Cyan::random(),
+        // 4 => Green::random(),
+        // 5 => Purple::random(),
+        // 6 => Red::random(),
+        // 7 => White::random(),
+        // 8 => Yellow::random(),
+        _ => Black::random(),
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+enum AnonColour {
+    NotNamed,
+}
+
+impl FromStr for AnonColour {
+    type Err = ();
+    fn from_str(_: &str) -> Result<Self, Self::Err> {
+        Ok(AnonColour::NotNamed)
+    }
+}
+
+impl ExtendedColour for AnonColour {}
+
 #[cfg(test)]
 mod tests {
     use rstest::rstest;
@@ -48,6 +81,7 @@ mod tests {
     use super::*;
 
     #[rstest]
+    #[case("#123456", Some(AnonColour::NotNamed))]
     #[case("#708090", Some(Black::SlateGray))]
     #[case("708090", Some(Black::SlateGray))]
     #[case("slategray", Some(Black::SlateGray))]

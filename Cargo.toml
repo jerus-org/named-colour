@@ -23,6 +23,8 @@ extended = []
 
 [dependencies]
 rgb = { version = "0.8.50", features = ["serde"] }
+strum = { version = "0.26.3", features = ["derive"] }
+tinyrand = "0.5.0"
 
 [dev-dependencies]
 rstest = "0.22.0"
