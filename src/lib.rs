@@ -86,7 +86,6 @@ mod to_hex;
 #[cfg(not(feature = "extended"))]
 mod basic;
 #[cfg(feature = "extended")]
-#[allow(missing_docs)]
 pub mod ext;
 
 pub use crate::to_hex::ToHex;
@@ -118,7 +117,9 @@ pub use ext::White;
 #[cfg(feature = "extended")]
 pub use ext::Yellow;
 
-#[allow(missing_docs)]
+/// Prefixes
+///
+/// Prefixes allowed to 6 character hex code to specify colour
 pub enum Prefix {
     None,
     Hash,
