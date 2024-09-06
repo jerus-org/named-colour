@@ -86,20 +86,21 @@ pub fn name_colour<T: ExtendedColour + FromStr>(colour: &str) -> Option<T> {
 ///
 /// ```
 ///
-pub fn random_named_colour() -> impl ExtendedColour {
+pub fn random_named_colour() -> Box<dyn ExtendedColour> {
     let mut rand = StdRand::default();
 
-    match rand.next_range(0..1_u32) {
-        0 => Black::random(),
-        // 1 => Blue::random(),
-        // 2 => Brown::random(),
-        // 3 => Cyan::random(),
-        // 4 => Green::random(),
-        // 5 => Purple::random(),
-        // 6 => Red::random(),
-        // 7 => White::random(),
-        // 8 => Yellow::random(),
-        _ => Black::random(),
+    let family = rand.next_range(0..8_u32);
+    match family {
+        0 => Box::new(Black::random()),
+        1 => Box::new(Blue::random()),
+        2 => Box::new(Brown::random()),
+        3 => Box::new(Cyan::random()),
+        4 => Box::new(Green::random()),
+        5 => Box::new(Purple::random()),
+        6 => Box::new(Red::random()),
+        7 => Box::new(White::random()),
+        8 => Box::new(Yellow::random()),
+        _ => Box::new(Black::random()),
     }
 }
 
