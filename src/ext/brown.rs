@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of brown
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Brown {
     SaddleBrown,
@@ -26,14 +28,14 @@ pub enum Brown {
 impl fmt::Display for Brown {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Brown::SaddleBrown => write!(f, "#8B4513"),
-            Brown::Sienna => write!(f, "#A0522D"),
-            Brown::Chocolate => write!(f, "#D2691E"),
-            Brown::Peru => write!(f, "#CD853F"),
-            Brown::SandyBrown => write!(f, "#F4A460"),
-            Brown::BurlyWood => write!(f, "#DEB887"),
-            Brown::Tan => write!(f, "#D2B48C"),
-            Brown::RosyBrown => write!(f, "#BC8F8F"),
+            Self::SaddleBrown => write!(f, "#8B4513"),
+            Self::Sienna => write!(f, "#A0522D"),
+            Self::Chocolate => write!(f, "#D2691E"),
+            Self::Peru => write!(f, "#CD853F"),
+            Self::SandyBrown => write!(f, "#F4A460"),
+            Self::BurlyWood => write!(f, "#DEB887"),
+            Self::Tan => write!(f, "#D2B48C"),
+            Self::RosyBrown => write!(f, "#BC8F8F"),
         }
     }
 }
@@ -110,6 +112,33 @@ impl Brown {
             "#d2b48c" | "d2b48c" | "tan" => Some(Self::Tan),
             "#bc8f8f" | "bc8f8f" | "rosybrown" => Some(Self::RosyBrown),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Brown;
+    /// # fn main() {
+    ///    let colour = Brown::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Brown::COUNT) {
+            0 => Self::SaddleBrown,
+            1 => Self::Sienna,
+            2 => Self::Chocolate,
+            3 => Self::Peru,
+            4 => Self::SandyBrown,
+            5 => Self::BurlyWood,
+            6 => Self::Tan,
+            7 => Self::RosyBrown,
+            _ => Self::Peru,
         }
     }
 }
