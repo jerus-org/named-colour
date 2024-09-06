@@ -149,9 +149,9 @@ impl Blue {
     /// ## Example
     ///
     ///```
-    /// # use named_colour::ext::Black;
+    /// # use named_colour::ext::Blue;
     /// # fn main() {
-    ///    let colour = Black::random();
+    ///    let colour = Blue::random();
     ///
     /// # }
     /// ```

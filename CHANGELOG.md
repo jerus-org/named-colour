@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add new dependencies and implement random color generation(pr [#73])
 - add random color generation and use EnumCount for Blue enum(pr [#76])
 - add random color generation for Yellow enum(pr [#75])
+- add random color generation for Brown and fix example in Blue(pr [#77])
 
 ### Changed
 
@@ -187,6 +188,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#74]: https://github.com/jerus-org/named-colour/pull/74
 [#76]: https://github.com/jerus-org/named-colour/pull/76
 [#75]: https://github.com/jerus-org/named-colour/pull/75
+[#77]: https://github.com/jerus-org/named-colour/pull/77
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/jerus-org/named-colour/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
