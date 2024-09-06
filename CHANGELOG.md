@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add random color generation and EnumCount derivation(pr [#78])
 - add random color generation and derive EnumCount for Green enum(pr [#79])
 - add random color generation and derive EnumCount trait(pr [#80])
+- add random color generation using tinyrand(pr [#81])
 
 ### Changed
 
@@ -195,6 +196,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#78]: https://github.com/jerus-org/named-colour/pull/78
 [#79]: https://github.com/jerus-org/named-colour/pull/79
 [#80]: https://github.com/jerus-org/named-colour/pull/80
+[#81]: https://github.com/jerus-org/named-colour/pull/81
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/jerus-org/named-colour/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jerus-org/named-colour/compare/v0.1.6...v0.2.0
