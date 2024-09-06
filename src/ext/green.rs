@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of green
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Green {
     YellowGreen,
@@ -36,24 +38,24 @@ pub enum Green {
 impl fmt::Display for Green {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Green::YellowGreen => write!(f, "#9ACD32"),
-            Green::DarkOliveGreen => write!(f, "#556B2F"),
-            Green::Olive => write!(f, "#808000"),
-            Green::OliveDrab => write!(f, "#6B8E23"),
-            Green::LawnGreen => write!(f, "#7CFC00"),
-            Green::ChartReuse => write!(f, "#7FFF00"),
-            Green::GreenYellow => write!(f, "#ADFF2F"),
-            Green::DarkGreen => write!(f, "#006400"),
-            Green::Green => write!(f, "#008000"),
-            Green::ForestGreen => write!(f, "#228B22"),
-            Green::Lime => write!(f, "#00FF00"),
-            Green::LimeGreen => write!(f, "#32CD32"),
-            Green::LightGreen => write!(f, "#90EE90"),
-            Green::PaleGreen => write!(f, "#98FB98"),
-            Green::DarkSeaGreen => write!(f, "#8FBC8F"),
-            Green::MediumSpringGreen => write!(f, "#00FA9A"),
-            Green::SpringGreen => write!(f, "#00FF7F"),
-            Green::SeaGreen => write!(f, "#2E8B57"),
+            Self::YellowGreen => write!(f, "#9ACD32"),
+            Self::DarkOliveGreen => write!(f, "#556B2F"),
+            Self::Olive => write!(f, "#808000"),
+            Self::OliveDrab => write!(f, "#6B8E23"),
+            Self::LawnGreen => write!(f, "#7CFC00"),
+            Self::ChartReuse => write!(f, "#7FFF00"),
+            Self::GreenYellow => write!(f, "#ADFF2F"),
+            Self::DarkGreen => write!(f, "#006400"),
+            Self::Green => write!(f, "#008000"),
+            Self::ForestGreen => write!(f, "#228B22"),
+            Self::Lime => write!(f, "#00FF00"),
+            Self::LimeGreen => write!(f, "#32CD32"),
+            Self::LightGreen => write!(f, "#90EE90"),
+            Self::PaleGreen => write!(f, "#98FB98"),
+            Self::DarkSeaGreen => write!(f, "#8FBC8F"),
+            Self::MediumSpringGreen => write!(f, "#00FA9A"),
+            Self::SpringGreen => write!(f, "#00FF7F"),
+            Self::SeaGreen => write!(f, "#2E8B57"),
         }
     }
 }
@@ -142,6 +144,43 @@ impl Green {
             "#2e8b57" | "2e8b57" | "seagreen" => Some(Self::SeaGreen),
             "#00ff00" | "00ff00" | "lime" => Some(Self::Lime),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Green;
+    /// # fn main() {
+    ///    let colour = Green::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Green::COUNT) {
+            0 => Self::YellowGreen,
+            1 => Self::DarkOliveGreen,
+            2 => Self::Olive,
+            3 => Self::OliveDrab,
+            4 => Self::LawnGreen,
+            5 => Self::ChartReuse,
+            6 => Self::GreenYellow,
+            7 => Self::DarkGreen,
+            8 => Self::Green,
+            9 => Self::ForestGreen,
+            10 => Self::Lime,
+            11 => Self::LimeGreen,
+            12 => Self::LightGreen,
+            13 => Self::PaleGreen,
+            14 => Self::DarkSeaGreen,
+            15 => Self::MediumSpringGreen,
+            16 => Self::SpringGreen,
+            17 => Self::SeaGreen,
+            _ => Self::Green,
         }
     }
 }
