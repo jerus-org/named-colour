@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of cyan
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Cyan {
     MediumAquaMarine,
@@ -33,21 +35,21 @@ pub enum Cyan {
 impl fmt::Display for Cyan {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Cyan::MediumAquaMarine => write!(f, "#66CDAA"),
-            Cyan::MediumSeaGreen => write!(f, "#3CB371"),
-            Cyan::LightSeaGreen => write!(f, "#20B2AA"),
-            Cyan::DarkSlateGray => write!(f, "#2F4F4F"),
-            Cyan::Teal => write!(f, "#008080"),
-            Cyan::DarkCyan => write!(f, "#008B8B"),
-            Cyan::Aqua => write!(f, "#00FFFF"),
-            Cyan::Cyan => write!(f, "#00FFFF"),
-            Cyan::LightCyan => write!(f, "#E0FFFF"),
-            Cyan::DarkTurquoise => write!(f, "#00CED1"),
-            Cyan::Turquoise => write!(f, "#40E0D0"),
-            Cyan::MediumTurquoise => write!(f, "#48D1CC"),
-            Cyan::PaleTurquoise => write!(f, "#AFEEEE"),
-            Cyan::AquaMarine => write!(f, "#7FFFD4"),
-            Cyan::Honeydew => write!(f, "#F0FFF0"),
+            Self::MediumAquaMarine => write!(f, "#66CDAA"),
+            Self::MediumSeaGreen => write!(f, "#3CB371"),
+            Self::LightSeaGreen => write!(f, "#20B2AA"),
+            Self::DarkSlateGray => write!(f, "#2F4F4F"),
+            Self::Teal => write!(f, "#008080"),
+            Self::DarkCyan => write!(f, "#008B8B"),
+            Self::Aqua => write!(f, "#00FFFF"),
+            Self::Cyan => write!(f, "#00FFFF"),
+            Self::LightCyan => write!(f, "#E0FFFF"),
+            Self::DarkTurquoise => write!(f, "#00CED1"),
+            Self::Turquoise => write!(f, "#40E0D0"),
+            Self::MediumTurquoise => write!(f, "#48D1CC"),
+            Self::PaleTurquoise => write!(f, "#AFEEEE"),
+            Self::AquaMarine => write!(f, "#7FFFD4"),
+            Self::Honeydew => write!(f, "#F0FFF0"),
         }
     }
 }
@@ -133,6 +135,40 @@ impl Cyan {
             "#7fffd4" | "7fffd4" | "aquamarine" => Some(Self::AquaMarine),
             "#f0fff0" | "f0fff0" | "honeydew" => Some(Self::Honeydew),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Cyan;
+    /// # fn main() {
+    ///    let colour = Cyan::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Cyan::COUNT) {
+            0 => Self::MediumAquaMarine,
+            1 => Self::MediumSeaGreen,
+            2 => Self::LightSeaGreen,
+            3 => Self::DarkSlateGray,
+            4 => Self::Teal,
+            5 => Self::DarkCyan,
+            6 => Self::Aqua,
+            7 => Self::Cyan,
+            8 => Self::LightCyan,
+            9 => Self::DarkTurquoise,
+            10 => Self::Turquoise,
+            11 => Self::MediumTurquoise,
+            12 => Self::PaleTurquoise,
+            13 => Self::AquaMarine,
+            14 => Self::Honeydew,
+            _ => Self::Cyan,
         }
     }
 }
