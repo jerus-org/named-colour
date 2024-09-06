@@ -4,6 +4,8 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
@@ -11,7 +13,7 @@ use super::ExtendedColour;
 
 /// Shades of red
 #[allow(missing_docs)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 pub enum Red {
     Maroon,
     #[allow(clippy::enum_variant_names)]
@@ -38,22 +40,22 @@ pub enum Red {
 impl fmt::Display for Red {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Red::Maroon => write!(f, "#800000"),
-            Red::DarkRed => write!(f, "#8B0000"),
-            Red::Brown => write!(f, "#A52A2A"),
-            Red::Firebrick => write!(f, "#B22222"),
-            Red::Crimson => write!(f, "#DC143C"),
-            Red::Red => write!(f, "#FF0000"),
-            Red::Tomato => write!(f, "#FF6347"),
-            Red::Coral => write!(f, "#FF7F50"),
-            Red::IndianRed => write!(f, "#CD5C5C"),
-            Red::LightCoral => write!(f, "#F08080"),
-            Red::DarkSalmon => write!(f, "#E9967A"),
-            Red::Salmon => write!(f, "#FA8072"),
-            Red::LightSalmon => write!(f, "#FFA07A"),
-            Red::OrangeRed => write!(f, "#FF4500"),
-            Red::DarkOrange => write!(f, "#FF8C00"),
-            Red::Orange => write!(f, "#FFA500"),
+            Self::Maroon => write!(f, "#800000"),
+            Self::DarkRed => write!(f, "#8B0000"),
+            Self::Brown => write!(f, "#A52A2A"),
+            Self::Firebrick => write!(f, "#B22222"),
+            Self::Crimson => write!(f, "#DC143C"),
+            Self::Red => write!(f, "#FF0000"),
+            Self::Tomato => write!(f, "#FF6347"),
+            Self::Coral => write!(f, "#FF7F50"),
+            Self::IndianRed => write!(f, "#CD5C5C"),
+            Self::LightCoral => write!(f, "#F08080"),
+            Self::DarkSalmon => write!(f, "#E9967A"),
+            Self::Salmon => write!(f, "#FA8072"),
+            Self::LightSalmon => write!(f, "#FFA07A"),
+            Self::OrangeRed => write!(f, "#FF4500"),
+            Self::DarkOrange => write!(f, "#FF8C00"),
+            Self::Orange => write!(f, "#FFA500"),
         }
     }
 }
@@ -140,6 +142,41 @@ impl Red {
             "#ff8c00" | "ff8c00" | "darkorange" => Some(Self::DarkOrange),
             "#ffa500" | "ffa500" | "orange" => Some(Self::Orange),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Red;
+    /// # fn main() {
+    ///    let colour = Red::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Red::COUNT) {
+            0 => Self::Maroon,
+            1 => Self::DarkRed,
+            2 => Self::Brown,
+            3 => Self::Firebrick,
+            4 => Self::Crimson,
+            5 => Self::Red,
+            6 => Self::Tomato,
+            7 => Self::Coral,
+            8 => Self::IndianRed,
+            9 => Self::LightCoral,
+            10 => Self::DarkSalmon,
+            11 => Self::Salmon,
+            12 => Self::LightSalmon,
+            13 => Self::OrangeRed,
+            14 => Self::DarkOrange,
+            15 => Self::Orange,
+            _ => Self::Red,
         }
     }
 }
