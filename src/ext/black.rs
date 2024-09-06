@@ -153,7 +153,7 @@ impl Black {
     pub fn random() -> Self {
         let mut rand = StdRand::default();
 
-        match rand.next_range(0..Black::COUNT) {
+        match rand.next_range(0..Self::COUNT) {
             0 => Black::SlateGray,
             1 => Black::SlateGrey,
             2 => Black::LightSlateGray,

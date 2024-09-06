@@ -181,7 +181,7 @@ impl Purple {
     pub fn random() -> Self {
         let mut rand = StdRand::default();
 
-        match rand.next_range(0..Purple::COUNT) {
+        match rand.next_range(0..Self::COUNT) {
             0 => Self::Indigo,
             1 => Self::Purple,
             2 => Self::DarkMagenta,
