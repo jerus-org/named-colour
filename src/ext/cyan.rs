@@ -152,7 +152,7 @@ impl Cyan {
     pub fn random() -> Self {
         let mut rand = StdRand::default();
 
-        match rand.next_range(0..Cyan::COUNT) {
+        match rand.next_range(0..Self::COUNT) {
             0 => Self::MediumAquaMarine,
             1 => Self::MediumSeaGreen,
             2 => Self::LightSeaGreen,

@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of white
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum White {
     AntiqueWhite,
@@ -148,6 +150,45 @@ impl White {
             "#f5f5f5" | "f5f5f5" | "whitesmoke" => Some(Self::WhiteSmoke),
             "#f0f8ff" | "f0f8ff" | "aliceblue" => Some(Self::AliceBlue),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::White;
+    /// # fn main() {
+    ///    let colour = White::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Self::COUNT) {
+            0 => Self::AntiqueWhite,
+            1 => Self::Beige,
+            2 => Self::Bisque,
+            3 => Self::BlanchedAlmond,
+            4 => Self::Wheat,
+            5 => Self::CornSilk,
+            6 => Self::White,
+            7 => Self::NavajoWhite,
+            8 => Self::MistyRose,
+            9 => Self::LavenderBlush,
+            10 => Self::Linen,
+            11 => Self::OldLace,
+            12 => Self::SeaShell,
+            13 => Self::MintCream,
+            14 => Self::FloralWhite,
+            15 => Self::GhostWhite,
+            16 => Self::Ivory,
+            17 => Self::Snow,
+            18 => Self::WhiteSmoke,
+            19 => Self::AliceBlue,
+            _ => Self::White,
         }
     }
 }

@@ -129,7 +129,7 @@ impl Brown {
     pub fn random() -> Self {
         let mut rand = StdRand::default();
 
-        match rand.next_range(0..Brown::COUNT) {
+        match rand.next_range(0..Self::COUNT) {
             0 => Self::SaddleBrown,
             1 => Self::Sienna,
             2 => Self::Chocolate,
