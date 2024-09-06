@@ -4,13 +4,15 @@
 use std::{fmt, str::FromStr};
 
 use rgb::Rgb;
+use strum::EnumCount;
+use tinyrand::{RandRange, StdRand};
 
 use crate::Prefix;
 
 use super::ExtendedColour;
 
 /// Shades of purple
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, EnumCount)]
 #[allow(missing_docs)]
 pub enum Purple {
     Indigo,
@@ -42,30 +44,30 @@ pub enum Purple {
 impl fmt::Display for Purple {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Purple::Indigo => write!(f, "#4B0082"),
-            Purple::Purple => write!(f, "#800080"),
-            Purple::DarkMagenta => write!(f, "#8B008B"),
-            Purple::DarkViolet => write!(f, "#9400D3"),
-            Purple::DarkSlateBlue => write!(f, "#483D8B"),
-            Purple::BlueViolet => write!(f, "#8A2BE2"),
-            Purple::DarkOrchid => write!(f, "#9932CC"),
-            Purple::Fuchsia => write!(f, "#FF00FF"),
-            Purple::Magenta => write!(f, "#FF00FF"),
-            Purple::SlateBlue => write!(f, "#6A5ACD"),
-            Purple::MediumSlateBlue => write!(f, "#7B68EE"),
-            Purple::MediumOrchid => write!(f, "#BA55D3"),
-            Purple::MediumPurple => write!(f, "#9370DB"),
-            Purple::Orchid => write!(f, "#DA70D6"),
-            Purple::Violet => write!(f, "#EE82EE"),
-            Purple::Plum => write!(f, "#DDA0DD"),
-            Purple::Thistle => write!(f, "#D8BFD8"),
-            Purple::Lavender => write!(f, "#E6E6FA"),
-            Purple::Pink => write!(f, "#FFC0CB"),
-            Purple::MediumVioletRed => write!(f, "#C71585"),
-            Purple::PaleVioletRed => write!(f, "#DB7093"),
-            Purple::DeepPink => write!(f, "#FF1493"),
-            Purple::HotPink => write!(f, "#FF69B4"),
-            Purple::LightPink => write!(f, "#FFB6C1"),
+            Self::Indigo => write!(f, "#4B0082"),
+            Self::Purple => write!(f, "#800080"),
+            Self::DarkMagenta => write!(f, "#8B008B"),
+            Self::DarkViolet => write!(f, "#9400D3"),
+            Self::DarkSlateBlue => write!(f, "#483D8B"),
+            Self::BlueViolet => write!(f, "#8A2BE2"),
+            Self::DarkOrchid => write!(f, "#9932CC"),
+            Self::Fuchsia => write!(f, "#FF00FF"),
+            Self::Magenta => write!(f, "#FF00FF"),
+            Self::SlateBlue => write!(f, "#6A5ACD"),
+            Self::MediumSlateBlue => write!(f, "#7B68EE"),
+            Self::MediumOrchid => write!(f, "#BA55D3"),
+            Self::MediumPurple => write!(f, "#9370DB"),
+            Self::Orchid => write!(f, "#DA70D6"),
+            Self::Violet => write!(f, "#EE82EE"),
+            Self::Plum => write!(f, "#DDA0DD"),
+            Self::Thistle => write!(f, "#D8BFD8"),
+            Self::Lavender => write!(f, "#E6E6FA"),
+            Self::Pink => write!(f, "#FFC0CB"),
+            Self::MediumVioletRed => write!(f, "#C71585"),
+            Self::PaleVioletRed => write!(f, "#DB7093"),
+            Self::DeepPink => write!(f, "#FF1493"),
+            Self::HotPink => write!(f, "#FF69B4"),
+            Self::LightPink => write!(f, "#FFB6C1"),
         }
     }
 }
@@ -162,6 +164,49 @@ impl Purple {
             "#ff69b4" | "ff69b4" | "hotpink" => Some(Self::HotPink),
             "#ffb6c1" | "ffb6c1" | "lightpink" => Some(Self::LightPink),
             _ => None,
+        }
+    }
+
+    /// Generate a random colour
+    ///     
+    /// ## Example
+    ///
+    ///```
+    /// # use named_colour::ext::Purple;
+    /// # fn main() {
+    ///    let colour = Purple::random();
+    ///
+    /// # }
+    /// ```
+    pub fn random() -> Self {
+        let mut rand = StdRand::default();
+
+        match rand.next_range(0..Purple::COUNT) {
+            0 => Self::Indigo,
+            1 => Self::Purple,
+            2 => Self::DarkMagenta,
+            3 => Self::DarkViolet,
+            4 => Self::DarkSlateBlue,
+            5 => Self::BlueViolet,
+            6 => Self::DarkOrchid,
+            7 => Self::Fuchsia,
+            8 => Self::Magenta,
+            9 => Self::SlateBlue,
+            10 => Self::MediumSlateBlue,
+            11 => Self::MediumOrchid,
+            12 => Self::MediumPurple,
+            13 => Self::Orchid,
+            14 => Self::Violet,
+            15 => Self::Plum,
+            16 => Self::Thistle,
+            17 => Self::Lavender,
+            18 => Self::Pink,
+            19 => Self::MediumVioletRed,
+            20 => Self::PaleVioletRed,
+            21 => Self::DeepPink,
+            22 => Self::HotPink,
+            23 => Self::LightPink,
+            _ => Self::Purple,
         }
     }
 }
