@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   min-rust-version:
     type: string
-    default: "1.65"
+    default: "1.67"
   fingerprint:
     type: string
     default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
@@ -17,7 +17,7 @@ parameters:
     description: "If true, the success pipeline will be executed."
 
 orbs:
-  toolkit: jerus-org/circleci-toolkit@1.5.0
+  toolkit: jerus-org/circleci-toolkit@1.11.0
 
 executors:
   rust-env:
@@ -51,6 +51,13 @@ workflows:
         - not: << pipeline.parameters.success-flag >>
         - << pipeline.parameters.validation-flag >>
     jobs:
+      - toolkit/label:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+          context: pcu-app
+          filters:
+            branches:
+              only:
+                - main
       - toolkit/required_builds:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/optional_builds:
@@ -61,7 +68,8 @@ workflows:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/idiomatic_rust:
           min_rust_version: << pipeline.parameters.min-rust-version >>
-      - toolkit/security
+      - toolkit/security:
+          context: SonarCloud
       - toolkit/update_changelog:
           requires:
             - toolkit/common_tests
@@ -74,7 +82,6 @@ workflows:
             - bot-check
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
-          label_option: true
 
   on_success:
     when:
