@@ -13,7 +13,7 @@ categories = ["web-programming", "visualization"]
 keywords = ["colours", "constants", "reference"]
 include = ["**/*.rs", "Cargo.toml"]
 edition = "2021"
-rust-version = "1.65"
+rust-version = "1.67"
 
 [features]
 default = ["extended"]
