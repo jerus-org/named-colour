@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- chore(circleci)-update circleci-toolkit orb to version 1.15.0(pr [#88])
+
 ### Security
 
 - Dependencies: update dependency toolkit to v1.14.0(pr [#87])
@@ -229,6 +233,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#85]: https://github.com/jerus-org/named-colour/pull/85
 [#86]: https://github.com/jerus-org/named-colour/pull/86
 [#87]: https://github.com/jerus-org/named-colour/pull/87
+[#88]: https://github.com/jerus-org/named-colour/pull/88
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.4...HEAD
 [0.3.4]: https://github.com/jerus-org/named-colour/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/jerus-org/named-colour/compare/v0.3.2...v0.3.3
