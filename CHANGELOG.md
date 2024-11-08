@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Security
+
+- Dependencies: update dependency toolkit to v1.16.1(pr [#89])
+
 ## [0.3.5] - 2024-11-01
 
 ### Changed
@@ -234,6 +240,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#86]: https://github.com/jerus-org/named-colour/pull/86
 [#87]: https://github.com/jerus-org/named-colour/pull/87
 [#88]: https://github.com/jerus-org/named-colour/pull/88
+[#89]: https://github.com/jerus-org/named-colour/pull/89
+[Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.5...HEAD
 [0.3.5]: https://github.com/jerus-org/named-colour/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/jerus-org/named-colour/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/jerus-org/named-colour/compare/v0.3.2...v0.3.3
