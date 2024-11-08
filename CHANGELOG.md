@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 - Dependencies: update dependency toolkit to v1.16.1(pr [#89])
+- Dependencies: update dependency toolkit to v1.18.0(pr [#90])
 
 ## [0.3.5] - 2024-11-01
 
@@ -241,6 +242,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#87]: https://github.com/jerus-org/named-colour/pull/87
 [#88]: https://github.com/jerus-org/named-colour/pull/88
 [#89]: https://github.com/jerus-org/named-colour/pull/89
+[#90]: https://github.com/jerus-org/named-colour/pull/90
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.5...HEAD
 [0.3.5]: https://github.com/jerus-org/named-colour/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/jerus-org/named-colour/compare/v0.3.3...v0.3.4
