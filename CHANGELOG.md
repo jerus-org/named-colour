@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Security
+
+- Dependencies: bump hashbrown from 0.15.0 to 0.15.2 in the cargo group across 1 directory(pr [#92])
+
 ## [0.3.6] - 2024-11-15
 
 ### Security
@@ -245,6 +251,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#89]: https://github.com/jerus-org/named-colour/pull/89
 [#90]: https://github.com/jerus-org/named-colour/pull/90
 [#91]: https://github.com/jerus-org/named-colour/pull/91
+[#92]: https://github.com/jerus-org/named-colour/pull/92
+[Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.6...HEAD
 [0.3.6]: https://github.com/jerus-org/named-colour/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/jerus-org/named-colour/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/jerus-org/named-colour/compare/v0.3.3...v0.3.4
