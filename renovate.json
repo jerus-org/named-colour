@@ -3,7 +3,7 @@
   "dependencyDashboard": true,
   "rangeStrategy": "bump",
   "schedule": [
-    "before 6:00am on Friday"
+    "before 6:00am on Thursday"
   ],
   "packageRules": [
     {
