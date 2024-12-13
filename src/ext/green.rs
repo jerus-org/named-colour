@@ -76,7 +76,6 @@ impl Green {
     ///
     ///  # }
     ///```
-
     pub fn to_rgb(&self) -> Rgb<u8> {
         let colour = self.to_string();
 
@@ -99,7 +98,6 @@ impl Green {
     ///     assert_eq!("#7CFC00", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
-
     pub fn to_hex_triplet(&self, prefix: Prefix) -> String {
         let rgb = self.to_rgb();
 
@@ -110,7 +108,6 @@ impl Green {
 
         format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
     }
-
     /// Parse a colour from string
     ///
     /// ## Example

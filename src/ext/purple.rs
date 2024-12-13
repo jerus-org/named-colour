@@ -88,7 +88,6 @@ impl Purple {
     ///
     ///  # }
     ///```
-
     pub fn to_rgb(&self) -> Rgb<u8> {
         let colour = self.to_string();
 
@@ -111,7 +110,6 @@ impl Purple {
     ///     assert_eq!("#DDA0DD", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
-
     pub fn to_hex_triplet(&self, prefix: Prefix) -> String {
         let rgb = self.to_rgb();
 
