@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.10] - 2024-12-27
 
 ### Security
 
@@ -275,7 +275,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#94]: https://github.com/jerus-org/named-colour/pull/94
 [#95]: https://github.com/jerus-org/named-colour/pull/95
 [#96]: https://github.com/jerus-org/named-colour/pull/96
-[Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.9...HEAD
+[0.3.10]: https://github.com/jerus-org/named-colour/compare/v0.3.9...v0.3.10
 [0.3.9]: https://github.com/jerus-org/named-colour/compare/v0.3.8...v0.3.9
 [0.3.8]: https://github.com/jerus-org/named-colour/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/jerus-org/named-colour/compare/v0.3.6...v0.3.7
