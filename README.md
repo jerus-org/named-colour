@@ -2,9 +2,8 @@
 
 [![Crates.io][crates-badge]][crates-url]
 [![MIT licensed][mit-badge]][mit-url]
-[![Build Status][actions-badge]][actions-url]
-[![Rust 1.46+][version-badge]][version-url]
-[![FOSSA Status][fossa-badge]][fossa-url]
+[![CircleCI][circle-badge]][circle-url]
+[![Rust][version-badge]][version-url]
 [![Docs][docs-badge]][docs-url]
 [![BuyMeaCoffee][bmac-badge]][bmac-url]
 [![GitHubSponsors][ghub-badge]][ghub-url]
@@ -13,12 +12,10 @@
 [crates-url]: https://crates.io/crates/named-colour
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [mit-url]: https://github.com/jerusdp/named-colour/blob/main/LICENSE-MIT
-[actions-badge]: https://github.com/jerusdp/named-colour/actions/workflows/general.yml/badge.svg?branch=main
-[actions-url]: https://github.com/jerusdp/named-colour/actions/workflows/general.yml
-[version-badge]: https://img.shields.io/badge/rust-1.33+-orange.svg
+[circle-badge]: https://dl.circleci.com/status-badge/img/gh/jerus-org/named-colour/tree/main.svg?style=svg
+[circle-url]: https://dl.circleci.com/status-badge/redirect/gh/jerus-org/named-colour/tree/main
+[version-badge]: https://img.shields.io/badge/rust-1.70+-orange.svg
 [version-url]: https://www.rust-lang.org
-[fossa-badge]: https://app.fossa.com/api/projects/custom%2B22707%2Fgithub.com%2Fjerusdp%2Fnamed-colour.svg?type=shield
-[fossa-url]: https://app.fossa.com/projects/custom%2B22707%2Fgithub.com%2Fjerusdp%2Fnamed-colour?ref=badge_shield
 [docs-badge]:  https://docs.rs/named-colour/badge.svg
 [docs-url]:  https://docs.rs/named-colour
 [bmac-badge]: https://badgen.net/badge/icon/buymeacoffee?color=yellow&icon=buymeacoffee&label
