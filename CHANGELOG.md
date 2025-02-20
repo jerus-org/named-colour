@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Security
+
+- Dependencies: update rust crate strum to 0.27.1(pr [#103])
+
 ## [0.3.15] - 2025-02-14
 
 ### Security
@@ -315,6 +321,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#100]: https://github.com/jerus-org/named-colour/pull/100
 [#101]: https://github.com/jerus-org/named-colour/pull/101
 [#102]: https://github.com/jerus-org/named-colour/pull/102
+[#103]: https://github.com/jerus-org/named-colour/pull/103
+[Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.15...HEAD
 [0.3.15]: https://github.com/jerus-org/named-colour/compare/v0.3.14...v0.3.15
 [0.3.14]: https://github.com/jerus-org/named-colour/compare/v0.3.13...v0.3.14
 [0.3.13]: https://github.com/jerus-org/named-colour/compare/v0.3.12...v0.3.13
