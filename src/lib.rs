@@ -14,7 +14,7 @@
 //!
 //!```toml
 //! [dependencies]
-//! named-colour = "0.3.15"
+//! named-colour = "0.3.16"
 //!
 //!```
 //!
@@ -41,7 +41,7 @@
 
 ```toml
 [dependencies]
-named-colour = { version = "0.3.15", features = ["extended"]}
+named-colour = { version = "0.3.16", features = ["extended"]}
 ```
 
 ```
@@ -76,7 +76,7 @@ named-colour = { version = "0.3.15", features = ["extended"]}
 ///
 ///```toml
 ///[dependencies]
-///named-colour = { version = "0.3.15", default_features = false, features = ["extended"]}
+///named-colour = { version = "0.3.16", default_features = false, features = ["extended"]}
 ///```
 ///
 ///
