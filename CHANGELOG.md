@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 - Dependencies: update rust crate rstest to 0.25.0(pr [#106])
+- Dependencies: update dependency toolkit to v2.1.0(pr [#105])
 
 ## [0.3.17] - 2025-02-28
 
@@ -336,6 +337,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#103]: https://github.com/jerus-org/named-colour/pull/103
 [#104]: https://github.com/jerus-org/named-colour/pull/104
 [#106]: https://github.com/jerus-org/named-colour/pull/106
+[#105]: https://github.com/jerus-org/named-colour/pull/105
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.17...HEAD
 [0.3.17]: https://github.com/jerus-org/named-colour/compare/v0.3.16...v0.3.17
 [0.3.16]: https://github.com/jerus-org/named-colour/compare/v0.3.15...v0.3.16
