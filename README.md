@@ -14,7 +14,7 @@
 [mit-url]: https://github.com/jerusdp/named-colour/blob/main/LICENSE-MIT
 [circle-badge]: https://dl.circleci.com/status-badge/img/gh/jerus-org/named-colour/tree/main.svg?style=svg
 [circle-url]: https://dl.circleci.com/status-badge/redirect/gh/jerus-org/named-colour/tree/main
-[version-badge]: https://img.shields.io/badge/rust-1.70+-orange.svg
+[version-badge]: https://img.shields.io/badge/rust-1.75+-orange.svg
 [version-url]: https://www.rust-lang.org
 [docs-badge]:  https://docs.rs/named-colour/badge.svg
 [docs-url]:  https://docs.rs/named-colour
