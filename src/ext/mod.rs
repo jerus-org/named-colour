@@ -49,11 +49,7 @@ pub trait ExtendedColour {
         Self: Sized,
         Self: FromStr,
     {
-        if let Ok(c) = Self::from_str(colour) {
-            Some(c)
-        } else {
-            None
-        }
+        Self::from_str(colour).ok()
     }
 }
 
