@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - 🔧 chore(config)-update renovate schedule(pr [#111])
+- 🔧 chore(config)-update renovate schedule(pr [#112])
 
 ## [0.3.20] - 2025-04-27
 
@@ -364,6 +365,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#108]: https://github.com/jerus-org/named-colour/pull/108
 [#110]: https://github.com/jerus-org/named-colour/pull/110
 [#111]: https://github.com/jerus-org/named-colour/pull/111
+[#112]: https://github.com/jerus-org/named-colour/pull/112
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.20...HEAD
 [0.3.20]: https://github.com/jerus-org/named-colour/compare/v0.3.19...v0.3.20
 [0.3.19]: https://github.com/jerus-org/named-colour/compare/v0.3.18...v0.3.19
