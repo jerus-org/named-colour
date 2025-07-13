@@ -111,5 +111,6 @@
         "struct",
         "whitesmoke",
         "yellowgreen"
-    ]
+    ],
+    "rust-analyzer.check.features": "all",
 }
