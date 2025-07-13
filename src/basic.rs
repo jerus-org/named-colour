@@ -71,7 +71,6 @@ impl Basic {
     ///
     ///  # }
     ///```
-
     pub fn to_rgb(&self) -> Rgb<u8> {
         let colour = match self {
             Basic::Black => "#000000",
@@ -113,7 +112,6 @@ impl Basic {
     ///     assert_eq!("#000000", colour.to_hex_triplet(Prefix::Hash));
     ///
     ///```
-
     pub fn to_hex_triplet(&self, prefix: Prefix) -> String {
         let rgb = self.to_rgb();
 
@@ -168,7 +166,7 @@ impl FromStr for Basic {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match Basic::parse(s) {
             Some(colour) => Ok(colour),
-            None => Err(format!("Invalid Colour: {}", s)),
+            None => Err(format!("Invalid Colour: {s}")),
         }
     }
 }
@@ -234,7 +232,7 @@ mod tests {
             Prefix::Hash => "#".to_string(),
         };
 
-        let expected = format!("{}{}", prefix_string, expected);
+        let expected = format!("{prefix_string}{expected}");
 
         let hex_colour = colour.to_hex_triplet(prefix);
 
