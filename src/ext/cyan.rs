@@ -176,7 +176,7 @@ impl FromStr for Cyan {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match Self::parse(s) {
             Some(colour) => Ok(colour),
-            None => Err(format!("Invalid Colour: {}", s)),
+            None => Err(format!("Invalid Colour: {s}")),
         }
     }
 }
@@ -237,7 +237,7 @@ mod tests {
             Prefix::Hash => "#".to_string(),
         };
 
-        let expected = format!("{}{}", prefix_string, expected);
+        let expected = format!("{prefix_string}{expected}");
 
         let hex_colour = colour.to_hex_triplet(prefix);
 
