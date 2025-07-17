@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - deps: update dependency toolkit to v2.12.1(pr [#115])
+- deps: update rust crate rgb to 0.8.52(pr [#114])
 
 ## [0.3.21] - 2025-05-21
 
@@ -378,6 +379,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#112]: https://github.com/jerus-org/named-colour/pull/112
 [#113]: https://github.com/jerus-org/named-colour/pull/113
 [#115]: https://github.com/jerus-org/named-colour/pull/115
+[#114]: https://github.com/jerus-org/named-colour/pull/114
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.21...HEAD
 [0.3.21]: https://github.com/jerus-org/named-colour/compare/v0.3.20...v0.3.21
 [0.3.20]: https://github.com/jerus-org/named-colour/compare/v0.3.19...v0.3.20
