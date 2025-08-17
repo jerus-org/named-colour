@@ -23,7 +23,7 @@ extended = []
 
 [dependencies]
 rgb = { version = "0.8.52", features = ["serde"] }
-strum = { version = "0.27.1", features = ["derive"] }
+strum = { version = "0.27.2", features = ["derive"] }
 tinyrand = "0.5.0"
 
 [dev-dependencies]
