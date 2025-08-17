@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - deps: update rust crate rstest to 0.26.1(pr [#117])
+- deps: update rust crate strum to 0.27.2(pr [#116])
 
 ## [0.3.22] - 2025-07-21
 
@@ -387,6 +388,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#115]: https://github.com/jerus-org/named-colour/pull/115
 [#114]: https://github.com/jerus-org/named-colour/pull/114
 [#117]: https://github.com/jerus-org/named-colour/pull/117
+[#116]: https://github.com/jerus-org/named-colour/pull/116
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.22...HEAD
 [0.3.22]: https://github.com/jerus-org/named-colour/compare/v0.3.21...v0.3.22
 [0.3.21]: https://github.com/jerus-org/named-colour/compare/v0.3.20...v0.3.21
