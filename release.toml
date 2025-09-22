@@ -3,9 +3,9 @@ pre-release-replacements = [
     { file = "README.md", search = """named-colour = \\{ version = "\\d+.\\d+.\\d+",""", replace = """named-colour = { version = "{{version}}",""", exactly = 2 },
     { file = "src/lib.rs", search = """named-colour = "\\d+.\\d+.\\d+"""", replace = "{{crate_name}} = \"{{version}}\"", exactly = 1 },
     { file = "src/lib.rs", search = """named-colour = \\{ version = "\\d+.\\d+.\\d+",""", replace = """{{crate_name}} = { version = "{{version}}",""", exactly = 2 },
-    { file = "CHANGELOG.md", search = "## \\[Unreleased\\]", replace = "## [{{version}}] - {{date}}", exactly = 1 },
-    { file = "CHANGELOG.md", search = "\\[Unreleased\\]:", replace = "[{{version}}]:", exactly = 1 },
-    { file = "CHANGELOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}", exactly = 1 },
+    { file = "PRLOG.md", search = "## \\[Unreleased\\]", replace = "## [{{version}}] - {{date}}", exactly = 1 },
+    { file = "PRLOG.md", search = "\\[Unreleased\\]:", replace = "[{{version}}]:", exactly = 1 },
+    { file = "PRLOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}", exactly = 1 },
 ]
 pre-release-commit-message = "chore: Release"
 tag-message = "{{tag_name}}"
