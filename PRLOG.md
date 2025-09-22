@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - chore-rename CHANGELOG.md to PRLOG.md(pr [#118])
+- chore-update release.toml to reference PRLOG.md instead of CHANGELOG.md(pr [#119])
 
 ## [0.3.23] - 2025-08-21
 
@@ -396,6 +397,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#117]: https://github.com/jerus-org/named-colour/pull/117
 [#116]: https://github.com/jerus-org/named-colour/pull/116
 [#118]: https://github.com/jerus-org/named-colour/pull/118
+[#119]: https://github.com/jerus-org/named-colour/pull/119
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.23...HEAD
 [0.3.23]: https://github.com/jerus-org/named-colour/compare/v0.3.22...v0.3.23
 [0.3.22]: https://github.com/jerus-org/named-colour/compare/v0.3.21...v0.3.22
