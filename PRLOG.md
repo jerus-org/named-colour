@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- add release-hook.sh script for automated changelog generation(pr [#120])
+
 ### Changed
 
 - chore-rename CHANGELOG.md to PRLOG.md(pr [#118])
@@ -398,6 +402,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#116]: https://github.com/jerus-org/named-colour/pull/116
 [#118]: https://github.com/jerus-org/named-colour/pull/118
 [#119]: https://github.com/jerus-org/named-colour/pull/119
+[#120]: https://github.com/jerus-org/named-colour/pull/120
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.23...HEAD
 [0.3.23]: https://github.com/jerus-org/named-colour/compare/v0.3.22...v0.3.23
 [0.3.22]: https://github.com/jerus-org/named-colour/compare/v0.3.21...v0.3.22
