@@ -33,28 +33,32 @@ executors:
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+
+jobs:
+  trigger_success_pipeline:
+    executor: base-env
+    steps:
+      - run:
+          name: Trigger success pipeline
+          command: |
+            curl -X POST \
+              --header "Content-Type: application/json" \
+              --header "Circle-Token: ${CIRCLE_TOKEN}" \
+              --data '{
+                "branch": "'"${CIRCLE_BRANCH}"'",
+                "parameters": {
+                  "success-flag": true
+                }
+              }' \
+              "https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pipeline"
+
 workflows:
-  check_last_commit:
-    when:
-      and:
-        - not:
-            equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        - not: << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.validation-flag >>
-        - not: << pipeline.parameters.release-flag >>
-
-    jobs:
-      - toolkit/choose_pipeline:
-          name: choose pipeline based on committer
-          context: bot-check
-
   validation:
     when:
       and:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
         - not: << pipeline.parameters.success-flag >>
-        - << pipeline.parameters.validation-flag >>
         - not: << pipeline.parameters.release-flag >>
     jobs:
       - toolkit/label:
@@ -66,6 +70,11 @@ workflows:
                 - main
       - toolkit/code_coverage:
           min_rust_version: << pipeline.parameters.min-rust-version >>
+          filters:
+            branches:
+              ignore: /pull\/[0-9]+/
+          requires:
+            - security with sonarcloud
       - toolkit/required_builds:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/optional_builds:
@@ -77,14 +86,43 @@ workflows:
       - toolkit/idiomatic_rust:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/security:
+          name: security audit only
+          sonarcloud: false
+      - toolkit/security:
+          name: security with sonarcloud
           context: SonarCloud
-      - toolkit/update_prlog:
+          filters:
+            branches:
+              ignore:
+                - /pull\/[0-9]+/
+                - main
+      - trigger_success_pipeline:
+          context: bot-check
+          filters:
+            branches:
+              ignore:
+                - /pull\/[0-9]+/
+                - main
           requires:
-            - toolkit/common_tests
-            - toolkit/required_builds
-            - toolkit/test_doc_build
+            - toolkit/code_coverage
             - toolkit/idiomatic_rust
-            - toolkit/security
+            - toolkit/test_doc_build
+            - toolkit/required_builds
+            - toolkit/common_tests
+            - security audit only
+            - security with sonarcloud
+
+  post_merge_main:
+    when:
+      and:
+        - not:
+            equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - not: << pipeline.parameters.success-flag >>
+        - not: << pipeline.parameters.validation-flag >>
+        - not: << pipeline.parameters.release-flag >>
+
+    jobs:
+      - toolkit/update_prlog:
           context:
             - release
             - bot-check
@@ -101,7 +139,10 @@ workflows:
         - not: << pipeline.parameters.release-flag >>
 
     jobs:
-      - toolkit/end_success
+      - toolkit/end_success:
+          filters:
+            branches:
+              ignore: main
 
   release:
     when:
