@@ -71,9 +71,7 @@ commands:
             fi
 
             result=$(pcu <<parameters.pcu_verbosity>> pr \
-            pcu -vv pr --from-merge
-
-              --early-exit \
+              $method \
               << parameters.pcu_allow_push_fail >> \
               << parameters.pcu_allow_no_pull_request >>)
 
