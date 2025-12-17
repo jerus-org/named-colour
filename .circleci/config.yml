@@ -24,9 +24,6 @@ executors:
     docker:
       - image: jerusdp/ci-rust:base
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-
 commands:
   update_log:
     description: >
@@ -614,7 +611,6 @@ workflows:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
         - << pipeline.parameters.success-flag >>
-        # - not: << pipeline.parameters.validation-flag >>
         - not: << pipeline.parameters.release-flag >>
 
     jobs:
@@ -631,7 +627,6 @@ workflows:
             - equal: ["release check", << pipeline.schedule.name >>]
         - and:
             - not: << pipeline.parameters.success-flag >>
-            # - not: << pipeline.parameters.validation-flag >>
             - << pipeline.parameters.release-flag >>
     jobs:
       - toolkit/save_next_version:
@@ -653,7 +648,6 @@ workflows:
           context:
             - release
             - bot-check
-          # ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
           when_use_workspace: false
 
