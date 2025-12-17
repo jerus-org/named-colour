@@ -65,9 +65,9 @@ commands:
             set -ex
 
             if [[ << parameters.pcu_from_merge >> ]]; then
-              method = "--from-merge"
+              method="--from-merge"
             else 
-              method = "--early-exit"
+              method="--early-exit"
             fi
 
             result=$(pcu <<parameters.pcu_verbosity>> pr \
