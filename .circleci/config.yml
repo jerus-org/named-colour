@@ -4,13 +4,6 @@ parameters:
   min-rust-version:
     type: string
     default: "1.75"
-  # fingerprint:
-  #   type: string
-  #   default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
-  # validation-flag:
-  #   type: boolean
-  #   default: false
-  #   description: "If true, the validation pipeline will be executed."
   success-flag:
     type: boolean
     default: false
@@ -153,11 +146,6 @@ jobs:
         default: BOT_SIGN_KEY
         description: The GPG key id associated with the GPG key
         type: env_var_name
-      ssh_fingerprint:
-        description: |
-          The fingerprint of the ssh key to use
-        type: string
-        default: "not-set"
       update_log_option:
         default: pipeline
         description: >-
@@ -264,6 +252,220 @@ jobs:
                 paths:
                   - << parameters.log_file >>
                 root: /tmp/workspace
+
+  make_release:
+    description: >
+      Assess the level using nextsv and make a release using cargo release
+    executor:
+      name: rust-env
+
+    parameters:
+      blog_directory:
+        type: string
+        default: "content/blog"
+        description: "The directory to use for the blog"
+      bluesky_command:
+        type: enum
+        default: draft
+        enum:
+          - draft
+          - post
+        description: "The command to run for bluesky"
+      echo:
+        type: boolean
+        default: false
+        description: "If true, the bash environment will be set to echo the commands"
+      first_release:
+        type: boolean
+        default: false
+        description: |
+          Request that a first release (v0.1.0) be created
+      min_rust_version:
+        type: string
+      package:
+        type: string
+        default: ""
+        description: "The package to publish"
+      pcu_commit_message:
+        type: string
+        default: "chore: test push"
+        description: "The commit message to use for the pcu test push"
+      pcu_no_push:
+        type: boolean
+        default: false
+        description: "Whether or not prevent final push of commit"
+      pcu_prefix:
+        type: string
+        default: "v"
+        description: "The verbosity of the pcu command"
+      pcu_semver:
+        type: boolean
+        default: false
+        description: "Whether or not set the semver version flag"
+      pcu_update_prlog:
+        type: boolean
+        default: false
+        description: "To update the changelog when making the github release"
+      pcu_workspace:
+        type: boolean
+        default: false
+        description: "Whether or not to set the workspace flag of the pcu command"
+      pcu_verbosity:
+        type: string
+        default: "-vv"
+        description: "The verbosity of the pcu command"
+      publish:
+        type: boolean
+        default: true
+        description: |
+          Publish the release
+      remove_ssh_key:
+        type: boolean
+        default: true
+        description: "Remove the original SSH key from the agent"
+      specific_version:
+        type: boolean
+        default: false
+        description: |
+          Make a specific release, if true version must be set to the specific version number
+      when_github_release:
+        type: boolean
+        default: true
+        description: |
+          Create a github release
+      when_cargo_release:
+        type: boolean
+        default: true
+        description: |
+          Create a cargo release
+      when_update_pcu:
+        type: boolean
+        default: false
+        description: |
+          Update pcu to the latest version based on the main branch on Github
+      when_pcu_push:
+        type: boolean
+        default: false
+        description: "To use the pcu push command"
+      when_get_version:
+        type: boolean
+        default: true
+        description: "Get the next version number"
+      when_use_workspace:
+        type: boolean
+        default: false
+        description: "Get version from the workspace"
+      when_bluesky:
+        type: boolean
+        default: false
+        description: "Whether or not to run the bluesky command"
+      verbosity:
+        type: string
+        default: "-vv"
+        description: "Verbosity for cargo release"
+      version:
+        type: string
+        default: ""
+        description: |
+          Specific version number to release
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - $SSH_FINGERPRINT
+      - when:
+          condition: << parameters.remove_ssh_key >>
+          steps:
+            - run:
+                name: Remove original SSH key from agent
+                command: |
+                  ssh-add -l
+                  ssh-add -d ~/.ssh/id_rsa.pub
+                  ssh-add -l
+      - toolkit/gpg_key
+      - toolkit/git_config
+      - when:
+          condition: << parameters.when_use_workspace >>
+          steps:
+            - attach_workspace:
+                at: /tmp/workspace
+            - run:
+                name: Get version and set SEMVER in bash environment
+                command: |
+                  semver=$(cat /tmp/workspace/next-version)
+                  echo "export SEMVER=$semver" >> "$BASH_ENV"
+      - when:
+          condition:
+            and:
+              - not: << parameters.when_use_workspace >>
+              - << parameters.when_get_version >>
+          steps:
+            - toolkit/get_next_version:
+                version: << parameters.version >>
+                verbosity: << parameters.pcu_verbosity >>
+                package: << parameters.package >>
+            - run:
+                name: Set SEMVER in bash environment
+                command: |
+                  semver=$NEXT_VERSION
+                  echo "export SEMVER=$semver" >> "$BASH_ENV"
+      - when:
+          condition: << parameters.when_update_pcu >>
+          steps:
+            - toolkit/install_latest_pcu
+      - when:
+          condition:
+            and:
+              - << parameters.when_cargo_release >>
+              - not: << parameters.when_pcu_push >>
+          steps:
+            - toolkit/make_cargo_release:
+                publish: << parameters.publish >>
+                first_release: << parameters.first_release >>
+                specific_version: << parameters.specific_version >>
+                version: << parameters.version >>
+                package: << parameters.package >>
+                verbosity: << parameters.verbosity >>
+                echo: << parameters.echo >>
+      - when:
+          condition:
+            and:
+              - << parameters.when_cargo_release >>
+              - << parameters.when_pcu_push >>
+          steps:
+            - toolkit/make_cargo_release:
+                publish: << parameters.publish >>
+                first_release: << parameters.first_release >>
+                specific_version: << parameters.specific_version >>
+                version: << parameters.version >>
+                package: << parameters.package >>
+                verbosity: << parameters.verbosity >>
+                echo: << parameters.echo >>
+                no_push: true
+      - when:
+          condition: << parameters.when_pcu_push >>
+          steps:
+            - toolkit/push_cmd:
+                pcu_no_push: << parameters.pcu_no_push >>
+                pcu_verbosity: << parameters.pcu_verbosity >>
+                pcu_semver: << parameters.pcu_semver >>
+      - when:
+          condition: << parameters.when_bluesky >>
+          steps:
+            - toolkit/bsky:
+                command: << parameters.bluesky_command >>
+                pcu_verbosity: << parameters.pcu_verbosity >>
+                blog_directory: << parameters.blog_directory >>
+
+      - when:
+          condition: << parameters.when_github_release >>
+          steps:
+            - toolkit/make_github_release:
+                pcu_verbosity: << parameters.pcu_verbosity >>
+                pcu_update_prlog: << parameters.pcu_update_prlog >>
+                pcu_prefix: << parameters.pcu_prefix >>
+                pcu_workspace: << parameters.pcu_workspace >>
+                pcu_package: << parameters.package >>
 
 workflows:
   validation:
@@ -375,7 +577,7 @@ workflows:
       - toolkit/save_next_version:
           min_rust_version: << pipeline.parameters.min-rust-version >>
 
-      - toolkit/make_release:
+      - make_release:
           requires:
             - toolkit/save_next_version
           pre-steps:
