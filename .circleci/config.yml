@@ -651,6 +651,7 @@ workflows:
             - bot-check
           min_rust_version: << pipeline.parameters.min-rust-version >>
           when_use_workspace: false
+          when_update_pcu: true
 
       - toolkit/no_release:
           min_rust_version: << pipeline.parameters.min-rust-version >>
