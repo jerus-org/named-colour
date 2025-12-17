@@ -50,13 +50,13 @@ commands:
           - "--allow-push-fail"
         default: ""
         description: "Optional flag to allow the push to fail"
-      pcu_allow_no_pull_request:
+      pcu_push:
         type: enum
         enum:
           - ""
-          - "--allow-no-pull-request"
-        default: ""
-        description: "Optional flag to allows successful exit if no pull request in CI environment"
+          - "--push"
+        default: "--push"
+        description: "Push the commit."
 
     steps:
       - run:
@@ -73,7 +73,7 @@ commands:
             result=$(pcu <<parameters.pcu_verbosity>> pr \
               $method \
               << parameters.pcu_allow_push_fail >> \
-              << parameters.pcu_allow_no_pull_request >>)
+              << parameters.pcu_push >>)
 
             if [ "$result" == << parameters.pcu_halt_signal >> ]; then
               circleci-agent step halt
@@ -268,7 +268,6 @@ jobs:
               - << parameters.update_log_option >>
           steps:
             - update_log:
-                pcu_allow_no_pull_request: <<parameters.pcu_allow_no_pull_request>>
                 pcu_allow_push_fail: <<parameters.pcu_allow_push_fail>>
                 pcu_halt_signal: <<parameters.pcu_halt_signal>>
                 pcu_verbosity: <<parameters.pcu_verbosity>>
@@ -601,6 +600,7 @@ workflows:
           update_log_option: halt
           pcu_from_merge: true
           update_pcu: true
+          pcu_verbosity: -vvvv
           filters:
             branches:
               only:
