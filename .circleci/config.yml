@@ -64,7 +64,7 @@ commands:
           command: |
             set -ex
 
-            if [[ << parameters.pcu_from_merge >> ]] then; 
+            if [[ << parameters.pcu_from_merge >> ]]; then
               method = "--from-merge"
             else 
               method = "--early-exit"
