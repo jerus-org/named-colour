@@ -128,6 +128,10 @@ workflows:
             - bot-check
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
+          filters:
+            branches:
+              only:
+                - main
 
   on_success:
     when:
