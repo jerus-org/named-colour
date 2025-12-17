@@ -27,6 +27,63 @@ executors:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
+commands:
+  update_log:
+    description: >
+      Makes a post request to https://circleci.com/api/v2/pipeline/continue to
+      continue a setup workflow.
+
+    parameters:
+      pcu_verbosity:
+        type: string
+        default: "-vv"
+        description: "The verbosity of the pcu command"
+      pcu_from_merge:
+        type: boolean
+        default: false
+        description: "Generate log entry from merged PR"
+      pcu_halt_signal:
+        type: string
+        default: "halt"
+        description: "The verbosity of the pcu command"
+      pcu_allow_push_fail:
+        type: enum
+        enum:
+          - ""
+          - "--allow-push-fail"
+        default: ""
+        description: "Optional flag to allow the push to fail"
+      pcu_allow_no_pull_request:
+        type: enum
+        enum:
+          - ""
+          - "--allow-no-pull-request"
+        default: ""
+        description: "Optional flag to allows successful exit if no pull request in CI environment"
+
+    steps:
+      - run:
+          name: Update changelog or halt step
+          command: |
+            set -ex
+
+            if [[ << parameters.pcu_from_merge >> ]] then; 
+              method = "--from-merge"
+            else 
+              method = "--early-exit"
+            fi
+
+            result=$(pcu <<parameters.pcu_verbosity>> pr \
+            pcu -vv pr --from-merge
+
+              --early-exit \
+              << parameters.pcu_allow_push_fail >> \
+              << parameters.pcu_allow_no_pull_request >>)
+
+            if [ "$result" == << parameters.pcu_halt_signal >> ]; then
+              circleci-agent step halt
+            fi
+
 jobs:
   trigger_success_pipeline:
     executor: base-env
@@ -122,6 +179,10 @@ jobs:
         default: ""
         description: Custom pull request description.
         type: string
+      pcu_from_merge:
+        type: boolean
+        default: false
+        description: "Generate log entry from merged PR"
       pcu_halt_signal:
         default: halt
         description: The verbosity of the pcu command
@@ -211,11 +272,12 @@ jobs:
               - halt
               - << parameters.update_log_option >>
           steps:
-            - toolkit/update_log:
+            - update_log:
                 pcu_allow_no_pull_request: <<parameters.pcu_allow_no_pull_request>>
                 pcu_allow_push_fail: <<parameters.pcu_allow_push_fail>>
                 pcu_halt_signal: <<parameters.pcu_halt_signal>>
                 pcu_verbosity: <<parameters.pcu_verbosity>>
+                pcu_from_merge: <<parameters.pcu_from_merge>>
       - when:
           condition:
             equal:
@@ -533,7 +595,6 @@ workflows:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
         - not: << pipeline.parameters.success-flag >>
-        # - not: << pipeline.parameters.validation-flag >>
         - not: << pipeline.parameters.release-flag >>
 
     jobs:
@@ -541,7 +602,6 @@ workflows:
           context:
             - release
             - bot-check
-          # ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
           filters:
             branches:
