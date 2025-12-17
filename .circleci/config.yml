@@ -4,13 +4,13 @@ parameters:
   min-rust-version:
     type: string
     default: "1.75"
-  fingerprint:
-    type: string
-    default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
-  validation-flag:
-    type: boolean
-    default: false
-    description: "If true, the validation pipeline will be executed."
+  # fingerprint:
+  #   type: string
+  #   default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
+  # validation-flag:
+  #   type: boolean
+  #   default: false
+  #   description: "If true, the validation pipeline will be executed."
   success-flag:
     type: boolean
     default: false
@@ -118,7 +118,7 @@ workflows:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
         - not: << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.validation-flag >>
+        # - not: << pipeline.parameters.validation-flag >>
         - not: << pipeline.parameters.release-flag >>
 
     jobs:
@@ -126,7 +126,7 @@ workflows:
           context:
             - release
             - bot-check
-          ssh_fingerprint: << pipeline.parameters.fingerprint >>
+          # ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
           filters:
             branches:
@@ -139,7 +139,7 @@ workflows:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
         - << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.validation-flag >>
+        # - not: << pipeline.parameters.validation-flag >>
         - not: << pipeline.parameters.release-flag >>
 
     jobs:
@@ -156,7 +156,7 @@ workflows:
             - equal: ["release check", << pipeline.schedule.name >>]
         - and:
             - not: << pipeline.parameters.success-flag >>
-            - not: << pipeline.parameters.validation-flag >>
+            # - not: << pipeline.parameters.validation-flag >>
             - << pipeline.parameters.release-flag >>
     jobs:
       - toolkit/save_next_version:
@@ -178,7 +178,7 @@ workflows:
           context:
             - release
             - bot-check
-          ssh_fingerprint: << pipeline.parameters.fingerprint >>
+          # ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
           when_use_workspace: false
 
