@@ -88,17 +88,22 @@ jobs:
     description: |
       Verify that commits from trusted identities are properly signed
       to prevent identity impersonation attacks.
+      
+      Dynamically fetches trusted collaborators from GitHub API and
+      their GPG public keys to build the trust list at runtime.
     executor: base-env
+    parameters:
+      github_token:
+        type: env_var_name
+        default: GITHUB_TOKEN
+        description: GitHub token for API access (optional but recommended)
     steps:
       - checkout
       - run:
-          name: Import GitHub web-flow GPG key
+          name: Verify commit signatures (dynamic)
           command: |
-            # Import GitHub's web-flow key for signature verification
-            curl -sL https://github.com/web-flow.gpg | gpg --import
-      - run:
-          name: Verify commit signatures
-          command: |
+            # Export GITHUB_TOKEN if available for API access
+            export GITHUB_TOKEN="${<< parameters.github_token >>:-}"
             bash .circleci/verify-signatures.sh
 
   trigger_success_pipeline:
