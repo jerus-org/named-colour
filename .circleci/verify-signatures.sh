@@ -146,8 +146,14 @@ echo ""
 
 # Show summary of trusted identities
 echo -e "${BLUE}=== Trusted Identities ===${NC}"
-# Check if TRUSTMAP has any entries (safe for set -u)
-if [[ ${#TRUSTMAP[@]:-0} -eq 0 ]]; then
+# Check if TRUSTMAP has any entries (compatible with bash strict mode)
+TRUSTMAP_COUNT=0
+for key in "${!TRUSTMAP[@]}"; do
+  TRUSTMAP_COUNT=$((TRUSTMAP_COUNT + 1))
+  break
+done
+
+if [[ $TRUSTMAP_COUNT -eq 0 ]]; then
   echo -e "${YELLOW}⚠${NC}  No trusted identities configured"
   echo "  This means ALL commits will be allowed (unsigned commits OK)"
   echo "  Consider configuring GITHUB_TOKEN to fetch collaborator keys"
