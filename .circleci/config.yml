@@ -43,6 +43,10 @@ commands:
         type: string
         default: "halt"
         description: "The verbosity of the pcu command"
+      pcu_log:
+        type: string
+        default: "PRLOG.md"
+        description: "The log to update"
       pcu_allow_push_fail:
         type: enum
         enum:
@@ -60,7 +64,7 @@ commands:
 
     steps:
       - run:
-          name: Update changelog or halt step
+          name: Update log << parameters.pcu_log >>
           command: |
             set -ex
 
@@ -600,7 +604,7 @@ workflows:
           update_log_option: halt
           pcu_from_merge: true
           update_pcu: true
-          pcu_verbosity: -vvvv
+          pcu_verbosity: -vvv
           filters:
             branches:
               only:
