@@ -84,6 +84,23 @@ commands:
             fi
 
 jobs:
+  verify_commit_signatures:
+    description: |
+      Verify that commits from trusted identities are properly signed
+      to prevent identity impersonation attacks.
+    executor: base-env
+    steps:
+      - checkout
+      - run:
+          name: Import GitHub web-flow GPG key
+          command: |
+            # Import GitHub's web-flow key for signature verification
+            curl -sL https://github.com/web-flow.gpg | gpg --import
+      - run:
+          name: Verify commit signatures
+          command: |
+            bash .circleci/verify-signatures.sh
+
   trigger_success_pipeline:
     executor: base-env
     steps:
@@ -536,6 +553,7 @@ workflows:
         - not: << pipeline.parameters.success-flag >>
         - not: << pipeline.parameters.release-flag >>
     jobs:
+      - verify_commit_signatures
       - toolkit/label:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: pcu-app
@@ -579,6 +597,7 @@ workflows:
                 - /pull\/[0-9]+/
                 - main
           requires:
+            - verify_commit_signatures
             - toolkit/code_coverage
             - toolkit/idiomatic_rust
             - toolkit/test_doc_build
