@@ -23,6 +23,10 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# Security constants
+CURL_HTTPS_ONLY='=https'
+CURL_TLS_VERSION='1.2'
+
 echo -e "${BLUE}=== Commit Signature Verification (Dynamic) ===${NC}"
 echo "Fetching trusted identities from GitHub..."
 echo ""
@@ -40,7 +44,7 @@ if [[ -z "$REPO_OWNER" ]] || [[ -z "$REPO_NAME" ]]; then
 fi
 
 if [[ -z "$REPO_OWNER" ]] || [[ -z "$REPO_NAME" ]]; then
-  echo -e "${RED}✗${NC} ERROR: Could not determine repository owner/name"
+  echo -e "${RED}✗${NC} ERROR: Could not determine repository owner/name" >&2
   exit 2
 fi
 
@@ -55,10 +59,10 @@ echo "Fetching collaborators with write access..."
 COLLAB_API="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/collaborators"
 
 if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-  COLLABORATORS=$(curl -sS --proto '=https' --tlsv1.2 -H "Authorization: token ${GITHUB_TOKEN}" "$COLLAB_API" 2>/dev/null | \
+  COLLABORATORS=$(curl -sS --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" -H "Authorization: token ${GITHUB_TOKEN}" "$COLLAB_API" 2>/dev/null | \
     jq -r '.[] | select(.permissions.push == true or .permissions.admin == true) | .login' 2>/dev/null || echo "")
 else
-  COLLABORATORS=$(curl -sS --proto '=https' --tlsv1.2 "$COLLAB_API" 2>/dev/null | \
+  COLLABORATORS=$(curl -sS --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" "$COLLAB_API" 2>/dev/null | \
     jq -r '.[] | select(.permissions.push == true or .permissions.admin == true) | .login' 2>/dev/null || echo "")
 fi
 
@@ -76,9 +80,9 @@ while IFS= read -r username; do
   
   KEYS_API="https://api.github.com/users/${username}/gpg_keys"
   if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-    GPG_KEYS=$(curl -sS --proto '=https' --tlsv1.2 -H "Authorization: token ${GITHUB_TOKEN}" "$KEYS_API" 2>/dev/null)
+    GPG_KEYS=$(curl -sS --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" -H "Authorization: token ${GITHUB_TOKEN}" "$KEYS_API" 2>/dev/null)
   else
-    GPG_KEYS=$(curl -sS --proto '=https' --tlsv1.2 "$KEYS_API" 2>/dev/null)
+    GPG_KEYS=$(curl -sS --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" "$KEYS_API" 2>/dev/null)
   fi
   
   if [[ -z "$GPG_KEYS" ]] || [[ "$GPG_KEYS" == "[]" ]]; then
@@ -121,7 +125,7 @@ while IFS= read -r username; do
       fi
       
       # Also trust numeric ID format (for bots)
-      GITHUB_USER_ID=$(curl -sS --proto '=https' --tlsv1.2 "https://api.github.com/users/${username}" 2>/dev/null | jq -r '.id // empty')
+      GITHUB_USER_ID=$(curl -sS --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" "https://api.github.com/users/${username}" 2>/dev/null | jq -r '.id // empty')
       if [[ -n "$GITHUB_USER_ID" ]]; then
         GITHUB_ID_EMAIL="${GITHUB_USER_ID}+${username}@users.noreply.github.com"
         if [[ -n "${TRUSTMAP[$GITHUB_ID_EMAIL]:-}" ]]; then
@@ -138,7 +142,7 @@ echo ""
 
 # Import GitHub's web-flow key for merge commits
 echo "Importing GitHub web-flow key..."
-curl -sL --proto '=https' --tlsv1.2 https://github.com/web-flow.gpg | gpg --import 2>/dev/null && \
+curl -sL --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" https://github.com/web-flow.gpg | gpg --import 2>/dev/null && \
   echo -e "${GREEN}✓${NC} GitHub web-flow key imported" || \
   echo -e "${YELLOW}⚠${NC} Could not import GitHub web-flow key"
 
@@ -172,7 +176,7 @@ git fetch --no-tags --depth=200 origin +refs/heads/*:refs/remotes/origin/* >/dev
 
 MERGE_BASE="$(git merge-base "$BASE_REF" "$HEAD_REF" 2>/dev/null || true)"
 if [[ -z "$MERGE_BASE" ]]; then
-  echo -e "${RED}✗${NC} ERROR: Could not compute merge-base for ${BASE_REF}..${HEAD_REF}"
+  echo -e "${RED}✗${NC} ERROR: Could not compute merge-base for ${BASE_REF}..${HEAD_REF}" >&2
   exit 2
 fi
 
