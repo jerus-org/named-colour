@@ -34,8 +34,90 @@ TRUSTED_KEYS=(
 # GitHub web-flow key (for merge commits signed by GitHub)
 GITHUB_WEBFLOW_KEY="B5690EEEBB952194"
 
+# Public keys for trusted identities (for signature verification)
+# Export these with: gpg --armor --export KEY_ID
+TRUSTED_PUBLIC_KEYS=(
+  # Jeremiah Russell (garden) - E576B835ACE207E5
+  "-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+6wZttwua+g65
+=dDZe
+-----END PGP PUBLIC KEY BLOCK-----"
+  # Jerus Bot - EB85EDFF0BCB42F8
+  "-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZmG2fhYJKwYBBAHaRw8BAQdAMInH7AaMw9MFbijh0Xp+SE3av2ufrv8f5aMT
+13nog7u0OEplcnVzIEJvdCA8MTcxNTQxMzkyK2plcnVzLWJvdEB1c2Vycy5ub3Jl
+cGx5LmdpdGh1Yi5jb20+iJAEExYIADgWIQRb1c6eyIJfIIfUQ3bZD2BNbjz+EwUC
+ZmG2fgIbAQULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRDZD2BNbjz+E8dpAQCK
+4zDqX5RSOFaCI1ylS/u1gSbgVyPurUpcZrHplR/jRgEAm2/8yoJ7JlXsO24P0jJL
+WS8tjVlWR/3CQoVQTaxQ1g24MwRmYbbaFgkrBgEEAdpHDwEBB0Cl7xEihfkrrWh7
+fpN9ZXAI5PTp5d9HvCFh087PaiVftojvBBgWCAAgFiEEW9XOnsiCXyCH1EN22Q9g
+TW48/hMFAmZhttoCGwIAgQkQ2Q9gTW48/hN2IAQZFggAHRYhBFoOWgeNimYarMfL
+WuuF7f8Ly0L4BQJmYbbaAAoJEOuF7f8Ly0L47A0A/3w7/HCl9xkoFpTaf/C4ojWt
+IWbCX66vm9DvPYtheffUAP4hDc5gc1askYYvzEXPGAZ8LIU4mW/i+A+bCXmdHKaH
+DIjsAQDL2npRl9d/2owWxPPEuH0QQa96aAe1zQXWzpcdVpSJXgD9FAenk1ukKlx4
+yAOIGym8X5zArsVvnNSJ/mltcM/yCQE=
+=FXGz
+-----END PGP PUBLIC KEY BLOCK-----"
+)
+
 echo -e "${BLUE}=== Commit Signature Verification ===${NC}"
 echo "Checking for identity impersonation and signature compliance..."
+echo ""
+
+# Import trusted public keys for verification
+echo "Importing trusted public keys..."
+for key in "${TRUSTED_PUBLIC_KEYS[@]}"; do
+  echo "$key" | gpg --import 2>/dev/null || true
+done
 echo ""
 
 # Build lookup map: email -> comma-separated fingerprints
