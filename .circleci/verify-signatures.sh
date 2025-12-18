@@ -144,12 +144,12 @@ echo ""
 echo "Importing GitHub web-flow key..."
 # Security: This curl is safe because:
 # 1. URL is hardcoded HTTPS (no user input)
-# 2. --proto "${CURL_HTTPS_ONLY}" enforces HTTPS-only (no HTTP fallback)
-# 3. --tlsv"${CURL_TLS_VERSION}" enforces TLS 1.2 minimum
+# 2. --proto '=https' enforces HTTPS-only (no HTTP fallback)
+# 3. --tlsv1.2 enforces TLS 1.2 minimum
 # 4. -L follows redirects ONLY within HTTPS due to --proto restriction
 # 5. GitHub.com is a trusted source for their own web-flow signing key
 # nosemgrep: detected-curl-with-l-option
-curl -sL --proto "${CURL_HTTPS_ONLY}" --tlsv"${CURL_TLS_VERSION}" https://github.com/web-flow.gpg | gpg --import 2>/dev/null && \
+curl -sL --proto '=https' --tlsv1.2 https://github.com/web-flow.gpg | gpg --import 2>/dev/null && \
   echo -e "${GREEN}✓${NC} GitHub web-flow key imported" || \
   echo -e "${YELLOW}⚠${NC} Could not import GitHub web-flow key"
 
