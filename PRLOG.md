@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - deps: update dependency toolkit to v3(pr [#124])
+- 🔐 re-sign commits with GPG signature(pr [#135])
 
 ## [0.3.25] - 2025-11-21
 
@@ -429,6 +430,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#124]: https://github.com/jerus-org/named-colour/pull/124
 [#133]: https://github.com/jerus-org/named-colour/pull/133
 [#134]: https://github.com/jerus-org/named-colour/pull/134
+[#135]: https://github.com/jerus-org/named-colour/pull/135
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.25...HEAD
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/jerus-org/named-colour/compare/v0.3.23...v0.3.24
