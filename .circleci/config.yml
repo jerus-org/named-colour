@@ -122,7 +122,27 @@ jobs:
           command: |
             set -e
             export GITHUB_TOKEN="${<< parameters.github_token >>}"
-            pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD
+            
+            # Extract PR number from CIRCLE_PULL_REQUEST if available
+            PR_NUMBER=""
+            if [ -n "$CIRCLE_PULL_REQUEST" ]; then
+              PR_NUMBER=$(echo "$CIRCLE_PULL_REQUEST" | grep -oE '[0-9]+$')
+            fi
+            
+            # Run verification with optional PR comment posting
+            if [ -n "$PR_NUMBER" ]; then
+              echo "Detected PR #${PR_NUMBER}, will post verification results as comment"
+              pcu << parameters.pcu_verbosity >> verify-signatures \
+                --base origin/main \
+                --head HEAD \
+                --post-comment \
+                --pr-number "$PR_NUMBER"
+            else
+              echo "Not a PR branch, running verification without posting comment"
+              pcu << parameters.pcu_verbosity >> verify-signatures \
+                --base origin/main \
+                --head HEAD
+            fi
 
   trigger_success_pipeline:
     executor: base-env
@@ -579,6 +599,10 @@ workflows:
       - verify_commit_signatures:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: bot-check
+          filters:
+            branches:
+              ignore:
+                - main
       - toolkit/label:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: pcu-app
