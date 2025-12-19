@@ -110,8 +110,6 @@ jobs:
         type: string
     steps:
       - checkout
-      - toolkit/gpg_key
-      - toolkit/git_config
       - when:
           condition: << parameters.update_pcu >>
           steps:
