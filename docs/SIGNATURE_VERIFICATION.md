@@ -50,75 +50,61 @@ Is author email in trusted list?
                      └─── Unsigned? ──> ✅ PASS (allowed)
 ```
 
-## Trusted Identities
+## Trusted Identities (Dynamic)
 
-The following identities are considered trusted and **must** sign all their commits:
+Trusted identities are **automatically fetched from GitHub** at verification time:
 
-| Email | Owner | Key Fingerprint(s) | Purpose |
-|-------|-------|-------------------|---------|
-| `jerry@jrussell.ie` | Jeremiah Russell | `E576B835ACE207E5` | Primary maintainer |
-| `47631109+jerusdp@users.noreply.github.com` | Jeremiah Russell (GitHub) | `E576B835ACE207E5`, `B5690EEEBB952194` | GitHub web merges |
-| `171541392+jerus-bot@users.noreply.github.com` | Jerus Bot | `EB85EDFF0BCB42F8` | CI/CD automation |
+- **Collaborators with write/admin access** are considered trusted
+- Their GPG keys are fetched from their GitHub profiles
+- GitHub noreply emails are automatically trusted
+- GitHub web-flow key is included for merge commits
 
-### GitHub Web-Flow Key
+### How It Works
 
-GitHub signs merge commits with its web-flow key `B5690EEEBB952194`. This key is trusted for merge commits performed via GitHub's web interface.
-
-## Configuration
-
-Trusted identities and their keys are configured in `.circleci/verify-signatures.sh`:
-
-```bash
-TRUSTED_KEYS=(
-  "jerry@jrussell.ie|E576B835ACE207E5"
-  "47631109+jerusdp@users.noreply.github.com|E576B835ACE207E5,B5690EEEBB952194"
-  "171541392+jerus-bot@users.noreply.github.com|EB85EDFF0BCB42F8"
-)
-```
+1. The verification system queries the GitHub API for repository collaborators
+2. For each collaborator with write/admin access:
+   - Fetches their registered GPG public keys from GitHub
+   - Imports keys into temporary keyring
+   - Maps their email addresses to approved key IDs
+3. GitHub web-flow key (`B5690EEEBB952194`) is always included
 
 ### Adding a New Trusted Identity
 
-To add a new maintainer or bot:
+No manual configuration needed! Just:
 
-1. Get their GPG key fingerprint:
-   ```bash
-   gpg --list-keys their-email@example.com
-   ```
-
-2. Add entry to `TRUSTED_KEYS` in `.circleci/verify-signatures.sh`:
-   ```bash
-   "their-email@example.com|FINGERPRINT1,FINGERPRINT2"
-   ```
-
-3. Commit and push the change (signed by an existing maintainer)
+1. **Grant them write access** to the repository on GitHub
+2. **Ensure they've uploaded their GPG key** to their GitHub profile:
+   - Settings → SSH and GPG keys → New GPG key
+3. Their key will be automatically trusted on next verification
 
 ### Key Rotation
 
 When a maintainer rotates their GPG key:
 
-1. Add new fingerprint to their entry (comma-separated):
-   ```bash
-   "jerry@jrussell.ie|OLD_KEY,NEW_KEY"
-   ```
-
-2. After transition period (e.g., 1 month), remove old key:
-   ```bash
-   "jerry@jrussell.ie|NEW_KEY"
-   ```
+1. **Upload new key to GitHub profile**
+2. **Remove old key from GitHub** (or keep both during transition)
+3. No code changes needed - verification automatically uses current GitHub keys
 
 ## CI/CD Integration
 
-The signature verification runs automatically on every pull request as part of the `validation` workflow:
+The signature verification runs automatically on every pull request using the `pcu` tool:
 
 ```yaml
 jobs:
   verify_commit_signatures:
-    executor: base-env
+    executor: rust-env
     steps:
       - checkout
-      - run: Import GitHub web-flow GPG key
-      - run: bash .circleci/verify-signatures.sh
+      - toolkit/install_latest_pcu
+      - run: pcu verify-signatures --base origin/main --head HEAD
 ```
+
+### Implementation
+
+- Uses the `pcu verify-signatures` command (Rust implementation)
+- Dynamically fetches collaborators and GPG keys from GitHub API
+- Privacy-preserving output (no PII in logs)
+- Fast and type-safe verification
 
 ### Workflow Requirements
 
@@ -170,9 +156,10 @@ If you are a maintainer or have commit access:
    # Add to GitHub: Settings > SSH and GPG keys > New GPG key
    ```
 
-4. **Get your key added to allowlist**:
-   - Submit a PR adding your key fingerprint to `TRUSTED_KEYS`
-   - Another maintainer must review and merge
+4. **Verify your key is on GitHub**:
+   - Go to Settings → SSH and GPG keys
+   - Your public key should be listed
+   - Verification will automatically trust your key once you have write access
 
 #### Verifying Your Commits
 

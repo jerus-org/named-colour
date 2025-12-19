@@ -91,20 +91,40 @@ jobs:
       
       Dynamically fetches trusted collaborators from GitHub API and
       their GPG public keys to build the trust list at runtime.
-    executor: base-env
+    executor: rust-env
     parameters:
       github_token:
         type: env_var_name
         default: GITHUB_TOKEN
-        description: GitHub token for API access (optional but recommended)
+        description: GitHub token for API access (required)
+      min_rust_version:
+        description: The minimum version of the rust compiler to use
+        type: string
+      update_pcu:
+        default: true
+        description: Update pcu to the latest version from GitHub
+        type: boolean
+      pcu_verbosity:
+        default: "-vv"
+        description: The verbosity of the pcu command
+        type: string
     steps:
       - checkout
+      - toolkit/gpg_key
+      - toolkit/git_config
+      - when:
+          condition: << parameters.update_pcu >>
+          steps:
+            - toolkit/install_latest_pcu
       - run:
-          name: Verify commit signatures (dynamic)
+          name: pcu version
+          command: pcu --version
+      - run:
+          name: Verify commit signatures using pcu
           command: |
-            # Export GITHUB_TOKEN if available for API access
-            export GITHUB_TOKEN="${<< parameters.github_token >>:-}"
-            bash .circleci/verify-signatures.sh
+            set -e
+            export GITHUB_TOKEN="${<< parameters.github_token >>}"
+            pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD
 
   trigger_success_pipeline:
     executor: base-env
@@ -558,7 +578,9 @@ workflows:
         - not: << pipeline.parameters.success-flag >>
         - not: << pipeline.parameters.release-flag >>
     jobs:
-      - verify_commit_signatures
+      - verify_commit_signatures:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+          context: bot-check
       - toolkit/label:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: pcu-app
