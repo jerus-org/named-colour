@@ -120,18 +120,21 @@ jobs:
       - run:
           name: Verify commit signatures using pcu
           command: |
-            set -e
+            set -ex
             export GITHUB_TOKEN="${<< parameters.github_token >>}"
             
             # Extract PR number from CIRCLE_PULL_REQUEST if available
+            echo "CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST:-not set}"
             PR_NUMBER=""
             if [ -n "$CIRCLE_PULL_REQUEST" ]; then
               PR_NUMBER=$(echo "$CIRCLE_PULL_REQUEST" | grep -oE '[0-9]+$')
+              echo "Extracted PR_NUMBER: $PR_NUMBER"
             fi
             
             # Run verification with optional PR comment posting
             if [ -n "$PR_NUMBER" ]; then
               echo "Detected PR #${PR_NUMBER}, will post verification results as comment"
+              echo "Running: pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD --post-comment --pr-number $PR_NUMBER"
               pcu << parameters.pcu_verbosity >> verify-signatures \
                 --base origin/main \
                 --head HEAD \
@@ -139,6 +142,7 @@ jobs:
                 --pr-number "$PR_NUMBER"
             else
               echo "Not a PR branch, running verification without posting comment"
+              echo "Running: pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD"
               pcu << parameters.pcu_verbosity >> verify-signatures \
                 --base origin/main \
                 --head HEAD
