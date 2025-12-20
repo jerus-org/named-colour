@@ -537,7 +537,6 @@ workflows:
         - not: << pipeline.parameters.release-flag >>
     jobs:
       - toolkit/verify_commit_signatures:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
           context: bot-check
           filters:
             branches:
