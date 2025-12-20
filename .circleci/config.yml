@@ -14,7 +14,7 @@ parameters:
     description: "If true, the release pipeline will be executed."
 
 orbs:
-  toolkit: jerus-org/circleci-toolkit@3.0.2
+  toolkit: jerus-org/circleci-toolkit@3.1.0
 
 executors:
   rust-env:
@@ -84,70 +84,6 @@ commands:
             fi
 
 jobs:
-  verify_commit_signatures:
-    description: |
-      Verify that commits from trusted identities are properly signed
-      to prevent identity impersonation attacks.
-      
-      Dynamically fetches trusted collaborators from GitHub API and
-      their GPG public keys to build the trust list at runtime.
-    executor: rust-env
-    parameters:
-      github_token:
-        type: env_var_name
-        default: GITHUB_TOKEN
-        description: GitHub token for API access (required)
-      min_rust_version:
-        description: The minimum version of the rust compiler to use
-        type: string
-      update_pcu:
-        default: true
-        description: Update pcu to the latest version from GitHub
-        type: boolean
-      pcu_verbosity:
-        default: "-vv"
-        description: The verbosity of the pcu command
-        type: string
-    steps:
-      - checkout
-      - when:
-          condition: << parameters.update_pcu >>
-          steps:
-            - toolkit/install_latest_pcu
-      - run:
-          name: pcu version
-          command: pcu --version
-      - run:
-          name: Verify commit signatures using pcu
-          command: |
-            set -ex
-            export GITHUB_TOKEN="${<< parameters.github_token >>}"
-            
-            # Extract PR number from CIRCLE_PULL_REQUEST if available
-            echo "CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST:-not set}"
-            PR_NUMBER=""
-            if [ -n "$CIRCLE_PULL_REQUEST" ]; then
-              PR_NUMBER=$(echo "$CIRCLE_PULL_REQUEST" | grep -oE '[0-9]+$')
-              echo "Extracted PR_NUMBER: $PR_NUMBER"
-            fi
-            
-            # Run verification with optional PR comment posting
-            if [ -n "$PR_NUMBER" ]; then
-              echo "Detected PR #${PR_NUMBER}, will post verification results as comment"
-              echo "Running: pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD --post-comment --pr-number $PR_NUMBER"
-              pcu << parameters.pcu_verbosity >> verify-signatures \
-                --base origin/main \
-                --head HEAD \
-                --post-comment \
-                --pr-number "$PR_NUMBER"
-            else
-              echo "Not a PR branch, running verification without posting comment"
-              echo "Running: pcu << parameters.pcu_verbosity >> verify-signatures --base origin/main --head HEAD"
-              pcu << parameters.pcu_verbosity >> verify-signatures \
-                --base origin/main \
-                --head HEAD
-            fi
-
   trigger_success_pipeline:
     executor: base-env
     steps:
@@ -600,7 +536,7 @@ workflows:
         - not: << pipeline.parameters.success-flag >>
         - not: << pipeline.parameters.release-flag >>
     jobs:
-      - verify_commit_signatures:
+      - toolkit/verify_commit_signatures:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: bot-check
           filters:
@@ -650,7 +586,7 @@ workflows:
                 - /pull\/[0-9]+/
                 - main
           requires:
-            - verify_commit_signatures
+            - toolkit/verify_commit_signatures
             - toolkit/code_coverage
             - toolkit/idiomatic_rust
             - toolkit/test_doc_build
