@@ -536,12 +536,23 @@ workflows:
         - not: << pipeline.parameters.success-flag >>
         - not: << pipeline.parameters.release-flag >>
     jobs:
+      # Signature verification for trusted PRs (with write access for comments)
       - toolkit/verify_commit_signatures:
+          name: verify_commit_signatures_trusted
           context: bot-check
+          post_comment: true
           filters:
             branches:
               ignore:
                 - main
+                - /pull\/[0-9]+/
+      # Signature verification for forked PRs (read-only, no comments)
+      - toolkit/verify_commit_signatures:
+          name: verify_commit_signatures_forked
+          post_comment: false
+          filters:
+            branches:
+              only: /pull\/[0-9]+/
       - toolkit/label:
           min_rust_version: << pipeline.parameters.min-rust-version >>
           context: pcu-app
@@ -585,7 +596,7 @@ workflows:
                 - /pull\/[0-9]+/
                 - main
           requires:
-            - toolkit/verify_commit_signatures
+            - verify_commit_signatures_trusted
             - toolkit/code_coverage
             - toolkit/idiomatic_rust
             - toolkit/test_doc_build
