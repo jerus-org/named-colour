@@ -5,6 +5,7 @@
 [![CircleCI][circle-badge]][circle-url]
 [![Rust][version-badge]][version-url]
 [![Docs][docs-badge]][docs-url]
+[![OpenSSF Best Practices][openssf-badge]][openssf-url]
 [![BuyMeaCoffee][bmac-badge]][bmac-url]
 [![GitHubSponsors][ghub-badge]][ghub-url]
 
@@ -18,6 +19,8 @@
 [version-url]: https://www.rust-lang.org
 [docs-badge]:  https://docs.rs/named-colour/badge.svg
 [docs-url]:  https://docs.rs/named-colour
+[openssf-badge]: https://www.bestpractices.dev/projects/11647/badge
+[openssf-url]: https://www.bestpractices.dev/projects/11647
 [bmac-badge]: https://badgen.net/badge/icon/buymeacoffee?color=yellow&icon=buymeacoffee&label
 [bmac-url]: https://buymeacoffee.com/jerusdp
 [ghub-badge]: https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#white
@@ -101,8 +104,27 @@ Licensed under either of
 - MIT license (LICENSE-MIT or <http://opensource.org/licenses/MIT>)
 at your option.
 
-## Contribution
+## Contributing
 
-Unless you explicitly state otherwise, any contribution intentionally submitted
-for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
-dual licensed as above, without any additional terms or conditions.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- How to submit bug reports and feature requests
+- Our development process and coding standards
+- How to submit pull requests
+- Developer Certificate of Origin (DCO) sign-off requirements
+
+## Code of Conduct
+
+This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+## Security
+
+For security vulnerability reports, please see our [Security Policy](SECURITY.md).
+
+## Governance
+
+For information about project governance and decision-making, see [GOVERNANCE.md](GOVERNANCE.md).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a history of changes to this project.
