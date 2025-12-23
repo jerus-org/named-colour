@@ -7,6 +7,7 @@ pre-release-replacements = [
     { file = "PRLOG.md", search = "\\[Unreleased\\]:", replace = "[{{version}}]:", exactly = 1 },
     { file = "PRLOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}", exactly = 1 },
 ]
+pre-release-hook = ["./release-hook.sh"]
 pre-release-commit-message = "chore: Release"
 tag-message = "{{tag_name}}"
 tag-name = "{{prefix}}v{{version}}"
