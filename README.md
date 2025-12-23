@@ -19,8 +19,8 @@
 [version-url]: https://www.rust-lang.org
 [docs-badge]:  https://docs.rs/named-colour/badge.svg
 [docs-url]:  https://docs.rs/named-colour
-[openssf-badge]: https://www.bestpractices.dev/projects/[PROJECT_ID]/badge
-[openssf-url]: https://www.bestpractices.dev/projects/[PROJECT_ID]
+[openssf-badge]: https://www.bestpractices.dev/projects/11647/badge
+[openssf-url]: https://www.bestpractices.dev/projects/11647
 [bmac-badge]: https://badgen.net/badge/icon/buymeacoffee?color=yellow&icon=buymeacoffee&label
 [bmac-url]: https://buymeacoffee.com/jerusdp
 [ghub-badge]: https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#white
