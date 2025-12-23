@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 👷 ci(circleci)-enhance pipeline verbosity(pr [#133])
 - 👷 ci(circleci)-enhance log configuration in CircleCI(pr [#134])
 - 🔒 security(ci)-add commit signature verification to prevent impersonation(pr [#136])
+- 📝 docs-add OpenSSF Best Practices Badge compliance documentation(pr [#139])
 
 ### Fixed
 
@@ -435,6 +436,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#135]: https://github.com/jerus-org/named-colour/pull/135
 [#137]: https://github.com/jerus-org/named-colour/pull/137
 [#136]: https://github.com/jerus-org/named-colour/pull/136
+[#139]: https://github.com/jerus-org/named-colour/pull/139
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.25...HEAD
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/jerus-org/named-colour/compare/v0.3.23...v0.3.24
