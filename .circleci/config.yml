@@ -1,28 +1,22 @@
 version: 2.1
 
 parameters:
-  min-rust-version:
+  min_rust_version:
     type: string
     default: "1.75"
-  success-flag:
+  success_flag:
     type: boolean
     default: false
     description: "If true, the success pipeline will be executed."
-  release-flag:
+  release_flag:
     type: boolean
     default: false
     description: "If true, the release pipeline will be executed."
 
 orbs:
-  toolkit: jerus-org/circleci-toolkit@3.2.0
+  toolkit: jerus-org/circleci-toolkit@4.2.1
 
-executors:
-  rust-env:
-    docker:
-      - image: jerusdp/ci-rust:<<pipeline.parameters.min-rust-version>>
-  base-env:
-    docker:
-      - image: jerusdp/ci-rust:base
+# Custom executors removed - using toolkit rolling executors instead
 
 commands:
   update_log:
@@ -85,7 +79,8 @@ commands:
 
 jobs:
   trigger_success_pipeline:
-    executor: base-env
+    executor:
+      name: toolkit/base_env
     steps:
       - run:
           name: Trigger success pipeline
@@ -96,7 +91,7 @@ jobs:
               --data '{
                 "branch": "'"${CIRCLE_BRANCH}"'",
                 "parameters": {
-                  "success-flag": true
+                  "success_flag": true
                 }
               }' \
               "https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pipeline"
@@ -105,7 +100,7 @@ jobs:
     description: |
       Add the pull request to the PRLOG
     executor:
-      name: rust-env
+      name: toolkit/rust_env_rolling
 
     parameters:
       blog_directory:
@@ -317,7 +312,7 @@ jobs:
     description: >
       Assess the level using nextsv and make a release using cargo release
     executor:
-      name: rust-env
+      name: toolkit/rust_env_rolling
 
     parameters:
       blog_directory:
@@ -533,8 +528,8 @@ workflows:
       and:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        - not: << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.release-flag >>
+        - not: << pipeline.parameters.success_flag >>
+        - not: << pipeline.parameters.release_flag >>
     jobs:
       # Signature verification for trusted PRs (with write access for comments)
       - toolkit/verify_commit_signatures:
@@ -554,29 +549,29 @@ workflows:
             branches:
               only: /pull\/[0-9]+/
       - toolkit/label:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
           context: pcu-app
           filters:
             branches:
               only:
                 - main
       - toolkit/code_coverage:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
           filters:
             branches:
               ignore: /pull\/[0-9]+/
           requires:
             - security with sonarcloud
       - toolkit/required_builds:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
       - toolkit/optional_builds:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
       - toolkit/test_doc_build:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
       - toolkit/common_tests:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
       - toolkit/idiomatic_rust:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
       - toolkit/security:
           name: security audit only
           sonarcloud: false
@@ -610,15 +605,15 @@ workflows:
       and:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        - not: << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.release-flag >>
+        - not: << pipeline.parameters.success_flag >>
+        - not: << pipeline.parameters.release_flag >>
 
     jobs:
       - update_prlog:
           context:
             - release
             - bot-check
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
           update_log_option: halt
           pcu_from_merge: true
           update_pcu: true
@@ -633,8 +628,8 @@ workflows:
       and:
         - not:
             equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        - << pipeline.parameters.success-flag >>
-        - not: << pipeline.parameters.release-flag >>
+        - << pipeline.parameters.success_flag >>
+        - not: << pipeline.parameters.release_flag >>
 
     jobs:
       - toolkit/end_success:
@@ -649,11 +644,11 @@ workflows:
             - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
             - equal: ["release check", << pipeline.schedule.name >>]
         - and:
-            - not: << pipeline.parameters.success-flag >>
-            - << pipeline.parameters.release-flag >>
+            - not: << pipeline.parameters.success_flag >>
+            - << pipeline.parameters.release_flag >>
     jobs:
       - toolkit/save_next_version:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
 
       - make_release:
           requires:
@@ -671,12 +666,12 @@ workflows:
           context:
             - release
             - bot-check
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
           when_use_workspace: false
           when_update_pcu: true
 
       - toolkit/no_release:
-          min_rust_version: << pipeline.parameters.min-rust-version >>
+          min_rust_version: << pipeline.parameters.min_rust_version >>
           requires:
             - toolkit/save_next_version:
                 - failed
