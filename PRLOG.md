@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- BREAKING: migrate to circleci-toolkit v4.2.1(pr [#141])
+
 ### Changed
 
 - 👷 ci(circleci)-enhance pipeline verbosity(pr [#133])
@@ -439,6 +443,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#136]: https://github.com/jerus-org/named-colour/pull/136
 [#139]: https://github.com/jerus-org/named-colour/pull/139
 [#140]: https://github.com/jerus-org/named-colour/pull/140
+[#141]: https://github.com/jerus-org/named-colour/pull/141
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.25...HEAD
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/jerus-org/named-colour/compare/v0.3.23...v0.3.24
