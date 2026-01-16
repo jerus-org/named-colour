@@ -1,17 +1,5 @@
-pre-release-replacements = [
-    { file = "README.md", search = "named-colour = \"\\d+.\\d+.\\d+\"", replace = "named-colour = \"{{version}}\"", exactly = 1 },
-    { file = "README.md", search = """named-colour = \\{ version = "\\d+.\\d+.\\d+",""", replace = """named-colour = { version = "{{version}}",""", exactly = 2 },
-    { file = "src/lib.rs", search = """named-colour = "\\d+.\\d+.\\d+"""", replace = "{{crate_name}} = \"{{version}}\"", exactly = 1 },
-    { file = "src/lib.rs", search = """named-colour = \\{ version = "\\d+.\\d+.\\d+",""", replace = """{{crate_name}} = { version = "{{version}}",""", exactly = 2 },
-    { file = "PRLOG.md", search = "## \\[Unreleased\\]", replace = "## [{{version}}] - {{date}}", exactly = 1 },
-    { file = "PRLOG.md", search = "\\[Unreleased\\]:", replace = "[{{version}}]:", exactly = 1 },
-    { file = "PRLOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}", exactly = 1 },
-]
-pre-release-hook = ["./release-hook.sh"]
-pre-release-commit-message = "chore: Release"
-tag-message = "{{tag_name}}"
-tag-name = "{{prefix}}v{{version}}"
 sign-tag = true
 sign-commit = true
 consolidate-commits = true
 allow-branch = ["main"]
+pre-release-replacements = []
