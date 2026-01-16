@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🔒 security(ci)-add commit signature verification to prevent impersonation(pr [#136])
 - 📝 docs-add OpenSSF Best Practices Badge compliance documentation(pr [#139])
 - 🔧 chore(licenses)-add Apache-2.0 and MIT license files(pr [#140])
+- chore-add standard config files(pr [#142])
 
 ### Fixed
 
@@ -444,6 +445,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#139]: https://github.com/jerus-org/named-colour/pull/139
 [#140]: https://github.com/jerus-org/named-colour/pull/140
 [#141]: https://github.com/jerus-org/named-colour/pull/141
+[#142]: https://github.com/jerus-org/named-colour/pull/142
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.25...HEAD
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/jerus-org/named-colour/compare/v0.3.23...v0.3.24
