@@ -78,24 +78,6 @@ commands:
             fi
 
 jobs:
-  trigger_success_pipeline:
-    executor:
-      name: toolkit/base_env
-    steps:
-      - run:
-          name: Trigger success pipeline
-          command: |
-            curl -X POST \
-              --header "Content-Type: application/json" \
-              --header "Circle-Token: ${CIRCLE_TOKEN}" \
-              --data '{
-                "branch": "'"${CIRCLE_BRANCH}"'",
-                "parameters": {
-                  "success_flag": true
-                }
-              }' \
-              "https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pipeline"
-
   update_prlog:
     description: |
       Add the pull request to the PRLOG
@@ -583,7 +565,7 @@ workflows:
               ignore:
                 - /pull\/[0-9]+/
                 - main
-      - trigger_success_pipeline:
+      - toolkit/trigger_pipeline:
           context: bot-check
           filters:
             branches:
@@ -616,7 +598,7 @@ workflows:
           min_rust_version: << pipeline.parameters.min_rust_version >>
           update_log_option: halt
           pcu_from_merge: true
-          update_pcu: true
+          update_pcu: false
           pcu_verbosity: -vvv
           filters:
             branches:
@@ -668,7 +650,7 @@ workflows:
             - bot-check
           min_rust_version: << pipeline.parameters.min_rust_version >>
           when_use_workspace: false
-          when_update_pcu: true
+          when_update_pcu: false
 
       - toolkit/no_release:
           min_rust_version: << pipeline.parameters.min_rust_version >>
