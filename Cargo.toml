@@ -1,34 +1,18 @@
-[package]
-name = "named-colour"
-description = """
-named-colour provides Hex Codes for popular colour names.
-"""
-version = "0.3.25"
-authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/jerus-org/named-colour"
-readme = "README.md"
-documentation = "https://docs.rs/named-colour"
-categories = ["web-programming", "visualization"]
-keywords = ["colours", "constants", "reference"]
-include = ["**/*.rs", "Cargo.toml"]
+[workspace]
+members = ["crates/named-colour"]
+resolver = "2"
+
+[workspace.package]
 edition = "2021"
+authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
 rust-version = "1.75"
+repository = "https://github.com/jerus-org/named-colour"
 
-[features]
-default = ["extended"]
-extended = []
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+[workspace.dependencies]
 rgb = { version = "0.8.52", features = ["serde"] }
 strum = { version = "0.27.2", features = ["derive"] }
 tinyrand = "0.5.0"
-
-[dev-dependencies]
 rstest = "0.26.1"
 
-[package.metadata.docs.rs]
-all-features = true
-rustdoc-args = ["--cfg", "docsrs"]
+[workspace.lints.clippy]
+uninlined-format-args = "warn"

@@ -1,0 +1,10 @@
+pre-release-commit-message = "chore: Release named-colour v{{version}}"
+tag-message = "{{tag_name}}"
+tag-name = "named-colour-v{{version}}"
+pre-release-hook = ["./release-hook.sh"]
+pre-release-replacements = [
+    { file = "README.md", search = "named-colour = \"\\d+\\.\\d+\\.\\d+\"", replace = "named-colour = \"{{version}}\"", exactly = 1 },
+    { file = "README.md", search = "named-colour = \\{ version = \"\\d+\\.\\d+\\.\\d+\",", replace = "named-colour = { version = \"{{version}}\",", exactly = 2 },
+    { file = "src/lib.rs", search = "named-colour = \"\\d+\\.\\d+\\.\\d+\"", replace = "named-colour = \"{{version}}\"", exactly = 1 },
+    { file = "src/lib.rs", search = "named-colour = \\{ version = \"\\d+\\.\\d+\\.\\d+\",", replace = "named-colour = { version = \"{{version}}\",", exactly = 2 },
+]
