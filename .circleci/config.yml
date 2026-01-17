@@ -71,6 +71,9 @@ workflows:
       - toolkit/security:
           name: security audit only
           sonarcloud: false
+          filters:
+            branches:
+              only: /pull\/[0-9]+/
       - toolkit/security:
           name: security with sonarcloud
           context: SonarCloud
