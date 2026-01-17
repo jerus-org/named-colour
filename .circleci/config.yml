@@ -118,7 +118,7 @@ workflows:
           min_rust_version: << pipeline.parameters.min_rust_version >>
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           update_log_option: halt
-          pcu_from_merge: true
+          # pcu_from_merge: true
           update_pcu: false
           pcu_verbosity: -vvv
           filters:
