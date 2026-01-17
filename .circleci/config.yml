@@ -12,6 +12,9 @@ parameters:
     type: boolean
     default: false
     description: "If true, the release pipeline will be executed."
+  fingerprint:
+    type: string
+    default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
 
 orbs:
   toolkit: jerus-org/circleci-toolkit@4.2.1
@@ -113,6 +116,7 @@ workflows:
             - release
             - bot-check
           min_rust_version: << pipeline.parameters.min_rust_version >>
+          ssh_fingerprint: << pipeline.parameters.fingerprint >>
           update_log_option: halt
           pcu_from_merge: true
           update_pcu: false
