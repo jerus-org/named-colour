@@ -1,5 +1,8 @@
 //! Extended named colours providing shades collected in enums for the main colour
-//!  
+//!
+
+#[macro_use]
+mod macros;
 
 mod black;
 mod blue;

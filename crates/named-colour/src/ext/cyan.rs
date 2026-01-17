@@ -1,13 +1,11 @@
 //! Extended named colours providing shades collected in enums for the main colour
 //!
 
-use std::{fmt, str::FromStr};
+use std::fmt;
 
 use rgb::Rgb;
 use strum::EnumCount;
 use tinyrand::{RandRange, StdRand};
-
-use crate::Prefix;
 
 use super::ExtendedColour;
 
@@ -54,55 +52,9 @@ impl fmt::Display for Cyan {
     }
 }
 
+impl_colour_methods!(Cyan);
+
 impl Cyan {
-    /// Display the colour name as an RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Cyan;
-    /// # fn main() {
-    ///    let colour = Cyan::Teal;
-    ///    let rgb_colour = colour.to_rgb();
-    ///
-    ///    let string = rgb_colour.to_string();
-    ///    assert_eq!("rgb(0,128,128)", string);
-    ///
-    ///  # }
-    ///```
-    pub fn to_rgb(&self) -> Rgb<u8> {
-        let colour = self.to_string();
-
-        let r: u8 = u8::from_str_radix(&colour[1..3], 16).unwrap();
-        let g: u8 = u8::from_str_radix(&colour[3..5], 16).unwrap();
-        let b: u8 = u8::from_str_radix(&colour[5..7], 16).unwrap();
-
-        Rgb::new(r, g, b)
-    }
-
-    /// Display the colour name as an RGB Tuple
-    ///
-    /// ## Example
-    ///
-    ///```
-    /// # use named_colour::ext::Cyan;
-    /// # use named_colour::Prefix;
-    ///    let colour = Cyan::Teal;
-    ///
-    ///     assert_eq!("#008080", colour.to_hex_triplet(Prefix::Hash));
-    ///
-    ///```
-    pub fn to_hex_triplet(&self, prefix: Prefix) -> String {
-        let rgb = self.to_rgb();
-
-        let prefix = match prefix {
-            Prefix::Hash => "#",
-            Prefix::None => "",
-        };
-
-        format!("{}{:02X}{:02X}{:02X}", prefix, rgb.r, rgb.g, rgb.b)
-    }
-
     /// Parse a colour from string
     ///
     /// ## Example
@@ -171,20 +123,14 @@ impl Cyan {
     }
 }
 
-impl FromStr for Cyan {
-    type Err = String;
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match Self::parse(s) {
-            Some(colour) => Ok(colour),
-            None => Err(format!("Invalid Colour: {s}")),
-        }
-    }
-}
-
 impl ExtendedColour for Cyan {}
 
 #[cfg(test)]
 mod tests {
+    use std::str::FromStr;
+
+    use crate::Prefix;
+
     use super::*;
     use rstest::rstest;
 
