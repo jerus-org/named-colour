@@ -17,7 +17,7 @@ parameters:
     default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
 
 orbs:
-  toolkit: jerus-org/circleci-toolkit@4.2.1
+  toolkit: jerus-org/circleci-toolkit@4.4.3
 
 # Custom executors removed - using toolkit rolling executors instead
 
