@@ -3,7 +3,7 @@ name = "named-colour"
 description = """
 named-colour provides Hex Codes for popular colour names.
 """
-version = "0.3.25"
+version = "0.3.26"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 documentation = "https://docs.rs/named-colour"
