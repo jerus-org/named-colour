@@ -75,18 +75,3 @@ workflows:
               ignore:
                 - /pull\/[0-9]+/
                 - main
-      - toolkit/trigger_pipeline:
-          context: bot-check
-          filters:
-            branches:
-              ignore:
-                - /pull\/[0-9]+/
-                - main
-          requires:
-            - verify_commit_signatures_trusted
-            - toolkit/code_coverage
-            - toolkit/idiomatic_rust
-            - toolkit/test_doc_build
-            - toolkit/required_builds_rolling
-            - toolkit/common_tests_rolling
-            - security with sonarcloud
