@@ -9,8 +9,8 @@ rust-version = "1.75"
 repository = "https://github.com/jerus-org/named-colour"
 
 [workspace.dependencies]
-rgb = { version = "0.8.52", features = ["serde"] }
-strum = { version = "0.27.2", features = ["derive"] }
+rgb = { version = "0.8.53", features = ["serde"] }
+strum = { version = "0.28.0", features = ["derive"] }
 tinyrand = "0.5.0"
 rstest = "0.26.1"
 
