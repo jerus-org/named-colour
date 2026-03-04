@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - chore-add standard config files(pr [#142])
 - refactor-convert to workspace structure(pr [#143])
 - chore-migrate to 3-file CI model(pr [#147])
+- chore-bump toolkit to 4.7.2(pr [#151])
 
 ### Fixed
 
@@ -454,6 +455,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#147]: https://github.com/jerus-org/named-colour/pull/147
 [#148]: https://github.com/jerus-org/named-colour/pull/148
 [#150]: https://github.com/jerus-org/named-colour/pull/150
+[#151]: https://github.com/jerus-org/named-colour/pull/151
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.3.25...HEAD
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/jerus-org/named-colour/compare/v0.3.23...v0.3.24
