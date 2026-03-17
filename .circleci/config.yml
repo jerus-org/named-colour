@@ -6,7 +6,7 @@ parameters:
     default: "1.75"
 
 orbs:
-  toolkit: jerus-org/circleci-toolkit@4.7.2
+  toolkit: jerus-org/circleci-toolkit@4.11.0
 
 workflows:
   validation:
