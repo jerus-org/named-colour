@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - chore-migrate CI to circleci-toolkit 6.0.0(pr [#153])
 
+### Fixed
+
+- remove jq from tools verification(pr [#154])
+
 ## [0.4.0] - 2026-03-04
 
 ### Added
@@ -463,6 +467,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#150]: https://github.com/jerus-org/named-colour/pull/150
 [#151]: https://github.com/jerus-org/named-colour/pull/151
 [#153]: https://github.com/jerus-org/named-colour/pull/153
+[#154]: https://github.com/jerus-org/named-colour/pull/154
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.4.0...HEAD
 [0.4.0]: https://github.com/jerus-org/named-colour/compare/v0.3.25...v0.4.0
 [0.3.25]: https://github.com/jerus-org/named-colour/compare/v0.3.24...v0.3.25
