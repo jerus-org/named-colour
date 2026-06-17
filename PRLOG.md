@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - deps: update dependency toolkit to v6.1.4(pr [#155])
 - deps: update dependency toolkit to v6.2.0(pr [#156])
+- deps: update dependency toolkit to v6.3.0(pr [#157])
 
 ## [0.4.1] - 2026-03-28
 
@@ -477,6 +478,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#154]: https://github.com/jerus-org/named-colour/pull/154
 [#155]: https://github.com/jerus-org/named-colour/pull/155
 [#156]: https://github.com/jerus-org/named-colour/pull/156
+[#157]: https://github.com/jerus-org/named-colour/pull/157
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.4.1...HEAD
 [0.4.1]: https://github.com/jerus-org/named-colour/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/jerus-org/named-colour/compare/v0.3.25...v0.4.0
