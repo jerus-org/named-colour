@@ -61,7 +61,6 @@ workflows:
           filters:
             branches:
               only:
-                - main
                 - /pull\/[0-9]+/
       - toolkit/security:
           name: security with sonarcloud
@@ -70,4 +69,3 @@ workflows:
             branches:
               ignore:
                 - /pull\/[0-9]+/
-                - main
