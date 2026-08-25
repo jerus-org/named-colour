@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - ci-run sonarcloud security on main(pr [#159])
+- chore-remove redundant toolkit/label job(pr [#161])
 
 ### Fixed
 
@@ -497,6 +498,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#162]: https://github.com/jerus-org/named-colour/pull/162
 [#163]: https://github.com/jerus-org/named-colour/pull/163
 [#160]: https://github.com/jerus-org/named-colour/pull/160
+[#161]: https://github.com/jerus-org/named-colour/pull/161
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.4.2...HEAD
 [0.4.2]: https://github.com/jerus-org/named-colour/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/jerus-org/named-colour/compare/v0.4.0...v0.4.1
