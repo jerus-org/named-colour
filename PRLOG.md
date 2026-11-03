@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - deps: lock file maintenance(pr [#167])
 - deps: lock file maintenance(pr [#168])
 - deps: update dependency toolkit to v8(pr [#169])
+- deps: lock file maintenance(pr [#170])
 
 ## [0.4.2] - 2026-06-19
 
@@ -511,6 +512,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#167]: https://github.com/jerus-org/named-colour/pull/167
 [#168]: https://github.com/jerus-org/named-colour/pull/168
 [#169]: https://github.com/jerus-org/named-colour/pull/169
+[#170]: https://github.com/jerus-org/named-colour/pull/170
 [Unreleased]: https://github.com/jerus-org/named-colour/compare/v0.4.2...HEAD
 [0.4.2]: https://github.com/jerus-org/named-colour/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/jerus-org/named-colour/compare/v0.4.0...v0.4.1
